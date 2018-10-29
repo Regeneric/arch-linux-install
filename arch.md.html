@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <meta charset="utf-8" />
+      <title>arch</title>
+      <style>.markdown-preview:not([data-use-github-style]) { padding: 2em; font-size: 1.2em; color: rgb(171, 178, 191); background-color: rgb(40, 44, 52); overflow: auto; }
+.markdown-preview:not([data-use-github-style]) > :first-child { margin-top: 0px; }
+.markdown-preview:not([data-use-github-style]) h1, .markdown-preview:not([data-use-github-style]) h2, .markdown-preview:not([data-use-github-style]) h3, .markdown-preview:not([data-use-github-style]) h4, .markdown-preview:not([data-use-github-style]) h5, .markdown-preview:not([data-use-github-style]) h6 { line-height: 1.2; margin-top: 1.5em; margin-bottom: 0.5em; color: rgb(255, 255, 255); }
+.markdown-preview:not([data-use-github-style]) h1 { font-size: 2.4em; font-weight: 300; }
+.markdown-preview:not([data-use-github-style]) h2 { font-size: 1.8em; font-weight: 400; }
+.markdown-preview:not([data-use-github-style]) h3 { font-size: 1.5em; font-weight: 500; }
+.markdown-preview:not([data-use-github-style]) h4 { font-size: 1.2em; font-weight: 600; }
+.markdown-preview:not([data-use-github-style]) h5 { font-size: 1.1em; font-weight: 600; }
+.markdown-preview:not([data-use-github-style]) h6 { font-size: 1em; font-weight: 600; }
+.markdown-preview:not([data-use-github-style]) strong { color: rgb(255, 255, 255); }
+.markdown-preview:not([data-use-github-style]) del { color: rgb(124, 135, 156); }
+.markdown-preview:not([data-use-github-style]) a, .markdown-preview:not([data-use-github-style]) a code { color: rgb(82, 139, 255); }
+.markdown-preview:not([data-use-github-style]) img { max-width: 100%; }
+.markdown-preview:not([data-use-github-style]) > p { margin-top: 0px; margin-bottom: 1.5em; }
+.markdown-preview:not([data-use-github-style]) > ul, .markdown-preview:not([data-use-github-style]) > ol { margin-bottom: 1.5em; }
+.markdown-preview:not([data-use-github-style]) blockquote { margin: 1.5em 0px; font-size: inherit; color: rgb(124, 135, 156); border-color: rgb(75, 83, 98); border-width: 4px; }
+.markdown-preview:not([data-use-github-style]) hr { margin: 3em 0px; border-top: 2px dashed rgb(75, 83, 98); background: none; }
+.markdown-preview:not([data-use-github-style]) table { margin: 1.5em 0px; }
+.markdown-preview:not([data-use-github-style]) th { color: rgb(255, 255, 255); }
+.markdown-preview:not([data-use-github-style]) th, .markdown-preview:not([data-use-github-style]) td { padding: 0.66em 1em; border: 1px solid rgb(75, 83, 98); }
+.markdown-preview:not([data-use-github-style]) code { color: rgb(255, 255, 255); background-color: rgb(58, 63, 75); }
+.markdown-preview:not([data-use-github-style]) pre.editor-colors { margin: 1.5em 0px; padding: 1em; font-size: 0.92em; border-radius: 3px; background-color: rgb(49, 54, 63); }
+.markdown-preview:not([data-use-github-style]) kbd { color: rgb(255, 255, 255); border-width: 1px 1px 2px; border-style: solid; border-color: rgb(75, 83, 98) rgb(75, 83, 98) rgb(62, 68, 81); border-image: initial; background-color: rgb(58, 63, 75); }
+.markdown-preview[data-use-github-style] { font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif; line-height: 1.6; word-wrap: break-word; padding: 30px; font-size: 16px; color: rgb(51, 51, 51); background-color: rgb(255, 255, 255); overflow: scroll; }
+.markdown-preview[data-use-github-style] > :first-child { margin-top: 0px !important; }
+.markdown-preview[data-use-github-style] > :last-child { margin-bottom: 0px !important; }
+.markdown-preview[data-use-github-style] a:not([href]) { color: inherit; text-decoration: none; }
+.markdown-preview[data-use-github-style] .absent { color: rgb(204, 0, 0); }
+.markdown-preview[data-use-github-style] .anchor { position: absolute; top: 0px; left: 0px; display: block; padding-right: 6px; padding-left: 30px; margin-left: -30px; }
+.markdown-preview[data-use-github-style] .anchor:focus { outline: none; }
+.markdown-preview[data-use-github-style] h1, .markdown-preview[data-use-github-style] h2, .markdown-preview[data-use-github-style] h3, .markdown-preview[data-use-github-style] h4, .markdown-preview[data-use-github-style] h5, .markdown-preview[data-use-github-style] h6 { position: relative; margin-top: 1em; margin-bottom: 16px; font-weight: bold; line-height: 1.4; }
+.markdown-preview[data-use-github-style] h1 .octicon-link, .markdown-preview[data-use-github-style] h2 .octicon-link, .markdown-preview[data-use-github-style] h3 .octicon-link, .markdown-preview[data-use-github-style] h4 .octicon-link, .markdown-preview[data-use-github-style] h5 .octicon-link, .markdown-preview[data-use-github-style] h6 .octicon-link { display: none; color: rgb(0, 0, 0); vertical-align: middle; }
+.markdown-preview[data-use-github-style] h1:hover .anchor, .markdown-preview[data-use-github-style] h2:hover .anchor, .markdown-preview[data-use-github-style] h3:hover .anchor, .markdown-preview[data-use-github-style] h4:hover .anchor, .markdown-preview[data-use-github-style] h5:hover .anchor, .markdown-preview[data-use-github-style] h6:hover .anchor { padding-left: 8px; margin-left: -30px; text-decoration: none; }
+.markdown-preview[data-use-github-style] h1:hover .anchor .octicon-link, .markdown-preview[data-use-github-style] h2:hover .anchor .octicon-link, .markdown-preview[data-use-github-style] h3:hover .anchor .octicon-link, .markdown-preview[data-use-github-style] h4:hover .anchor .octicon-link, .markdown-preview[data-use-github-style] h5:hover .anchor .octicon-link, .markdown-preview[data-use-github-style] h6:hover .anchor .octicon-link { display: inline-block; }
+.markdown-preview[data-use-github-style] h1 tt, .markdown-preview[data-use-github-style] h2 tt, .markdown-preview[data-use-github-style] h3 tt, .markdown-preview[data-use-github-style] h4 tt, .markdown-preview[data-use-github-style] h5 tt, .markdown-preview[data-use-github-style] h6 tt, .markdown-preview[data-use-github-style] h1 code, .markdown-preview[data-use-github-style] h2 code, .markdown-preview[data-use-github-style] h3 code, .markdown-preview[data-use-github-style] h4 code, .markdown-preview[data-use-github-style] h5 code, .markdown-preview[data-use-github-style] h6 code { font-size: inherit; }
+.markdown-preview[data-use-github-style] h1 { padding-bottom: 0.3em; font-size: 2.25em; line-height: 1.2; border-bottom: 1px solid rgb(238, 238, 238); }
+.markdown-preview[data-use-github-style] h1 .anchor { line-height: 1; }
+.markdown-preview[data-use-github-style] h2 { padding-bottom: 0.3em; font-size: 1.75em; line-height: 1.225; border-bottom: 1px solid rgb(238, 238, 238); }
+.markdown-preview[data-use-github-style] h2 .anchor { line-height: 1; }
+.markdown-preview[data-use-github-style] h3 { font-size: 1.5em; line-height: 1.43; }
+.markdown-preview[data-use-github-style] h3 .anchor { line-height: 1.2; }
+.markdown-preview[data-use-github-style] h4 { font-size: 1.25em; }
+.markdown-preview[data-use-github-style] h4 .anchor { line-height: 1.2; }
+.markdown-preview[data-use-github-style] h5 { font-size: 1em; }
+.markdown-preview[data-use-github-style] h5 .anchor { line-height: 1.1; }
+.markdown-preview[data-use-github-style] h6 { font-size: 1em; color: rgb(119, 119, 119); }
+.markdown-preview[data-use-github-style] h6 .anchor { line-height: 1.1; }
+.markdown-preview[data-use-github-style] p, .markdown-preview[data-use-github-style] blockquote, .markdown-preview[data-use-github-style] ul, .markdown-preview[data-use-github-style] ol, .markdown-preview[data-use-github-style] dl, .markdown-preview[data-use-github-style] table, .markdown-preview[data-use-github-style] pre { margin-top: 0px; margin-bottom: 16px; }
+.markdown-preview[data-use-github-style] hr { height: 4px; padding: 0px; margin: 16px 0px; background-color: rgb(231, 231, 231); border: 0px none; }
+.markdown-preview[data-use-github-style] ul, .markdown-preview[data-use-github-style] ol { padding-left: 2em; }
+.markdown-preview[data-use-github-style] ul.no-list, .markdown-preview[data-use-github-style] ol.no-list { padding: 0px; list-style-type: none; }
+.markdown-preview[data-use-github-style] ul ul, .markdown-preview[data-use-github-style] ul ol, .markdown-preview[data-use-github-style] ol ol, .markdown-preview[data-use-github-style] ol ul { margin-top: 0px; margin-bottom: 0px; }
+.markdown-preview[data-use-github-style] li > p { margin-top: 16px; }
+.markdown-preview[data-use-github-style] dl { padding: 0px; }
+.markdown-preview[data-use-github-style] dl dt { padding: 0px; margin-top: 16px; font-size: 1em; font-style: italic; font-weight: bold; }
+.markdown-preview[data-use-github-style] dl dd { padding: 0px 16px; margin-bottom: 16px; }
+.markdown-preview[data-use-github-style] blockquote { padding: 0px 15px; color: rgb(119, 119, 119); border-left: 4px solid rgb(221, 221, 221); }
+.markdown-preview[data-use-github-style] blockquote > :first-child { margin-top: 0px; }
+.markdown-preview[data-use-github-style] blockquote > :last-child { margin-bottom: 0px; }
+.markdown-preview[data-use-github-style] table { display: block; width: 100%; overflow: auto; word-break: keep-all; }
+.markdown-preview[data-use-github-style] table th { font-weight: bold; }
+.markdown-preview[data-use-github-style] table th, .markdown-preview[data-use-github-style] table td { padding: 6px 13px; border: 1px solid rgb(221, 221, 221); }
+.markdown-preview[data-use-github-style] table tr { background-color: rgb(255, 255, 255); border-top: 1px solid rgb(204, 204, 204); }
+.markdown-preview[data-use-github-style] table tr:nth-child(2n) { background-color: rgb(248, 248, 248); }
+.markdown-preview[data-use-github-style] img { max-width: 100%; box-sizing: border-box; }
+.markdown-preview[data-use-github-style] .emoji { max-width: none; }
+.markdown-preview[data-use-github-style] span.frame { display: block; overflow: hidden; }
+.markdown-preview[data-use-github-style] span.frame > span { display: block; float: left; width: auto; padding: 7px; margin: 13px 0px 0px; overflow: hidden; border: 1px solid rgb(221, 221, 221); }
+.markdown-preview[data-use-github-style] span.frame span img { display: block; float: left; }
+.markdown-preview[data-use-github-style] span.frame span span { display: block; padding: 5px 0px 0px; clear: both; color: rgb(51, 51, 51); }
+.markdown-preview[data-use-github-style] span.align-center { display: block; overflow: hidden; clear: both; }
+.markdown-preview[data-use-github-style] span.align-center > span { display: block; margin: 13px auto 0px; overflow: hidden; text-align: center; }
+.markdown-preview[data-use-github-style] span.align-center span img { margin: 0px auto; text-align: center; }
+.markdown-preview[data-use-github-style] span.align-right { display: block; overflow: hidden; clear: both; }
+.markdown-preview[data-use-github-style] span.align-right > span { display: block; margin: 13px 0px 0px; overflow: hidden; text-align: right; }
+.markdown-preview[data-use-github-style] span.align-right span img { margin: 0px; text-align: right; }
+.markdown-preview[data-use-github-style] span.float-left { display: block; float: left; margin-right: 13px; overflow: hidden; }
+.markdown-preview[data-use-github-style] span.float-left span { margin: 13px 0px 0px; }
+.markdown-preview[data-use-github-style] span.float-right { display: block; float: right; margin-left: 13px; overflow: hidden; }
+.markdown-preview[data-use-github-style] span.float-right > span { display: block; margin: 13px auto 0px; overflow: hidden; text-align: right; }
+.markdown-preview[data-use-github-style] code, .markdown-preview[data-use-github-style] tt { padding: 0.2em 0px; margin: 0px; font-size: 85%; background-color: rgba(0, 0, 0, 0.04); border-radius: 3px; }
+.markdown-preview[data-use-github-style] code::before, .markdown-preview[data-use-github-style] tt::before, .markdown-preview[data-use-github-style] code::after, .markdown-preview[data-use-github-style] tt::after { letter-spacing: -0.2em; content: " "; }
+.markdown-preview[data-use-github-style] code br, .markdown-preview[data-use-github-style] tt br { display: none; }
+.markdown-preview[data-use-github-style] del code { text-decoration: inherit; }
+.markdown-preview[data-use-github-style] pre > code { padding: 0px; margin: 0px; font-size: 100%; word-break: normal; white-space: pre; background: transparent; border: 0px; }
+.markdown-preview[data-use-github-style] .highlight { margin-bottom: 16px; }
+.markdown-preview[data-use-github-style] .highlight pre, .markdown-preview[data-use-github-style] pre { padding: 16px; overflow: auto; font-size: 85%; line-height: 1.45; background-color: rgb(247, 247, 247); border-radius: 3px; }
+.markdown-preview[data-use-github-style] .highlight pre { margin-bottom: 0px; word-break: normal; }
+.markdown-preview[data-use-github-style] pre { word-wrap: normal; }
+.markdown-preview[data-use-github-style] pre code, .markdown-preview[data-use-github-style] pre tt { display: inline; max-width: initial; padding: 0px; margin: 0px; overflow: initial; line-height: inherit; word-wrap: normal; background-color: transparent; border: 0px; }
+.markdown-preview[data-use-github-style] pre code::before, .markdown-preview[data-use-github-style] pre tt::before, .markdown-preview[data-use-github-style] pre code::after, .markdown-preview[data-use-github-style] pre tt::after { content: normal; }
+.markdown-preview[data-use-github-style] kbd { display: inline-block; padding: 3px 5px; font-size: 11px; line-height: 10px; color: rgb(85, 85, 85); vertical-align: middle; background-color: rgb(252, 252, 252); border-width: 1px; border-style: solid; border-color: rgb(204, 204, 204) rgb(204, 204, 204) rgb(187, 187, 187); border-image: initial; border-radius: 3px; box-shadow: rgb(187, 187, 187) 0px -1px 0px inset; }
+.markdown-preview[data-use-github-style] a { color: rgb(51, 122, 183); }
+.markdown-preview[data-use-github-style] code { color: inherit; }
+.markdown-preview[data-use-github-style] pre.editor-colors { padding: 0.8em 1em; margin-bottom: 1em; font-size: 0.85em; border-radius: 4px; overflow: auto; }
+.markdown-preview pre.editor-colors { user-select: auto; }
+.scrollbars-visible-always .markdown-preview pre.editor-colors .vertical-scrollbar, .scrollbars-visible-always .markdown-preview pre.editor-colors .horizontal-scrollbar { visibility: hidden; }
+.scrollbars-visible-always .markdown-preview pre.editor-colors:hover .vertical-scrollbar, .scrollbars-visible-always .markdown-preview pre.editor-colors:hover .horizontal-scrollbar { visibility: visible; }
+.markdown-preview .task-list-item-checkbox { position: absolute; margin: 0.25em 0px 0px -1.4em; }
+.markdown-preview ul label { vertical-align: top; }
+.bracket-matcher .region {
+  border-bottom: 1px dotted lime;
+  position: absolute;
+}
+.line-number.bracket-matcher.bracket-matcher {
+  color: #abb2bf;
+  background-color: #3a3f4b;
+}
+
+.spell-check-misspelling .region {
+  border-bottom: 2px dotted rgba(255, 51, 51, 0.75);
+}
+.spell-check-corrections {
+  width: 25em !important;
+}
+
+pre.editor-colors {
+  background-color: #282c34;
+  color: #abb2bf;
+}
+pre.editor-colors .line.cursor-line {
+  background-color: rgba(153, 187, 255, 0.04);
+}
+pre.editor-colors .invisible {
+  color: #abb2bf;
+}
+pre.editor-colors .cursor {
+  border-left: 2px solid #528bff;
+}
+pre.editor-colors .selection .region {
+  background-color: #3e4451;
+}
+pre.editor-colors .bracket-matcher .region {
+  border-bottom: 1px solid #528bff;
+  box-sizing: border-box;
+}
+pre.editor-colors .invisible-character {
+  color: rgba(171, 178, 191, 0.15);
+}
+pre.editor-colors .indent-guide {
+  color: rgba(171, 178, 191, 0.15);
+}
+pre.editor-colors .wrap-guide {
+  background-color: rgba(171, 178, 191, 0.15);
+}
+pre.editor-colors .find-result .region.region.region,
+pre.editor-colors .current-result .region.region.region {
+  border-radius: 2px;
+  background-color: rgba(82, 139, 255, 0.24);
+  transition: border-color 0.4s;
+}
+pre.editor-colors .find-result .region.region.region {
+  border: 2px solid transparent;
+}
+pre.editor-colors .current-result .region.region.region {
+  border: 2px solid #528bff;
+  transition-duration: .1s;
+}
+pre.editor-colors .gutter .line-number {
+  color: #636d83;
+  -webkit-font-smoothing: antialiased;
+}
+pre.editor-colors .gutter .line-number.cursor-line {
+  color: #abb2bf;
+  background-color: #3a3f4b;
+}
+pre.editor-colors .gutter .line-number.cursor-line-no-selection {
+  background-color: transparent;
+}
+pre.editor-colors .gutter .line-number .icon-right {
+  color: #abb2bf;
+}
+pre.editor-colors .gutter:not(.git-diff-icon) .line-number.git-line-removed.git-line-removed::before {
+  bottom: -3px;
+}
+pre.editor-colors .gutter:not(.git-diff-icon) .line-number.git-line-removed::after {
+  content: "";
+  position: absolute;
+  left: 0px;
+  bottom: 0px;
+  width: 25px;
+  border-bottom: 1px dotted rgba(224, 82, 82, 0.5);
+  pointer-events: none;
+}
+pre.editor-colors .gutter .line-number.folded,
+pre.editor-colors .gutter .line-number:after,
+pre.editor-colors .fold-marker:after {
+  color: #abb2bf;
+}
+.syntax--comment {
+  color: #5c6370;
+  font-style: italic;
+}
+.syntax--comment .syntax--markup.syntax--link {
+  color: #5c6370;
+}
+.syntax--entity.syntax--name.syntax--type {
+  color: #e5c07b;
+}
+.syntax--entity.syntax--other.syntax--inherited-class {
+  color: #98c379;
+}
+.syntax--keyword {
+  color: #c678dd;
+}
+.syntax--keyword.syntax--control {
+  color: #c678dd;
+}
+.syntax--keyword.syntax--operator {
+  color: #abb2bf;
+}
+.syntax--keyword.syntax--other.syntax--special-method {
+  color: #61afef;
+}
+.syntax--keyword.syntax--other.syntax--unit {
+  color: #d19a66;
+}
+.syntax--storage {
+  color: #c678dd;
+}
+.syntax--storage.syntax--type.syntax--annotation,
+.syntax--storage.syntax--type.syntax--primitive {
+  color: #c678dd;
+}
+.syntax--storage.syntax--modifier.syntax--package,
+.syntax--storage.syntax--modifier.syntax--import {
+  color: #abb2bf;
+}
+.syntax--constant {
+  color: #d19a66;
+}
+.syntax--constant.syntax--variable {
+  color: #d19a66;
+}
+.syntax--constant.syntax--character.syntax--escape {
+  color: #56b6c2;
+}
+.syntax--constant.syntax--numeric {
+  color: #d19a66;
+}
+.syntax--constant.syntax--other.syntax--color {
+  color: #56b6c2;
+}
+.syntax--constant.syntax--other.syntax--symbol {
+  color: #56b6c2;
+}
+.syntax--variable {
+  color: #e06c75;
+}
+.syntax--variable.syntax--interpolation {
+  color: #be5046;
+}
+.syntax--variable.syntax--parameter {
+  color: #abb2bf;
+}
+.syntax--string {
+  color: #98c379;
+}
+.syntax--string > .syntax--source,
+.syntax--string .syntax--embedded {
+  color: #abb2bf;
+}
+.syntax--string.syntax--regexp {
+  color: #56b6c2;
+}
+.syntax--string.syntax--regexp .syntax--source.syntax--ruby.syntax--embedded {
+  color: #e5c07b;
+}
+.syntax--string.syntax--other.syntax--link {
+  color: #e06c75;
+}
+.syntax--punctuation.syntax--definition.syntax--comment {
+  color: #5c6370;
+}
+.syntax--punctuation.syntax--definition.syntax--method-parameters,
+.syntax--punctuation.syntax--definition.syntax--function-parameters,
+.syntax--punctuation.syntax--definition.syntax--parameters,
+.syntax--punctuation.syntax--definition.syntax--separator,
+.syntax--punctuation.syntax--definition.syntax--seperator,
+.syntax--punctuation.syntax--definition.syntax--array {
+  color: #abb2bf;
+}
+.syntax--punctuation.syntax--definition.syntax--heading,
+.syntax--punctuation.syntax--definition.syntax--identity {
+  color: #61afef;
+}
+.syntax--punctuation.syntax--definition.syntax--bold {
+  color: #e5c07b;
+  font-weight: bold;
+}
+.syntax--punctuation.syntax--definition.syntax--italic {
+  color: #c678dd;
+  font-style: italic;
+}
+.syntax--punctuation.syntax--section.syntax--embedded {
+  color: #be5046;
+}
+.syntax--punctuation.syntax--section.syntax--method,
+.syntax--punctuation.syntax--section.syntax--class,
+.syntax--punctuation.syntax--section.syntax--inner-class {
+  color: #abb2bf;
+}
+.syntax--support.syntax--class {
+  color: #e5c07b;
+}
+.syntax--support.syntax--type {
+  color: #56b6c2;
+}
+.syntax--support.syntax--function {
+  color: #56b6c2;
+}
+.syntax--support.syntax--function.syntax--any-method {
+  color: #61afef;
+}
+.syntax--entity.syntax--name.syntax--function {
+  color: #61afef;
+}
+.syntax--entity.syntax--name.syntax--class,
+.syntax--entity.syntax--name.syntax--type.syntax--class {
+  color: #e5c07b;
+}
+.syntax--entity.syntax--name.syntax--section {
+  color: #61afef;
+}
+.syntax--entity.syntax--name.syntax--tag {
+  color: #e06c75;
+}
+.syntax--entity.syntax--other.syntax--attribute-name {
+  color: #d19a66;
+}
+.syntax--entity.syntax--other.syntax--attribute-name.syntax--id {
+  color: #61afef;
+}
+.syntax--meta.syntax--class {
+  color: #e5c07b;
+}
+.syntax--meta.syntax--class.syntax--body {
+  color: #abb2bf;
+}
+.syntax--meta.syntax--method-call,
+.syntax--meta.syntax--method {
+  color: #abb2bf;
+}
+.syntax--meta.syntax--definition.syntax--variable {
+  color: #e06c75;
+}
+.syntax--meta.syntax--link {
+  color: #d19a66;
+}
+.syntax--meta.syntax--require {
+  color: #61afef;
+}
+.syntax--meta.syntax--selector {
+  color: #c678dd;
+}
+.syntax--meta.syntax--separator {
+  color: #abb2bf;
+}
+.syntax--meta.syntax--tag {
+  color: #abb2bf;
+}
+.syntax--underline {
+  text-decoration: underline;
+}
+.syntax--none {
+  color: #abb2bf;
+}
+.syntax--invalid.syntax--deprecated {
+  color: #523d14 !important;
+  background-color: #e0c285 !important;
+}
+.syntax--invalid.syntax--illegal {
+  color: white !important;
+  background-color: #e05252 !important;
+}
+.syntax--markup.syntax--bold {
+  color: #d19a66;
+  font-weight: bold;
+}
+.syntax--markup.syntax--changed {
+  color: #c678dd;
+}
+.syntax--markup.syntax--deleted {
+  color: #e06c75;
+}
+.syntax--markup.syntax--italic {
+  color: #c678dd;
+  font-style: italic;
+}
+.syntax--markup.syntax--heading {
+  color: #e06c75;
+}
+.syntax--markup.syntax--heading .syntax--punctuation.syntax--definition.syntax--heading {
+  color: #61afef;
+}
+.syntax--markup.syntax--link {
+  color: #56b6c2;
+}
+.syntax--markup.syntax--inserted {
+  color: #98c379;
+}
+.syntax--markup.syntax--quote {
+  color: #d19a66;
+}
+.syntax--markup.syntax--raw {
+  color: #98c379;
+}
+.syntax--source.syntax--c .syntax--keyword.syntax--operator {
+  color: #c678dd;
+}
+.syntax--source.syntax--cpp .syntax--keyword.syntax--operator {
+  color: #c678dd;
+}
+.syntax--source.syntax--cs .syntax--keyword.syntax--operator {
+  color: #c678dd;
+}
+.syntax--source.syntax--css .syntax--property-name,
+.syntax--source.syntax--css .syntax--property-value {
+  color: #828997;
+}
+.syntax--source.syntax--css .syntax--property-name.syntax--support,
+.syntax--source.syntax--css .syntax--property-value.syntax--support {
+  color: #abb2bf;
+}
+.syntax--source.syntax--elixir .syntax--source.syntax--embedded.syntax--source {
+  color: #abb2bf;
+}
+.syntax--source.syntax--elixir .syntax--constant.syntax--language,
+.syntax--source.syntax--elixir .syntax--constant.syntax--numeric,
+.syntax--source.syntax--elixir .syntax--constant.syntax--definition {
+  color: #61afef;
+}
+.syntax--source.syntax--elixir .syntax--variable.syntax--definition,
+.syntax--source.syntax--elixir .syntax--variable.syntax--anonymous {
+  color: #c678dd;
+}
+.syntax--source.syntax--elixir .syntax--parameter.syntax--variable.syntax--function {
+  color: #d19a66;
+  font-style: italic;
+}
+.syntax--source.syntax--elixir .syntax--quoted {
+  color: #98c379;
+}
+.syntax--source.syntax--elixir .syntax--keyword.syntax--special-method,
+.syntax--source.syntax--elixir .syntax--embedded.syntax--section,
+.syntax--source.syntax--elixir .syntax--embedded.syntax--source.syntax--empty {
+  color: #e06c75;
+}
+.syntax--source.syntax--elixir .syntax--readwrite.syntax--module .syntax--punctuation {
+  color: #e06c75;
+}
+.syntax--source.syntax--elixir .syntax--regexp.syntax--section,
+.syntax--source.syntax--elixir .syntax--regexp.syntax--string {
+  color: #be5046;
+}
+.syntax--source.syntax--elixir .syntax--separator,
+.syntax--source.syntax--elixir .syntax--keyword.syntax--operator {
+  color: #d19a66;
+}
+.syntax--source.syntax--elixir .syntax--variable.syntax--constant {
+  color: #e5c07b;
+}
+.syntax--source.syntax--elixir .syntax--array,
+.syntax--source.syntax--elixir .syntax--scope,
+.syntax--source.syntax--elixir .syntax--section {
+  color: #828997;
+}
+.syntax--source.syntax--gfm .syntax--markup {
+  -webkit-font-smoothing: auto;
+}
+.syntax--source.syntax--gfm .syntax--link .syntax--entity {
+  color: #61afef;
+}
+.syntax--source.syntax--go .syntax--storage.syntax--type.syntax--string {
+  color: #c678dd;
+}
+.syntax--source.syntax--ini .syntax--keyword.syntax--other.syntax--definition.syntax--ini {
+  color: #e06c75;
+}
+.syntax--source.syntax--java .syntax--storage.syntax--modifier.syntax--import {
+  color: #e5c07b;
+}
+.syntax--source.syntax--java .syntax--storage.syntax--type {
+  color: #e5c07b;
+}
+.syntax--source.syntax--java .syntax--keyword.syntax--operator.syntax--instanceof {
+  color: #c678dd;
+}
+.syntax--source.syntax--java-properties .syntax--meta.syntax--key-pair {
+  color: #e06c75;
+}
+.syntax--source.syntax--java-properties .syntax--meta.syntax--key-pair > .syntax--punctuation {
+  color: #abb2bf;
+}
+.syntax--source.syntax--js .syntax--keyword.syntax--operator {
+  color: #56b6c2;
+}
+.syntax--source.syntax--js .syntax--keyword.syntax--operator.syntax--delete,
+.syntax--source.syntax--js .syntax--keyword.syntax--operator.syntax--in,
+.syntax--source.syntax--js .syntax--keyword.syntax--operator.syntax--of,
+.syntax--source.syntax--js .syntax--keyword.syntax--operator.syntax--instanceof,
+.syntax--source.syntax--js .syntax--keyword.syntax--operator.syntax--new,
+.syntax--source.syntax--js .syntax--keyword.syntax--operator.syntax--typeof,
+.syntax--source.syntax--js .syntax--keyword.syntax--operator.syntax--void {
+  color: #c678dd;
+}
+.syntax--source.syntax--json .syntax--meta.syntax--structure.syntax--dictionary.syntax--json > .syntax--string.syntax--quoted.syntax--json {
+  color: #e06c75;
+}
+.syntax--source.syntax--json .syntax--meta.syntax--structure.syntax--dictionary.syntax--json > .syntax--string.syntax--quoted.syntax--json > .syntax--punctuation.syntax--string {
+  color: #e06c75;
+}
+.syntax--source.syntax--json .syntax--meta.syntax--structure.syntax--dictionary.syntax--json > .syntax--value.syntax--json > .syntax--string.syntax--quoted.syntax--json,
+.syntax--source.syntax--json .syntax--meta.syntax--structure.syntax--array.syntax--json > .syntax--value.syntax--json > .syntax--string.syntax--quoted.syntax--json,
+.syntax--source.syntax--json .syntax--meta.syntax--structure.syntax--dictionary.syntax--json > .syntax--value.syntax--json > .syntax--string.syntax--quoted.syntax--json > .syntax--punctuation,
+.syntax--source.syntax--json .syntax--meta.syntax--structure.syntax--array.syntax--json > .syntax--value.syntax--json > .syntax--string.syntax--quoted.syntax--json > .syntax--punctuation {
+  color: #98c379;
+}
+.syntax--source.syntax--json .syntax--meta.syntax--structure.syntax--dictionary.syntax--json > .syntax--constant.syntax--language.syntax--json,
+.syntax--source.syntax--json .syntax--meta.syntax--structure.syntax--array.syntax--json > .syntax--constant.syntax--language.syntax--json {
+  color: #56b6c2;
+}
+.syntax--ng.syntax--interpolation {
+  color: #e06c75;
+}
+.syntax--ng.syntax--interpolation.syntax--begin,
+.syntax--ng.syntax--interpolation.syntax--end {
+  color: #61afef;
+}
+.syntax--ng.syntax--interpolation .syntax--function {
+  color: #e06c75;
+}
+.syntax--ng.syntax--interpolation .syntax--function.syntax--begin,
+.syntax--ng.syntax--interpolation .syntax--function.syntax--end {
+  color: #61afef;
+}
+.syntax--ng.syntax--interpolation .syntax--bool {
+  color: #d19a66;
+}
+.syntax--ng.syntax--interpolation .syntax--bracket {
+  color: #abb2bf;
+}
+.syntax--ng.syntax--pipe,
+.syntax--ng.syntax--operator {
+  color: #abb2bf;
+}
+.syntax--ng.syntax--tag {
+  color: #56b6c2;
+}
+.syntax--ng.syntax--attribute-with-value .syntax--attribute-name {
+  color: #e5c07b;
+}
+.syntax--ng.syntax--attribute-with-value .syntax--string {
+  color: #c678dd;
+}
+.syntax--ng.syntax--attribute-with-value .syntax--string.syntax--begin,
+.syntax--ng.syntax--attribute-with-value .syntax--string.syntax--end {
+  color: #abb2bf;
+}
+.syntax--source.syntax--ruby .syntax--constant.syntax--other.syntax--symbol > .syntax--punctuation {
+  color: inherit;
+}
+.syntax--source.syntax--php .syntax--class.syntax--bracket {
+  color: #abb2bf;
+}
+.syntax--source.syntax--python .syntax--keyword.syntax--operator.syntax--logical.syntax--python {
+  color: #c678dd;
+}
+.syntax--source.syntax--python .syntax--variable.syntax--parameter {
+  color: #d19a66;
+}
+</style>
+  </head>
+  <body class='markdown-preview' data-use-github-style><h2 id="arch-linux-instalacja-i-konfiguracja"><strong>Arch Linux - instalacja i konfiguracja</strong></h2>
+<p>Świat systemów GNU/Linux jest rozległy i fascynujący. Każda dystrybucja ma pomysł na samą siebie, potrafi zebrać rzeszę nie tyle prostych użytkowników, ile ludzi powiązanych mniej lub bardziej z systemem. Pingwinki są od ludzi, dla ludzi, o czym wielu często zapomina.
+Dlaczego więc Arch Linux owiany jest takim mistycyzmem? Co stoi za jego sukcesem i dlaczego jest to świetny system dla naszego desktopa?
+Sprawdźmy to!</p>
+<h3 id="arch-linux">Arch Linux</h3>
+<p>Dystrybucja stworzona przez Judda Vineta, która za cel obrała sobie łatwość konfiguracji, użytkowania, a także szybkość, stabilność i aktualność.</p>
+<p>Problemem dla osób początkujących z Linuksem jest to, że cała łatwość nie opiera się na graficznym reprezentowaniu parametrów i klikaniu myszą w odpowiednie miejsca.
+Ideą jest przemyślane rozmieszczenie i zaprojektowanie skryptów, programów czy plików konfiguracyjnych.
+To dzięki nim, przy pomocy terminala, możemy zrobić system idealny. Niczym nieograniczeni, z potężnym narzędziem na naszym PC jesteśmy w stanie tak dobrać DE, programy czy wszelkie inne paczki, by system stanowił naszą drugą naturę.</p>
+<p>Przemyślany menadżer pakietów <em>pacman</em>, ogromna baza programów, jaką stanowi <em>AUR</em>, niezawodność i bezproblemowa praca – te i wiele, wiele innych czynników stanowią o tym, dlaczego ten system jest tak popularny w kręgu bardziej doświadczonych użytkowników Linuksa.</p>
+<p>Co do samego <em>AUR</em> – warto powiedzieć, że jest to swoisty odpowiednik PPA z Ubuntu.
+Działa jednak znacznie lepiej i sprawniej. Za pomocą <a href="https://aur.archlinux.org/">TEJ</a>  strony, jesteśmy w stanie wyszukiwać, pobierać a następnie instalować interesujące nas pakiety.
+Co więcej – nie musimy tam nawet zaglądać, bo z pomocą przychodzi nam kolejny menadżer pakietów, jakim jest <em>yay</em>.
+Operuje on właśnie na repozytoriach AUR i usprawnia cały proces instalacji.</p>
+<h3 id="pochodne-dystrybucje-archa">Pochodne dystrybucje Archa</h3>
+<p>Zanim przejdziemy do spraw instalacji i podstawowej konfiguracji systemu, trzeba jasno powiedzieć — nie musimy instalować Archa, by cieszyć się jego najlepszymi cechami.</p>
+<p>Dystrybucje takie jak <strong>Manjaro</strong>, <strong>Antergos</strong> czy <strong>Bridge Linux</strong> pozwalają nam zaznać plusów systemu, ale bez całego żmudnego i niejako zaawansowanego procesu instalacji.</p>
+<p>Nie są one idealne i nie oddają w 100% systemu, który sami sobie skonfigurujemy od A do Z, ale są dobrym punktem zaczepienia dla ludzi, którzy nie są do końca przekonani o sensowności korzystania z Archa.</p>
+<p>Z drugiej strony barykady stoją takie twory jak <strong>Anarchy</strong> lub <strong>Revenge Installer</strong>, które są graficznymi nakładkami na sam proces instalacyjny systemu, znacznie skracając czas potrzebny na np. wpisywanie komend. Nie są idealne i potrafią wysypać błędy w najmniej oczekiwanym momencie, jednak dla podstawowych zadań są niezastąpione.</p>
+<p>To dzięki wynalazkom przedstawionym wyżej, w prosty sposób możemy nauczyć się specyfiki systemu, pewnych wskazanych zachowań albo po prostu przyzwyczaić się do używania choćby tego <em>pacmana</em>.</p>
+<p>Osobiście nie jestem ich zwolennikiem, bo uważam, że dobrze i samodzielnie postawiony Arch to ogrom doświadczenia, a także świadomość, co nam na dysku gra.
+Mimo to każdemu o odmiennych poglądach polecam zapoznać się z wymienionymi wyżej dystrybucjami. Jest to krok w dobrą stronę!</p>
+<h3 id="wst-pna-konfiguracja">Wstępna konfiguracja</h3>
+<p>Metodę przygotowania medium instalacyjnego pozostawiam Wam. Sposobów i nośników jest tyle, co ludzi instalujących system, a niech każdy wybierze to, co mu najbardziej odpowiada.</p>
+<p>Osobiście skorzystam z bootowalnego pendrive’a, stworzonego za pomocą komendy <strong>dd</strong>, dla instalacji na dysku <strong>GPT</strong> pod PC wspierającym <strong>UEFI</strong>.</p>
+<p>Nie ma co się oszukiwać — <strong>MBR</strong> to przestarzałe rozwiązanie, które powinno zniknąć już dłuższy czas temu. Trzeba wspierać nowe technologie i korzystać z ich dobrodziejstw — zwłaszcza wtedy, kiedy przynosi nam to wymierne korzyści.</p>
+<p>Kiedy uda nam się już poprawnie uruchomić system w trybie live, naszym oczom ukaże się okno terminalu — to za jego pomocą podzielimy dyski na partycje, sformatujemy je, pobierzemy system bazowy, ustawimy najważniejsze pliki konfiguracyjne, by finalnie móc uruchomić system prosto z dysku, aby zainstalować DE.</p>
+<p>Całość zaczynamy od sprawdzenia, czy aby na pewno udało nam się zbootować w trybie <strong>UEFI</strong>, wykorzystamy do tego komendę:</p>
+<blockquote>
+<p>$ ls /sys/firmware/efi/efivars</p>
+</blockquote>
+<p><img alt="efivars" src="https://i.imgur.com/V9bk0qx.png"></p>
+<p>Jeśli folder nie istnieje, to najprawdopodobniej całość uruchomiła się w trybie legacy dla <strong>BIOSu</strong> lub w trybie <strong>CSM</strong>.
+Musimy więc przerwać instalację i odpowiednio ustawić opcje na naszej płycie głównej.</p>
+<p>Następnym krokiem będzie sprawdzenie naszego połączenia z internetem. W przypadku połączenia kablem ethernet, wszystko powinno być już gotowe, ponieważ instalacja w trybie live automatycznie uruchamia usługę dhcpcd.</p>
+<blockquote>
+<p>$ ping google.com</p>
+</blockquote>
+<p>Jeśli nie udaje nam się poprawnie nawiązać połączenia, dobrze jest zatrzymać i uruchomić ponownie dhcpcd komendą:</p>
+<blockquote>
+<p>$ systemctl stop dhcpcd<br>$ systemctl start dhcpcd</p>
+</blockquote>
+<p><img alt="ping-fail" src="https://i.imgur.com/iBTp5u6.png"></p>
+<p>Jeśli operacja ta nie przynosi żadnego efektu, na czas instalacji możemy ręcznie skonfigurować statyczne IP dla naszej karty sieciowej:</p>
+<blockquote>
+<p>$ ip address show<br>$ ip address add 192.168.122.10/24 broadcast + dev enp3s0<br>$ ip route add default via 192.168.122.1<br>$ echo "nameserver 1.1.1.1" &gt;&gt; /etc/resolv.conf<br>$ echo "nameserver 1.0.0.1" &gt;&gt; /etc/resolv.conf</p>
+</blockquote>
+<p>Adresy IP podajemy oczywiście odpowiadające rzeczywistym wartościom używanym w naszej sieci. To samo tyczy się także nazwy naszej karty sieciowej (tutaj: <em>enp3s0</em>). W moim wypadku taki adres uwarunkowany jest ukryciem się za NATem, gdyż całość instalacji przeprowadzam na maszynie wirtualnej.</p>
+<p><img alt="ping-succ" src="https://i.imgur.com/edQ5dEI.png"></p>
+<h3 id="partycjonowanie-i-formatowanie-dysk-w-lvm-bez-szyfrowania-">Partycjonowanie i formatowanie dysków (LVM, bez szyfrowania)</h3>
+<p>Partycjonowanie dysku, to ciut bardziej skomplikowany proces, mimo to, wcale nie należy się go bać.
+Na początek musimy odnaleźć dysk, na którym nasz system ma być zainstalowany, komendą:</p>
+<blockquote>
+<p>$ fdisk -l</p>
+</blockquote>
+<p><img alt="drives" src="https://i.imgur.com/zoUiCPs.png"></p>
+<p>Wypisujemy na ekranie wszystkie dyski i partycje, jakie w danej chwili znajdują się na naszym PC. Następnie korzystając z komendy:</p>
+<blockquote>
+<p>$ gdisk /dev/sdX</p>
+</blockquote>
+<p>Gdzie X oznacza literę interesującego nas dysku, przechodzimy do narzędzia umożliwiającego podzielenie dysku na partycje.</p>
+<p>Tutaj korzystamy odpowiednio z takich komend jak:</p>
+<ul>
+<li><strong>o</strong> - usuwa istniejącą tablicę partycji i tworzy nową w schemacie <strong>GPT</strong></li>
+<li><strong>n</strong> - umożliwia stworzenie nowej partycji</li>
+<li><strong>w</strong> - zapisuje wszystkie zmiany wprowadzone na dysku twardym</li>
+</ul>
+<p>Aby w ogóle móc zabrać się za stworzenie czegokolwiek, musimy dokładnie prześledzić nazwy, typy i rozmiary naszych dysków, aby się nie pomylić. Na tym etapie co prawda nie ma to żadnego znaczenia, bo nasz magazyn na dane jest pusty, jednak nie ma co sobie dodawać niepotrzebnie prac.</p>
+<p>Po ustaleniu, który z dysków będzie przechowywał w sobie system, tworzymy nowy schemat partycjonowania, a następnie partycję <strong>ESP</strong>.</p>
+<p><img alt="gpt" src="https://i.imgur.com/5C4S8E5.png"></p>
+<p><em>EFI System Partition</em> - wykorzystywana w nowoczesnych systemach do przechowywania m.in. bootloaderów naszych OSów. Więc niezależnie od tego ile ich będzie na naszym PC, partycja <strong>ESP</strong> zawsze będzie (i ma być) tylko jedna.</p>
+<p>Pierwsze zapytanie dotyczy numeru, z jakim będzie identyfikowana. Możemy pozostawić domyślną – <strong>1</strong>.</p>
+<p>Następnie ustalamy, od którego sektora nasza partycja będzie się zaczynać.
+Dobrym nawykiem jest instalacja systemu na końcowych sektorach naszego dysku, jeśli robimy to na klasycznym dysku talerzowym. W przypadku dysków SSD nie ma to większego znaczniea. Tutaj także nie musimy niczego zmieniać.
+Dobrze jednak jest się upewnić, że domyślny sektor to 2048 – od niego powinniśmy zacząć partycjonowanie.</p>
+<p>Trzecim krokiem jest ustalenie sektora, gdzie partycja ma się kończyć. Znacznie wygodniejszym wyjściem jest podać to w mega lub gigabajtach.
+My wpiszemy tutaj <strong>+512M</strong> – zdecydowanie wystarczająco dużo, jesli chodzi o partycję <strong>ESP</strong>.</p>
+<p>Ostatnim krokiem jest podanie kodu hex dla naszej partycji. Skąd mamy wiedzieć co tutaj wpisać?
+Bardzo prostym sposobem — wstukanie <strong>L</strong> na klawiaturze pozwoli nam zobaczyć listę wszystkich, dostępnych dla nas kodów.
+Coby jednak nie szukać — dla partycji <strong>ESP</strong> użyjemy kodu <strong><em>EF00</em></strong>.</p>
+<p><img alt="esp" src="https://i.imgur.com/CRLfbKc.png"></p>
+<p>Następnie musimy utworzyć odpowiednio partycje <strong>/</strong> i <strong>/home</strong>.
+Ich rozmiar jest bezpośrednio związy z posiadaną przez nas przestrzenią dyskową.</p>
+<p>Osobiście zalecam <em>minimalne</em> granice rozmiaru na <strong>/</strong> ustalić w przedziale <strong>15 - 35GB</strong>, oraz całą resztę dostępnej przestrzeni na <strong>/home</strong>.</p>
+<p>Dla bardziej zaawansowanych użytkowników, całkiem dobrym wyjściem będzie także rozbicie <strong>/var</strong> oraz <strong>/usr</strong> na osobne punkty montowania z odpowiednią ilością przydzielonego im miejsca. W tym poradniku jednak nie będziemy się tym zajmować.</p>
+<p>Jedyną różnicą, jaką zastosujemy przy partycjonowaniu naszego dysku będzie to, że teraz zamiast korzystać z kodu hex <del><em>EF00</em></del>, użyjemy <strong>8E00</strong>, aby móc skorzystać z zalet <strong>LVM</strong>.</p>
+<p><img alt="lvm" src="https://i.imgur.com/OmGUzO1.png"></p>
+<p><em>Logical Volume Manager</em> - mechanizm systemu operacyjnego do zarządzania przestrzenią pamięci masowej. Pozwala na połączenie partycji znajdujących się na różnych urządzeniach pamięci masowej w jeden dysk wirtualny. Jego rozmiar nie jest zdefiniowany na stałe – jeśli zachodzi taka potrzeba, istnieje możliwość jego rozszerzenia o nową przestrzeń pamięciową.</p>
+<p>Na sam koniec wystarczy zatwierdzić zmiany i potwierdzić, że zdajemy sobie sprawę z ryzyka utratych ważnych danych z dysku. O ile oczywiście jakieś są.</p>
+<p><img alt="save" src="https://i.imgur.com/d3Yyp9w.png"></p>
+<p>W tym miejscu warto wyświetlić sobie listę naszych partycji na poszczególnym dysku za pomocą:</p>
+<blockquote>
+<p>$ gdisk -l /dev/sdX</p>
+</blockquote>
+<p>Lub wszystkich dostępnych w naszym systemie, ponawiając komendę:</p>
+<blockquote>
+<p>$ fdisk -l</p>
+</blockquote>
+<p>Pozwoli nam to w łatwy sposób zorientować się, która partycja ma jaki numer.
+Ja będę oznaczał je jako <strong>/dev/sdXY</strong> – gdzie pod te parametry musicie wstawić swoje rzeczywiste dane (np. <em>/dev/sda1</em> lub w przypadku nowoczesnych dysków PCIe <em>/dev/nvme0n1p1</em>).</p>
+<p><img alt="fdisk" src="https://i.imgur.com/movccGU.png"></p>
+<p>Formatowanie partycji <strong>ESP</strong> jest krokiem najprostszym i wymagającym od nas najmniej. Wystarczy jedna, prosta komenda:</p>
+<blockquote>
+<p>$ mkfs.vfat /dev/sdXY</p>
+</blockquote>
+<p>Aby załatwić sprawę i móc później zamontować ją później w odpowiednim miejscu.</p>
+<p>W przypadku pozostałych dwóch partycji musimy się chwilę zastanowić nad tym, co posiadamy w naszym komputerze oraz jaki efekt finalny chcemy osiągnąć.
+W moim wypadku dostępne są trzy, różne dyski twarde i partycje.</p>
+<p>Dysk <em>256GB</em> będzie oznaczony jako <strong>root</strong>, ponieważ to na nim znajdzie się system.<br>Kolejne dwa dyski <em>1024GB</em> dostają wspólne oznaczenie <strong>home</strong>, ponieważ chcę móc wykorzystać ich sumaryczną pojemność w jednym miejscu.</p>
+<p>Kiedy mamy już wszystko ustalone, możemy zainicjować nasze fizyczne partycje tak, aby mogły one korzystać z zalet LVM. Potrzebujemy tutaj komendy:</p>
+<blockquote>
+<p>$ pvcreate /dev/sdXY</p>
+</blockquote>
+<p>Wydajemy ją dla każdej partycji, którą chcemy wykorzystać. Jak już wyżej zostało ustalone, będą to kolejno trzy partycje, z trzech dysków.</p>
+<p><img alt="pvcreate" src="https://i.imgur.com/WE7lxCI.png"></p>
+<p>Następnie musimy stworzyć odpowiednią grupę naszych wolumenów, aby możliwe było wykorzystanie dwóch, różnych dysków, jako jednej, ciągłej przestrzeni.<br>Zanim jednak zabierzemy się za <strong>home</strong>, to pasuje odpowiednio skonfigurować naszego <strong>root</strong>, który jest jeden, jak widać.<br>Nie jest to problem, ponieważa dzięki elastyczności <strong>LVM</strong> możemy do grupy w chwili tworzenia dodać tylko jedną partycję, aby w przyszłość, w razie ewentualnych potrzeb, móc ją rozszerzyć.</p>
+<blockquote>
+<p>$ vgcreate root /dev/sdXY<br>$ vgcreate home /dev/sdAB /dev/sdCD</p>
+</blockquote>
+<p>Oczywiście oznaczenia <em>/dev/sdAB</em> oraz <em>/dev/sdCD</em> zostały zastosowane jedynie w celu rozróżnienia poszczególnych wolumenów.</p>
+<p><img alt="vgcreate" src="https://i.imgur.com/pd7zOXK.png"></p>
+<p>Finalnie możemy się już zabrać za tworzenie logicznej struktury na naszym dysku. Jest to ostatni krok przed odpowiednim sformatowaniem oraz zamontowaniem naszych partycji.
+Aby móc to uczynić wydajemy polecenie:</p>
+<blockquote>
+<p>$ lvcreate -L 100%FREE -n proot root<br>$ lvcreate -L 100%FREE -n phome home</p>
+</blockquote>
+<p>Poa na tłumaczenie:</p>
+<ul>
+<li><strong>-L 100%FREE</strong> - określamy rozmiar naszego logicznego wolumenu, w tym wypadku oznacza to wypełnienie całej wolnej przestrzeni na naszej partycji</li>
+<li><strong>-n proot</strong> oraz <strong>-n phome</strong> - są to nazwy utworzonych partycji w obrębie grupy, p zostało zastosowane w celu doróżniania od siebie tych dwóch tworów</li>
+<li><strong>root</strong> oraz <strong>home</strong> - nazwy utworzonych wcześniej grupy</li>
+</ul>
+<p><img alt="lvcreate" src="https://i.imgur.com/kxQw6FI.png"></p>
+<p>Ostatnim krokiem jest już tylko wybranie systemu plików, jaki ma być obceny na naszych partycjach. Osobiście polecam zastanowić się nad czterema możliwościami:</p>
+<ul>
+<li><strong>btrfs</strong></li>
+<li><strong>xfs</strong></li>
+<li><strong>ext4</strong></li>
+</ul>
+<p><strong><em>btrfs</em></strong> - korzystając z zalet i rozwiązań starszego i bardzo popularnego w środowiskach BSD <strong><em>zfs</em></strong>, zapewnia możliwość kopiowania przy zapisie, tworzenia snapshotów, replikacji danych czy zwiększania swojego rozmiaru dynamicznie, nie potrzebując do tego mechanizmu <strong>LVM</strong>. Jednak ma to swoje odbicie w wydajności i zastosowanie go na klasycznym dysku talerzowym może drastycznie obniżyć szybkość działania naszego systemu.</p>
+<p><strong><em>xfs</em></strong> - posiada szereg cech zaawansowanego systemu plików do zastosowań serwerowych oraz dla wydajnych stacji roboczych. Maksymalny rozmiar wolumenu to <em>16000000TB</em>, a pojedynczego pliku ponad <em>8000000TB</em>.<br>Mimo dosyć zaawansowanego i groźnie brzmiącego opisu, nadaje się świetnie także do domowych zastosowań, jest trwały, stabilny oraz nowoczesny, dzięki implementacji techonoligii takich jak np, <em>sparse files</em>, <em>security labels</em> czy POSIXowych list dostępu (ACL)</p>
+<p><strong><em>ext4</em></strong> - najpopularniejszy, linuksowy system plików stosowany szeroko zarówno w domowych warunkach, jak i na mniejszych, i większych serwerach. Sprawia to, że w razie problemów uzyskanie wsparcia i pomocy jest banalnie proste, a także sama dokumentacja jest bogata w szczegóły.</p>
+<p>W domu wykorzystuję <strong><em>btrfs</em></strong> na dysku SSD oraz <strong><em>xfs</em></strong> na dysku HDD. Działają w świetnej symbiozie i jestem spokojny o swoje dane. Mimo doniesień o braku stabilności samego <strong><em>xfs</em></strong> w przypadkach nagłej utraty zasilania, nie doszukałem się żadnych informacji, aby był to problem palący i szeroko znany. Obstawiam lokalne problemy na komputerach pechowców, którzy swoje dane utracili.</p>
+<p>Uprzedzając pytania o replikację plików i jej wpływie na dyski SSD - <strong><em>btrfs</em></strong> domyślnie w takim wypadku ją wyłącza (choć można wymusić jej ponowne włączenie). No i oczywiście takie mechanizmy jak <strong>TRIM</strong> lub technologie <strong>NVMe</strong> nie są tutaj nikomu obce, a całość działa odpowiednio stabilnie i responsywnie.</p>
+<p>Na potrzeby tego poradnika przyjmuję, że mój dysk oznaczony jako <strong>root</strong> jest SSD, a te ukryte pod <strong>home</strong> są klasyczne, HDD.</p>
+<blockquote>
+<p>$ mkfs.btrfs /dev/root/proot<br>$ mkfs.xfs /dev/home/phome</p>
+</blockquote>
+<p>W tym wypadku komendy dla <strong>LVM</strong> są dosłowne, więc podąrzając za poradnikiem i wpisując je w okno terminalu, nie powinniśmy uświadczyć żadnych błędów.</p>
+<p>Jesteśmy gotowi, by przejść powoli do instalacji bazowego systemu.
+Musimy zamontować swoje partycje w odpowiednich miejscach za pomocą komend:</p>
+<blockquote>
+<p>$ mount /dev/root/proot /mnt<br>$ mkdir /mnt/home<br>$ mkdir /mnt/boot<br>$ mount /dev/home/phome /mnt/home<br>$ mount /dev/sdXY /mnt/boot</p>
+</blockquote>
+<h5 id="partycjonowanie-i-formatowanie-dysk-w-klasyczne-">Partycjonowanie i formatowanie dysków (klasyczne)</h5>
+<p>Tutaj jedyną różnicą, jaką uświadczymy jest to, że nasze dyski i partycje są bezpośrednio montowane w odpowiednich punktach. Pozwala to choćby odczytać zawartość naszego dysku z poziomu Windowsa (o ile korzystamy z <em>ext4</em> i oprogramowania <em>Ext2FSD</em>).
+Jest to także problem, ponieważ nie możemy tutaj mówić o żadnym prostym i skutecznym sposobie, na powiększenie istniejącej już partycji.</p>
+<p>Całość operacji klasycznego partycjonowania i formatowania można przedstawić w następującyh komendach:</p>
+<blockquote>
+<p>$ gdisk /dev/sdXY (i każdy kolejny dysk)<br>$ mkfs.vfat /dev/sdAB<br>$ mkfs.ext4 /dev/sdCD<br>$ mkfs.xfs /dev/sdXY</p>
+</blockquote>
+<blockquote>
+<p>$ mount /dev/sdAB /mnt<br>$ mkdir /mnt/home<br>$ mkdir /mnt/boot<br>$ mount /dev/sdCD /mnt/home<br>$ mount /dev/sdXY /mnt/boot</p>
+</blockquote>
+<h3 id="instalacja-i-konfiguracja-systemu">Instalacja i konfiguracja systemu</h3>
+<p>Pobranie pakietów i instalacja systemu mieści się w jednej komendzie:</p>
+<blockquote>
+<p>$ pacstrap /mnt base base-devel</p>
+</blockquote>
+<p>Będąc szczerym, to do poprawnego działania systemu nie jest wymagana paczka <em>base-devel</em>. Mimo to silnie zalecam ją zainstalować – choćby po to, żeby ułatwić sobie korzystanie z <em>AUR</em> w przyszłości.</p>
+<p>Gdy proces instalacji dobiegnie końca, możemy powoli przygotowywać się, by przełączyć się na pracę na zainstalowanym już systemie.
+Zanim to jednak nastąpi musimy wygenerować plik <strong>fstab</strong> komendą:</p>
+<blockquote>
+<p>$ genfstab -U /mnt &gt; /mnt/etc/fstab</p>
+</blockquote>
+<p>Jest to plik generowany na podstawie <strong>UUID</strong> naszych partycji. Jest to wyjście mniej intuicyjne, niż <strong>-L</strong>, które opiera się na etykietach, jednak jest ono znacznie bezpieczniejsze.<br>Tutaj mamy pewność, że dopóki nie sformatujemy naszej partycji, jej <strong>UUID</strong> pozostaje niezmienione. Przy etykietach problem jest taki, że dołożenie kolejnego, nowego dysku do naszego PC może całkowicie pomieszać ich kolejność co w efekcie może sprawić, że nasz system się nie podniesie.</p>
+<p>Gdy operacja przebiegnie pomyślnie, wklepujemy:</p>
+<blockquote>
+<p>$ arch-chroot /mnt /bin/bash</p>
+</blockquote>
+<p>I już działamy na naszym systemie.
+Sama komenda chroot wzięła się od słów „<em>change root</em>”, co świetnie oddaje to, jak działa.</p>
+<p><img alt="chroot" src="https://i.imgur.com/YPlIF0j.png"></p>
+<p>Następny krok, to edycja pliku <strong>mkinitcpio.conf</strong>, jest to wymagane dlatego, że nasza partycja główna zawiera się w ramach <strong>LVM</strong> i nasz system musi mieć informacje o tym, jak się poprawnie z niej bootować.<br>Jeśli jednak ktoś stwierdził, że nie chce <strong>LVM</strong> i partycje zrobił klasycznie, można ten krok smiało pominąć.</p>
+<p>Do edycji wymagany będzie jakikolwiek edytor. Osobiście preferuję <strong>vima</strong>, dlatego to jego tutaj będzie można zobaczyć, lecz <strong>nano</strong>, <strong>vi</strong>, <strong>emacs</strong> z opcją <em>-nw</em> czy cokolwiek innego, działającego w CLI się nada równie dobrze.</p>
+<blockquote>
+<p>$ pacman -S vim<br>$ vim /etc/mkinitcpio.conf</p>
+</blockquote>
+<p>Następnie musimy odszukać linijkę "<em>HOOKS</em>", można to zrobić prosto takim oto skrótem w <em>vimie</em>:</p>
+<blockquote>
+<p>Esc %2F hooks Enter n</p>
+</blockquote>
+<p>Gdzie <em>%2F</em> oznacza <em>slash</em>, a <em>n</em> przesuwanie się między kolejnymi wynikami. Można to także zrobić ręcznie, jeśli ktoś chce. Tekstu nie ma wiele.</p>
+<p>Następnie musimy dopisać <strong><em>lvm2</em></strong> po wyrazie <em>block</em>. Trzeba uważać, bo kolejność ma znacznie. Może nie aż tak duże, w przypadku samego <strong>LVM</strong>, ale przy zabawie z choćby <em>VFIO</em> warto o tym pamiętać.</p>
+<p><img alt="mkinit" src="https://i.imgur.com/iv83i5G.png"></p>
+<p>Wychodzimy z <em>vima</em> za pomocą:</p>
+<blockquote>
+<p>Esc :wq</p>
+</blockquote>
+<p>I możemy teraz przebudować nasz obraz. Kiedy nie jesteśmy pewni, czy aby na pewno wpisaliśmy <em>lvm2</em> w odpowiednim miejscu, możemy wydać komendę testową i się przekonać:</p>
+<blockquote>
+<p>$ mkinitcpio linux</p>
+</blockquote>
+<p>Jeśli całość wykona się poprawnie, możemy uzupełnić ją o brakujący parametr:</p>
+<blockquote>
+<p>$ mkinitcpio -p linux</p>
+</blockquote>
+<p>Jeśli korzystamy z innego jądra, jak np. <em>linux-vfio</em>, <em>linux-zen</em> czy choćby <em>linux-zfs</em>, musimy to uwzględnić w komendzie wydanej wyżej i wpisać odpowiednią wartość!</p>
+<p>Teraz możemy zadbać o to, aby nasza usługa DHCP w systemie uruchamiała się razem z nim:</p>
+<blockquote>
+<p>$ systemctl enable dhcpcd</p>
+</blockquote>
+<p>Oraz podlinkować sobie odpowiednią dla naszego regionu strefę czasową:</p>
+<blockquote>
+<p>$ ln -sf /usr/share/zoneinfo/Europe/Warsaw /etc/localtime<br>$ hwclock --systohc</p>
+</blockquote>
+<p>Przy wykorzystaniu edytora <em>vim</em> ustawimy zarówno język jak i układ klawiatury dla naszego systemu.
+Za pomocą komendy:</p>
+<blockquote>
+<p>$ vim /etc/locale.gen</p>
+</blockquote>
+<p>Mamy możliwość edycji odpowiedniego pliku. Wyszukujemy tutaj interesujący nas język i usuwamy symbol #, jaki go poprzedza.  </p>
+<p><img alt="locale.gen" src="https://i.imgur.com/sTqwKCr.png"></p>
+<p>Następnie do gry wchodzą komendy:</p>
+<blockquote>
+<p>$ locale-gen<br>$ echo "LANG=en_US.UTF-8" &gt; /etc/locale.conf</p>
+</blockquote>
+<p>Koniecznie w takiej kolejności!
+Wykorzystując polecenie <em>echo</em> i strumienie, dodajemy do pliku <strong>LANG=en_US.UTF-8</strong> – gdzie zamiast <em>en_US</em> wstawiacie wybrany przez siebie wcześniej język.</p>
+<p>Pozostając w temacie ustawiania podstawowych parametrów naszego systemu, wydajemy polecenia:</p>
+<blockquote>
+<p>$ echo "hkk-virt" &gt; /etc/hostname<br>$ echo "127.0.0.1 hkk-virt.localdomain hkk-virt" &gt;&gt; /etc/hosts</p>
+</blockquote>
+<p>Zamiast <strong>hkk-virt</strong> wstawiamy oczywiście własną, dowolną nazwę naszego PC.</p>
+<p>Nadszedł czas na utworzenie użytkownika oraz nadania haseł rootowi i userowi.<br>Na początek wystarczy wpisać:</p>
+<blockquote>
+<p>$ passwd</p>
+</blockquote>
+<p>Dzięki któremu ustalimy hasło administratora.<br>Następnie poleceniem:</p>
+<blockquote>
+<p>$ useradd -m -G users -s /bin/bash nazwa_usera</p>
+</blockquote>
+<p>Tworzymy nowego użytkownika, a dzięki:</p>
+<blockquote>
+<p>$ passwd nazwa_usera</p>
+</blockquote>
+<p>Ustalamy dla niego hasło.</p>
+<h3 id="bootloader-systemd-boot-">Bootloader (systemd-boot)</h3>
+<p>Jednym z ostatnich kroków, jakie musimy podjąć, jest instalacja bootloadera na partycji EFI.<br>Do tego celu skorzystamy z komendy:</p>
+<blockquote>
+<p>$ bootctl-install</p>
+</blockquote>
+<p>Następnie przechodzimy do odpowiedniego katalogu za pomocą polecenia:</p>
+<blockquote>
+<p>$ cd /boot/loader</p>
+</blockquote>
+<p>Gdzie musimy edytować plik loader.conf. Oczywiście z wykorzystaniem niezawodnego <em>vima</em>.</p>
+<blockquote>
+<p>vim loader.conf</p>
+</blockquote>
+<p>Usuwamy wszystko co znajduje się w pliku i dopisujemy:</p>
+<blockquote>
+<p>default arch  </p>
+<p>#timeout 5</p>
+</blockquote>
+<p><em>Timeout</em> odpowiada za to, jak długo będzie widoczne okno umożliwiające nam wybranie systemu, jaki chcemy wystartować. W tym wypadku taki jest tylko jeden, dlatego jest to linia zakomentowana. Warto jednak ją tutaj zostawić, w razie, jakby kiedyś była potrzebna, a pamięć zawiodła i nie potrafiła sobie przypomnieć o takim parametrze.</p>
+<p>Zapisujemy dokonane zmiany i przechodzimy do edycji naszego wpisu do loadera:</p>
+<blockquote>
+<p>$ cd entries/<br>$ vim arch.conf</p>
+</blockquote>
+<p>Następnie dopisujemy tutaj w przypadku instalacji <strong>LVM</strong>:</p>
+<p><strong>title Arch Linux<br>linux /vmlinuz-linux<br>initrd /initramfs-linux.img<br>initrd /intel-ucode.img<br>options root=/dev/mapper/root-proot rw</strong></p>
+<p>W momencie, kiedy zdecydowaliśmy się na klasyczne partycje, wpis ten powinien wyglądać tak:</p>
+<p><strong>title Arch Linux<br>linux /vmlinuz-linux<br>initrd /initramfs-linux.img<br>initrd /intel-ucode.img<br>options root=PARTUUID=6265d89d-d8b0-4809-9ce1-3a75796fd237 rw</strong></p>
+<p>Tytuł możemy nadać dowolny, ale PARTUUID musimy wpisać odpowiadające naszej partycji roota!<br>Za pomocą polecenia:</p>
+<blockquote>
+<p>$ blkid /dev/sdXY</p>
+</blockquote>
+<p>Możemy na ekranie wyświetlić sobie informacje o naszych partycjach.</p>
+<p>Co prawda można użyć także UUID czy po prostu wpisać /dev/sdXY.<br>Do tego możemy wykorzystać także:</p>
+<blockquote>
+<p>$ cat /etc/fstab</p>
+</blockquote>
+<p>Używamy komend i wpisów zależnie od tego, jak nam wygodniej, choć ja <em>BARDZO</em> mocno zalecam użyć <strong>PARTUUID</strong>.
+A to dlatego, że <em>UUID</em> identyfikuje system plików, a <strong>PARTUUID</strong> partycję <em>GPT</em>, z czego to drugie nie zmienia się przy formacie.</p>
+<p>W pliku <em>arch.conf</em> musimy wpisać <strong>PARTUUID</strong> naszej głównej partycji – /
+Ale także nie możemy zapomnieć, by na końcu dopisać <strong>rw</strong>!</p>
+<p>Zanim zaczniemy cokolwiek więcej pobierać, warto skonfigurować odpowiednio menadżer pakietów <em>pacman</em> i zadbać o to, aby <em>yay</em> było dostępne na naszym dysku. W tym celu wpisujemy:</p>
+<blockquote>
+<p>$ vim /etc/pacman.conf</p>
+</blockquote>
+<p>I odnajdujemy linie:</p>
+<blockquote>
+<p>#[multilib]  </p>
+<p>#Include = /etc/pacman.d/mirrorlist</p>
+</blockquote>
+<blockquote>
+<p>#Color</p>
+</blockquote>
+<p>Usuwamy znaki #, a pod opcją "<em>Misc options</em>" dopisujemy:</p>
+<blockquote>
+<p>ILoveCandy</p>
+</blockquote>
+<p>Możemy zapisać całość i korzystając z polecenia:</p>
+<blockquote>
+<p>$ pacman -Syu</p>
+</blockquote>
+<p>Wprowadzić nasze zmiany w życie.</p>
+<p>Następnie zaopatrzymy się w menadżer pakietów <em>yay</em>, który posiada integrację nie tylko z oficjalnym repozytorium Archa, ale także z <em>AUR</em>, na czym nam najbardziej zależy.<br>Musimy wpisać więc:</p>
+<blockquote>
+<p>$ pacman -S git &amp;&amp; git clone <a href="https://aur.archlinux.org/yay.git">https://aur.archlinux.org/yay.git</a><br>$ cd yay/ &amp;&amp; makepkg -sri</p>
+</blockquote>
+<p>Takimi oto sposobem zaopatrzyliśmy się w rozwiązanie, z którego korzysta aktualnie większość społeczności Archa.<br>Od teraz pobieranie pakietów i aktualizacja systemu zawiera się w tej jednej komendzie i jeśli sytuacja nas do tego nie zmusza, nie są wymagane żadne dodatkowe parametry.</p>
+<p>Co do wpisu o <em>intel-ucode</em>, są to mikrokody dla naszego procesora.
+W przypadku AMD całość zawarta jest w linux-firmware, dla Intela trzeba je pobrać osobno, co jest mocno wskazane.
+Używając polecenia:</p>
+<blockquote>
+<p>$ yay intel-ucode</p>
+</blockquote>
+<p>Możemy zrealizować tą czynność, wybierając pakiet z listy i zatwierdzając jego numer. I jeśli nasza partycja <em>ESP</em> zamontowana jest w /boot, sprawa załatwiona. W innym wypadku należy przenieść wszystko w miejsce, gdzie ona się znajduje.</p>
+<p>Zanim będziemy gotowi zrestartować swój system, warto edytować odpowiednio plik <em>sudoers</em>, by móc korzystać z polecenia <strong>sudo</strong>.<br>Do tego celu wpisujemy:</p>
+<blockquote>
+<p>$ vim /etc/sudoers</p>
+</blockquote>
+<p>I pod użytkownikiem root dodajemy linijkę:</p>
+<blockquote>
+<p>nazwa_usera ALL=(ALL) ALL</p>
+</blockquote>
+<p><img alt="sudoers" src="https://i.imgur.com/qftGrac.png"></p>
+<p>Zapisujemy, zamykamy i kiedy wszystko jest gotowe, wciskamy <strong>Ctrl+D</strong>, a następnie wpisujemy <em>reboot</em> i uruchamiamy Arch Linuxa prosto z naszego dysku!</p>
+<h3 id="-rodowisko-graficzne">Środowisko graficzne</h3>
+<p>Żeby w ogóle móc korzystać z jakiegokolwiek DE, potrzebujemy serwera X. Możemy go pobrać razem z terminalem XTerm za pomocą komendy:</p>
+<blockquote>
+<p>$ yay -S xorg xorg-xinit xterm</p>
+</blockquote>
+<p>Parametr <strong>-S</strong> pojawił się przy <em>yay</em> tylko dlatego, że chcemy pobrać kilka pakietów naraz i nie chcemy wybierać ich po kolei z listy.</p>
+<p>I w tym miejscu ogranicza nas tylko własny gust i upodobania.<br>Wybór DE jest ogromny i to co wybierzemy, zależne jest tylko od nas.<br>Osobiście skupię się na <em>XFCE</em>, razem z menadżerem logowania <em>sddm</em> oraz przydatnym lockerze, jakim jest <em>i3lock</em>.<br>Aby go pobrać używamy:</p>
+<blockquote>
+<p>$ yay -S xfce4 xfce4-goodies sddm i3lock-color-git</p>
+</blockquote>
+<p>Paczka <em>xfce4-goodies</em> nie jest wymagana, ale waży zaledwie kilkanaście megabajtów i zapewnia zestaw podstawowych narzędzi ułatwiających start ze środowiskiem.
+Zamiast <em>sddm</em> można równie dobrze używać <em>lightdm</em>, który także robi tutaj świetną robotę.</p>
+<p>Następny krok, to dobór sterowników – tutaj trzeba je dobrać odpowiednio do posiadanej karty graficznej.<br>Każdy musi poradzić sobie sam, opierając się na posiadanym sprzęcie oraz wymaganiach. Ponieważ na rynku znajduje się sporo sprzętu o różnym stopniu kompatybilności, zarówno z otwartymi, jak i własnościowymi sterownikami, nie opiszę tutaj procesu instalacji żadnej z tych paczek.<br>Zamiast tego odsyłytam <a href="https://wiki.archlinux.org/">TUTAJ</a>, do Wiki Archa po więcej informacji.</p>
+<p>Jeśli jednak totalnie nie mamy pojęcia co zainstalować, można pominąć ten krok i zdać się na Archa i jego kompatybilność z naszym sprzętem. W większości wypadków jakaś forma otwartych sterowników jest już zaimplementowana, więc finalnie powinniśmy mieć jakikolwiek obraz widoczny na naszym monitorze.</p>
+<p>Jesteśmy już gotowi do pierwszego uruchomienia naszego środowiska graficznego.
+Zanim to jednak nastąpi, musimy wpisać następujące polecenie:</p>
+<blockquote>
+<p>$ sudo systemctl enable --now sddm</p>
+</blockquote>
+<p><img alt="sddm" src="https://i.imgur.com/hC0eaiY.png"></p>
+<p>I to wszystko. Przebrnęliśmy przez proces instalacji systemy od początku, aż do samego końca. Następnym krokiem jest już tylko konfiguracja DE i WM pod nasze osobiste potrzeby.<br>Poniżej przedstawiam swoją propozycję na zbudowanie wydajnego i eleganckiego systemu opartego o <em>XFCE</em>.</p>
+<p><img alt="xfce" src="https://i.imgur.com/k1PYaHn.png"></p>
+<h3 id="personalizacja-rodowiska-graficznego">Personalizacja środowiska graficznego</h3>
+<h5 id="konfiguracja-sddm">Konfiguracja SDDM</h5>
+<p>Jak widać na screenshotach wyżej, standardowy <strong>SDDM</strong>, który decydujemy się sami zainstalować nijak ma się do tego znanego choćby z <em>KDE</em>. W środowiskach FOSS (<em>Free and Open Source Software</em>) nie jest to jednak problemem i mamy niemalże pełną kontrolę nad systemem.</p>
+<p>Swoje pierwsze kroki powinniśmy skierować na stronę <a href="https://store.kde.org/">https://store.kde.org/</a><br>Co nie powinno być dla nikogo zaskoczniem. Przeglądając treści tam zawarte, bardzo szybko możemy natrafić na zakładkę "<a href="https://store.kde.org/browse/cat/101/"><em>SDDM Login Themes</em></a>", która w tym momencie najbardziej nas interesuje.</p>
+<p>Pozwala nam ona przebierać w różnych stylach dla naszego menadżera logowania, lecz trzeba być tutaj ostrożnym, bo nie wszystkie działają one bez <strong>Plasmy</strong>! Najczęściej jednak występują dwa warianty, z czego jeden dla ludzi, którzy zdecydowali się na <em>SDDM</em> w wersji standalone.</p>
+<p>Osobiście zdecydowałem się na theme "<a href="https://store.kde.org/p/1240784/"><em>Chili</em></a>", które zresztą całkiem nieźle imituje ekran logowania znany choćby z macOS. Nie do każdego musi ten styl trafiać, jednak sam poradnik powinien być nadal aktualny dla dowolnego, innego stylu.</p>
+<p>Zanim jednak zabierzemy się za samo upiękrzanie <em>SDDM</em>, dobrze będzia zadbać o wymagane zależności podane przez twórcę:</p>
+<blockquote>
+<p>$ yay -S qt5 qt5-quickcontrols qt5-graphicaleffects</p>
+</blockquote>
+<p>Nad różnicami między GTK, a Qt nie ma co się tutaj rozwodzić, więc dla uproszczenia polecam pokornie pokiwać głową i przyjąć, że skoro tego nam potrzeba do działania całości, to tak ma być i kropka.</p>
+<p>Paczkę <em>.tar.gz</em> możemy pobrać ze strony sklepu lub odwiedzić repozytorium autora na GitHubie, co sam preferuję. Niemniej sam sposób zdobycia stylu nie ma tutaj znacznia, więc nie zmuszam nikogo do niczego.</p>
+<p><strong>GitHub</strong></p>
+<blockquote>
+<p>$ git clone <a href="https://github.com/MarianArlt/sddm-chili.git">https://github.com/MarianArlt/sddm-chili.git</a><br>$ sudo mv sddm-chili/ /usr/share/sddm/themes/</p>
+</blockquote>
+<p><strong>sddm-chili.tar.gz</strong></p>
+<blockquote>
+<p>$ sudo tar -xzvf ~/Downloads/sddm-chili.tar.gz -C /usr/share/themes/</p>
+</blockquote>
+<p>Dobrze też zadbać o avatar naszego użytkowania. W tym celu potrzebujemy dowolnej grafiki, która musi mieć odpowiednią nazwę oraz znajdować się w odpowiednim miejscu.</p>
+<p>Sam schemat jest całkiem prosty: <em>username.face.icon</em><br>Gdzie za <em>username</em> wstawiamy oczywiście nazwę naszego użytkownika.</p>
+<p>Następnie wystarczy wydać polecenie:</p>
+<blockquote>
+<p>$ sudo mv username.face.icon /usr/share/sddm/faces/</p>
+</blockquote>
+<p>Aby załatwić sprawę i mieć to z głowy, aby późniejsza konfiguracja przebiegła szybko i bezproblemowo.</p>
+<p>Ostatnim krokiem przygotowań do pełnej jednolitości systemu, jest zadbanie o jednakowy styl naszego kursora na ekranie logowania oraz już w samym systemie. Mówię to oczywiście w kontekście jednego użytkownika, gdzie taka unifikacja jest jak najbardziej wskazana. W przypadku kilku różnych kont trzeba indywidualnie sprawę przemyśleć.</p>
+<p>W moim wypadku zwycięskie theme nazywa się "<em>Capitaine</em>" i ponownie jest mocno inspirowane macOS, a dokładnie wersją 10.11, jak sama nazwa wskazuje.<br>Dodatkowo sprawa jest na tyle prosta, że całość znajduje się w AUR, więc wystarczy komenda:</p>
+<blockquote>
+<p>$ yay capitaine-cursors</p>
+</blockquote>
+<p>Aby mieć już wszystkie potrzebne składniki na miejscu.</p>
+<p>Korzystając z tego, że mamy już postawione działające środowisko graficzne, odsyłam do opcji systemowych myszy, gdzie jednym kliknięciem i przeładowniem sesji logowania załatwiamy sprawę.</p>
+<p><img alt="cursors" src="https://i.imgur.com/nXqdRNa.png"></p>
+<p>Następnym krokiem będzie konfiguracja samego <em>SDDM</em>, aby korzystał z pobranego theme. Można to natrulanie zrobić w CLI, lecz jest też całkiem prosta i przyjemna aplikacja, która nazywa się <em>SDDM Configurator</em>.<br>Sama w sobie jest jedynie graficzną nakładką, ale znacznie usprawnia cały proces.</p>
+<blockquote>
+<p>$ yay sddm-config-editor-git<br>$ sddm-config-editor</p>
+</blockquote>
+<p>Jedyne o co musimy zadbać, to wskazanie folderów, w których przechowywane są avatary oraz style, a następnie wpisać nazwy w odpowiednie pola.</p>
+<p><img alt="sddm-conf" src="https://i.imgur.com/Xa0RIah.png"></p>
+<p>Możemy całość zapisać, lecz nie jest to koniec prac nan naszym <em>Chili</em>.<br>Dobrze jest tutaj wydać komendę:</p>
+<blockquote>
+<p>$ sudo vim /usr/share/sddm/themes/sddm-chili/theme.conf</p>
+</blockquote>
+<p>Gdzie powinniśmy odpowiednio ustawić następujące parametry:</p>
+<p><strong>backgroud</strong> - lokalizacja pliku graficznego, który będzie tłem na naszym ekranie logowania</p>
+<p><strong>ScreenWidth</strong> - w przypadku dwóch lub więcej monitorów, ustawić najwyższą, dostępną na wszystkich rozdzielczość<br><em>Opcjonalnie</em>: ustawić najwyższą dostępną rozdzielczość na pojedynczym monitorze, a następnie odpowiednio skonfigurować plik Xsetup</p>
+<p><strong>ScreenHeight</strong> - w przypadku dwóch lub więcej monitorów, ustawić najwyższą, dostępną na wszystkich rozdzielczość<br><em>Opcjonalnie</em>: ustawić najwyższą dostępną rozdzielczość na pojedynczym monitorze, a następnie odpowiednio skonfigurować plik Xsetup</p>
+<p><strong>blur</strong> - wartość "true" oznacza, że tło na ekranie logowanie będzie rozmazane o wartości zdefiniowane w dwóch, kolejnych liniach, stosować wedle gustu</p>
+<p><strong>recursiveBlurLoops</strong>  - odpowiednik zapisu AxB, gdzie za A należy podstawić wartość od 0 w górę
+<strong>recursiveBlurRadius</strong> - odpowiednik zapisu AxB, gdzie za B nalezy podstawić wartość większą od 1</p>
+<p><img alt="theme.conf" src="https://i.imgur.com/M6cv1Q1.png"></p>
+<p><strong>Xsetup</strong> - do pliku znajdującego się w <em>/usr/share/sddm/scripts/</em> należy dopisać:</p>
+<blockquote>
+<p><em>xrandr --output OUTPUT --off</em></p>
+</blockquote>
+<p>Gdzie za OUTPUT należy wstawić rzeczywistą wartość (<em>np. HDMI-2, DVI-1, VGA-3</em>).<br>Wyłączone na czas logowania powinny zostać monitory, które nie obsługują rozdzielczości podanej w pliku <em>theme.conf</em>.<br>Komenda niżej pomoże nam się rozeznać w naszej konfiguracji ekranów.</p>
+<blockquote>
+<p>$ xrandr</p>
+</blockquote>
+<p>Następny krok to edycja pliku <em>Main.qml</em>.</p>
+<blockquote>
+<p>$ sudo vim /usr/share/sddm/themes/sdd-chili/Main.qml</p>
+</blockquote>
+<p>To tak naprawdę całe serce naszego stylu, ja jednak ograniczę się tylko do odpowiedniego wyświetlania daty i godziny na ekranie logowania.</p>
+<p>W tym celu należy odnaleźć linię:</p>
+<blockquote>
+<p><em>text = new.Date().toLocalString(Qt.locale("en_US"), "ddd dd MMMM, hh:mm A")</em></p>
+</blockquote>
+<p>I zmodyfikować ją w taki sposób:</p>
+<blockquote>
+<p><em>text = new.Date().toLocalString(Qt.locale("en_US"), "hh:mm  ddd  dd/MM/yyyy")</em></p>
+</blockquote>
+<p>Lub pobawić się formatem daty według własnego uznania i upodobania. Śmiało można zastąpić także <em>en_US</em> swoiskim <em>pl_PL</em>, aby wyświetlać nazwy dni tygodnia i miesięcy w naszym ojczystym języku.</p>
+<p>Warto także zainteresować się standardem <strong>ISO-8601</strong>, który definiuje międzynarodowy, jednolity sposób zapisu daty, który wygląda następująco:</p>
+<blockquote>
+<p>YYYY-MM-DD hh:mm:ss ±hh:mm</p>
+</blockquote>
+<p>Dopuszcza on rozdzielenie czasu od daty pojedynczą spacją i jest czytelny dla każdego człowieka na świecie, niezależnie od przyzwyczajeń (<em>jak np. w przypadku USA i zapisu MM-DD-YYYY</em>).</p>
+<p>Kiedy całość jest już zapisana i odpowiednio edytowana, <em>SDDM Configurator</em> pozwala nam podejrzeć efekt pracy. Wystarczy wcisnąć przycisk <em>preview</em>, aby się przekonać, czy wszystko poszło po naszej myśli.</p>
+<p><img alt="preview" src="https://i.imgur.com/ZjC496G.png"></p>
+<h5 id="konfiguracja-i3lock">Konfiguracja i3lock</h5>
+<p>Dobrze jest posiadać w systemie możliwość zablokowania ekranu i wymagania od użytkownika wprowadzenia hasła, ale bez konieczności wylogowania się.<br>Do tego posłuży nam właśnie <em>i3lock</em>, który jest jedną wielu alternatyw dla tego typu rozwiązań.</p>
+<p>Wybrałem go dlatego, że społeczność skupiona wokół samego i3wm, oraz ogromna skalowalność i podatność na proste modyfikacje to coś, z czego warto skorzystać w swoim domowym (i nie tylko) zaciszu.</p>
+<p>Zanim zaczniemy, musimy zaopatrzyć się w dwa narzędzia, które pozwolą nam bawić się obrazem, który zostanie podłożny jako tło naszego ekranu blokady:</p>
+<blockquote>
+<p>$ yay -S scrot imagemagick</p>
+</blockquote>
+<p>Pierwszy z nich, to prosta aplikacja terminalowa, która pozwala nam przechwytywać zrzuty ekranu. Drugi umożliwi nam modyfikację uzyskanego obrazu, co wykorzystamy do nałożenia bluru czy rozpikselowania obrazu.</p>
+<p>Pokuszę się ponownie o pracę wykonaną przez innych użytkowników. Chodzi mi o skrypt, który nie ma problemu z obsługą więcej, niż jednego monitora. Jest zrobiony lekko i z głową, a do tego napisany w BASHu, co pozwala go silnie modyfikować i podglądać zmiany na żywo.</p>
+<p>Można się w moją, przerobioną już wersję zaopatrzyć <a href="https://pastebin.com/msvB9hQb">TUTAJ</a>.<br>Dodatkowo potrzebne będę <a href="https://imgur.com/a/o9iZpxB">TE</a> dwa obrazki, które się pojawią na naszym ekranie blokowania.</p>
+<p>Pokrótce także wytłumaczę najważniejsze linijki kodu:</p>
+<blockquote>
+<p>LOCK="/usr/share/i3lock-fancy/icons/lock.png"<br>TEXT="/usr/bin/text.png"</p>
+</blockquote>
+<p>To tutaj definiujemy miejsce przechowywania naszych grafik, oraz możemy całkowicie zrezygnować z moich, gotowych i spróbować stworzyć coś własnego.<br>Dodatkowo zamiast <em>/usr/share/</em> dobrze by było wpisać <em>$FOLDER</em>, zmienną zdefiniowaną wcześniej. Lecz zauważyłem, że nie jest to na tyle dokładne, na ile bym chciał i czasem coś nie działa, temu znacznie bezpieczniej jest tutaj napisać bezpośrednią ścieżkę do pliku.</p>
+<blockquote>
+<p>OUTPUT_IMAGE="/tmp/i3lock.png"<br>DISPLAY_TEXT=false<br>PIXELATE=false<br>BLURTYPE="0x4"  </p>
+</blockquote>
+<p>Najważniejsze parametry tutaj, jakie nas interesują to to, jakiego efektu oczekujemy na naszym zrzucie ekranu. Ja zdecydowałem się na blur o dość soczystej wartości 0x4, lecz nic nie stoi na przeszkodzie zastosować 0x13, lub łagodniejsze 3x4.<br>Dobrze jest się pobawić tymi wartościami i dostosować je pod nasz gust i możliwości sprzętowe.</p>
+<p>Warto również wspomnieć o dwóch liniach, które mówią same za siebie, więc jeśli nie pasuje nam domyślna lokalizacja na zapis naszej grafiki, możemy ją śmiało zmienić.</p>
+<blockquote>
+<p>scrot -z $OUTPUT_IMAGE</p>
+</blockquote>
+<p>Tutaj sytuacja jest prosta. Ot, dwa parametry, które określają miejsce zapisu pliku oraz to, że chcemy uchwycić cały dostępny pulpit na wszystkich monitorach. Uważam, że nie ma sensu się tutaj bardziej rozwodzić.</p>
+<blockquote>
+<p>i3lock -i $OUTPUT_IMAGE -t -e --composite --radius 55 --ring-width 5.0 --veriftext="Wait" --wrongtext="Wrong" --noinputtext="N/I"</p>
+</blockquote>
+<p>Oto i główne danie naszego skryptu, sam <em>i3lock</em>. Idąc po kolei z parametrami wychodzi to tak:</p>
+<p><strong>-i $OUTPUT_IMAGE</strong> - ścieżka do obrazu<br><strong>-t</strong> - rozciągnięcie zrzutu na całą dostępną przesteń ekranową<br><strong>-e</strong> - ignoruje puste hasła, w których nie wprowadzono żadnych znaków<br><strong>--composite</strong> - w zależności od używanego kompozytora parametr ten należy zostawić lub usunąć. Jeśli obraz nie jest wyświetlany poprawnie, to wtedy należy bawić się z tą opcją<br><strong>--radius 55</strong> - promień koła, które wyświetla się przy wpisywaniu hasła<br><strong>--ring-width 5.0</strong> - szerokość obwódki na kole<br><strong>--veriftext="Wait"</strong> - tekst wyświetlany podczas sprawdzania poprawności wpisanego hasła<br><strong>--wrongtext="Wrong"</strong> - tekst wyświetlany, jeśli podane hasło jest nieprawidłowe<br><strong>--noinputtext="N/I"</strong> - teksty wyświetlany, jeśli żadna wartość nie została wpisana</p>
+<p>Takimi oto sposobem otrzymaliśmy prosty, lekki i schludny skrypt, który pozwala nam zablokować ekran na czas naszej nieobecności przy komputrze, aby nieporządane ręce i oczy nie miały dostępu do naszego pulpitu, plików i zawartości.<br>W dalszej części podepniemy to pod jakiś wygodny skrót klawiszowy.</p>
+<p>Oczywiście, efekt blur jest stosunkowo prosto odwracalny w programach graficznych, ale <em>i3lock</em> nie ma robić tutaj za zabezpieczenie definitywne, a jedynie za ograniczenie zbyt ciekawskich ludzi.</p>
+<p><img alt="i3lock" src="https://i.imgur.com/lsfs2PS.jpg"></p>
+<h5 id="konfiguracja-zsh">Konfiguracja ZSH</h5>
+<h5 id="konfiguracja-openboxa">Konfiguracja OpenBoxa</h5>
+<h5 id="konfiguracja-xfce">Konfiguracja XFCE</h5>
+<p>///</p></body>
+</html>
