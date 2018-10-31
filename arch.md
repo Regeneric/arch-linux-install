@@ -684,6 +684,96 @@ Oczywiście, efekt blur jest stosunkowo prosto odwracalny w programach graficzny
 
 ##### Konfiguracja ZSH
 
+> ZSH (Z shell) – uniksowa powłoka (ang. shell) nadająca się zarówno do interaktywnej pracy z systemem jak i do wykonywania skryptów. Spośród standardowych powłok, ZSH najbardziej przypomina Korn Shell, ale zawiera wiele ulepszeń. zsh posiada edycję wiersza poleceń, wbudowaną korekcję pisowni, programowalne dopełnianie poleceń, funkcje (z automatycznym ładowaniem), historię poleceń i mnóstwo innych cech.
+
+Tyle tytułem wstępu, dzięki uprzejmości polskiej Wikipedi. Nie mówi to co prawda zbyt wiele, ale nie szkodzi, śpieszę z wyjaśnieniem.
+
+Pierwsza sprawa, jaka rzuca się w oczy, to popularność samego ZSH. W stosunku do *BASHA*, czy nawet czystego *TCSH*, samo *ZSH* nie wydaje się mieć jakiegoś szczególnego miejsca w sercu użytkowników. Może na to wpływać kilka różnych czynników, z czego osobiście dwa uznaję za najbardziej prawdopodobne:
+
+* Ograniczenie roli terminala w życiu użytkownika - żyjemy w czasach, w których ciężko jest sobie wyobrazić domowy system operacyjny, który nie będzie posiadał wygodnego i przyjaznego użytkownikowi GUI. Dzięki czemu wielu ludzi w linuksowych społecznościach decyduje się niemal całkowicie zrezygnować z używania CLI na rzecz wyklikania wszystkiego myszą. Jest im tak wygodniej i tak właśnie lubią pracować ze swoim systemem. Dla takich ludzi powłoka, z jakiej korzystają, nie ma większego znaczenia. A już na pewno nie na tyle, żeby jeszcze próbować ją zmieniać.
+
+* Zbyt małe doświadczenie i strach przed zmianami - często i gęsto podnoszym argumentem za wyższością Pingwinków nad innymi systemami jest ich otwartość. Że użytkownik ma pełną dowolność i kontrolę nad swoim systemem. Jest to prawda, jak najbardziej, lecz co z tego, skoro spora rzesza początkujących i średnio-zaawansowanych użytkowników boi się cokolwiek zmieniać w obawie przed zepsuciem swojego OSu? Lub najwzywczajniej w świecie nie odczuwa potrzeby do żadnych większych modyfikacji? Jako, że tej grupie w większości wypadków wystarcza to, co dostają z dystrybucją (a takich przecież nie brakuje na rynku), nijak nie ma tutaj większych szans na próbę przejścia z BASHa na ZSH.
+
+Są to oczywiście tylko domysły prostego użytkownika, do tego obarczone sporymi skrótami myślowymi i ogromną generalizacją. Jednak spędzając czas na przeróżnych grupach wsparcia technicznego czy czysto linuksowego, są powody, które przewijają się najczęściej w dyskusjach.
+
+Jest też grupa ludzi, do której sam się zaliczam, która lubi podejmowane akcje racjonalizować potrzebami i wymaganiami, które napotka na swojej drodze. Jako długoletni użytkownik *BASHa* ani myślałem go zmieniać. Był wszechstronny, prosty, wygodny i popularny. Jednak z każdym kolejnym skryptem dodawanym do mojego systemu, każdym kolejnym ficzerem, mój terminal przestał spełniać pokładane w nim nadzieje. Psuł cały flow i unifikację mojego systemu. W każdym razie, w moim odczuciu.  
+Jestem także typem osoby, który mimo względnego upodobania do stabliności, lubi pobawić się swoim systemem. I to chyba ta wrodzona w każdego człowieka ciekawość i zmysł estetyczny popchnęły mnie do zmian.
+
+Efekt, do którego będziemy tutaj dążyć, wygląda następująco:
+
+![zsh](https://i.imgur.com/o0iTNLu.png)
+
+Całość konfiguracji trzeba zacząć od pobrania samego *ZSH*:
+
+> $ yay zsh
+
+A następnie dobrze jest zaopatrzyć się we framework **Oh My ZSH**. Nie jest on co prawda w żaden sposób wymagany, ale jego popularność i prostota obsługi sprawiają, że warto go mieć w swoim systemie, aby sprawnie konfigurować swój nowy shell.
+
+Sam pakiet co prawda znajduje się repozytorium, lecz polecam zainteresować się poleceniem prosto z Gita twórcy:
+
+> $ yay wget
+> $ sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+
+Pozwala nam ono nie tylko pobrać samo *ZSH*, ale także ustawić jako aktywną powłokę dla naszego użytkownika.  
+Już teraz można pokusić się o zaglądnięcie do pliku ~/.zshrc, jednak polecam się z tym wstrzymać.
+
+Następny krok to pobranie odpowiednio stylu oraz PowerLine'a:
+
+> $ yay -S powerline powerline-fonts powerline-common awesome-terminal-fonts  
+> $ git clone https://github.com/bhilburn/powerlevel9k && mv powerlevel9k/ ~/.oh-my-zsh
+
+Następnie w pliku ~/.zshrc należy odnaleźć linię **ZSH_THEME** i dopisać do niej *powerlevel9k/powerlevel9k*
+
+![9klvl](https://i.imgur.com/KnYcIEe.png)
+
+Ktoś może zapytać: "*Ala dlaczego akurat powerlevel9k, a nie np. agnoster?*".  
+Odpowiedź na tak postawione pytanie jest bardzo prosta, a mianowicie możliwości konfiguracyjne. Agnoster nie dostarcza ich w odpowiednim stopniu. A już na pewno nie są one tak łatwo dostępne.
+
+Osobiście zdecydowałem się na dość skromne stylowanie, jednak [TUTAJ](https://github.com/bhilburn/powerlevel9k) śmiało można odnaleźć pełną listę obsługiwanych słów kluczowych i dostosować całość wedle własnego uznania.
+
+> POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(user dir_writable dir ssh vcs)  
+> POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs host)
+
+
+![zshconf](https://i.imgur.com/dgfX56B.png)
+
+Sama składnia myślę jest na tyle prosta, że nie ma coś się nad całością rozwodzić, niemniej warto wspomnieć o najważniejszych rzeczach:
+
+* **dir_writable** - komunikuje użytkownikowi, czy ma uprawnienia pozwalające na zapis plików w folderze, w którym się znajduje
+
+* **ssh** - mały indykator informujący użytkownika, że jest to sesja ustanowiona za pomocą SSH
+
+* **vcs** - pozwala korzystać z symboli zawartych w paczce *Awesome Terminal Fonts*
+
+* **status** - zwraca status wykonania się ostatniej komendy
+
+Jedną z ostatnich rzeczy do zrobienia, jest pobranie dwóch bardzo przydatnych pluginów:
+
+> $ git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+
+> $ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+
+Pierwszy z nich śledzi historię wprowadzonych poleceń, aby następnie na podstawie słów kluczowych, czy nawet pierwszych liter, podpowiadać całe, długie komendy. Przydatne przy powtarzających się terminalowych czynnościach.
+
+Drugi podkreśla składnię poleceń i odpowiednimi kolorami sygnalizuje nam pomyłkę (lub tez sukces) przy wprowadzaniu komendy do CLI. Osobiście nie potrafię już żyć bez tych dwóch pluginów.
+
+Aby zmusić je do działania, wymagana jest edycja linii *plugins* i dopisanie tam odpowiednich wartości:
+
+> plugins=(  
+  git  
+  zsh-autosuggestions  
+  zsh-syntax-highlighting  
+  )
+
+![plugins](https://i.imgur.com/B0SvK7q.png)
+
+Oraz wykonanie polecenia:
+
+> $ source ~/.zshrc
+
+W ten oto sposób, już nawet restart naszego systemu nie powinien mieć negatywnego wpływu na shell i odwrotnie. Zaś my, jako użytkownicy, możemy nacieszyć oko całkiem ładnym i nowoczesnym wyglądem terminala.
+
+##### Konfiguracja VIMa
 
 ##### Konfiguracja OpenBoxa
 

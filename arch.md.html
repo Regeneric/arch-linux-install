@@ -1043,6 +1043,75 @@ Zanim to jednak nastąpi, musimy wpisać następujące polecenie:</p>
 <p>Oczywiście, efekt blur jest stosunkowo prosto odwracalny w programach graficznych, ale <em>i3lock</em> nie ma robić tutaj za zabezpieczenie definitywne, a jedynie za ograniczenie zbyt ciekawskich ludzi.</p>
 <p><img alt="i3lock" src="https://i.imgur.com/lsfs2PS.jpg"></p>
 <h5 id="konfiguracja-zsh">Konfiguracja ZSH</h5>
+<blockquote>
+<p>ZSH (Z shell) – uniksowa powłoka (ang. shell) nadająca się zarówno do interaktywnej pracy z systemem jak i do wykonywania skryptów. Spośród standardowych powłok, ZSH najbardziej przypomina Korn Shell, ale zawiera wiele ulepszeń. zsh posiada edycję wiersza poleceń, wbudowaną korekcję pisowni, programowalne dopełnianie poleceń, funkcje (z automatycznym ładowaniem), historię poleceń i mnóstwo innych cech.</p>
+</blockquote>
+<p>Tyle tytułem wstępu, dzięki uprzejmości polskiej Wikipedi. Nie mówi to co prawda zbyt wiele, ale nie szkodzi, śpieszę z wyjaśnieniem.</p>
+<p>Pierwsza sprawa, jaka rzuca się w oczy, to popularność samego ZSH. W stosunku do <em>BASHA</em>, czy nawet czystego <em>TCSH</em>, samo <em>ZSH</em> nie wydaje się mieć jakiegoś szczególnego miejsca w sercu użytkowników. Może na to wpływać kilka różnych czynników, z czego osobiście dwa uznaję za najbardziej prawdopodobne:</p>
+<ul>
+<li><p>Ograniczenie roli terminala w życiu użytkownika - żyjemy w czasach, w których ciężko jest sobie wyobrazić domowy system operacyjny, który nie będzie posiadał wygodnego i przyjaznego użytkownikowi GUI. Dzięki czemu wielu ludzi w linuksowych społecznościach decyduje się niemal całkowicie zrezygnować z używania CLI na rzecz wyklikania wszystkiego myszą. Jest im tak wygodniej i tak właśnie lubią pracować ze swoim systemem. Dla takich ludzi powłoka, z jakiej korzystają, nie ma większego znaczenia. A już na pewno nie na tyle, żeby jeszcze próbować ją zmieniać.</p>
+</li>
+<li><p>Zbyt małe doświadczenie i strach przed zmianami - często i gęsto podnoszym argumentem za wyższością Pingwinków nad innymi systemami jest ich otwartość. Że użytkownik ma pełną dowolność i kontrolę nad swoim systemem. Jest to prawda, jak najbardziej, lecz co z tego, skoro spora rzesza początkujących i średnio-zaawansowanych użytkowników boi się cokolwiek zmieniać w obawie przed zepsuciem swojego OSu? Lub najwzywczajniej w świecie nie odczuwa potrzeby do żadnych większych modyfikacji? Jako, że tej grupie w większości wypadków wystarcza to, co dostają z dystrybucją (a takich przecież nie brakuje na rynku), nijak nie ma tutaj większych szans na próbę przejścia z BASHa na ZSH.</p>
+</li>
+</ul>
+<p>Są to oczywiście tylko domysły prostego użytkownika, do tego obarczone sporymi skrótami myślowymi i ogromną generalizacją. Jednak spędzając czas na przeróżnych grupach wsparcia technicznego czy czysto linuksowego, są powody, które przewijają się najczęściej w dyskusjach.</p>
+<p>Jest też grupa ludzi, do której sam się zaliczam, która lubi podejmowane akcje racjonalizować potrzebami i wymaganiami, które napotka na swojej drodze. Jako długoletni użytkownik <em>BASHa</em> ani myślałem go zmieniać. Był wszechstronny, prosty, wygodny i popularny. Jednak z każdym kolejnym skryptem dodawanym do mojego systemu, każdym kolejnym ficzerem, mój terminal przestał spełniać pokładane w nim nadzieje. Psuł cały flow i unifikację mojego systemu. W każdym razie, w moim odczuciu.<br>Jestem także typem osoby, który mimo względnego upodobania do stabliności, lubi pobawić się swoim systemem. I to chyba ta wrodzona w każdego człowieka ciekawość i zmysł estetyczny popchnęły mnie do zmian.</p>
+<p>Efekt, do którego będziemy tutaj dążyć, wygląda następująco:</p>
+<p><img alt="zsh" src="https://i.imgur.com/o0iTNLu.png"></p>
+<p>Całość konfiguracji trzeba zacząć od pobrania samego <em>ZSH</em>:</p>
+<blockquote>
+<p>$ yay zsh</p>
+</blockquote>
+<p>A następnie dobrze jest zaopatrzyć się we framework <strong>Oh My ZSH</strong>. Nie jest on co prawda w żaden sposób wymagany, ale jego popularność i prostota obsługi sprawiają, że warto go mieć w swoim systemie, aby sprawnie konfigurować swój nowy shell.</p>
+<p>Sam pakiet co prawda znajduje się repozytorium, lecz polecam zainteresować się poleceniem prosto z Gita twórcy:</p>
+<blockquote>
+<p>$ yay wget
+$ sh -c "$(wget <a href="https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh">https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh</a> -O -)"</p>
+</blockquote>
+<p>Pozwala nam ono nie tylko pobrać samo <em>ZSH</em>, ale także ustawić jako aktywną powłokę dla naszego użytkownika.<br>Już teraz można pokusić się o zaglądnięcie do pliku ~/.zshrc, jednak polecam się z tym wstrzymać.</p>
+<p>Następny krok to pobranie odpowiednio stylu oraz PowerLine'a:</p>
+<blockquote>
+<p>$ yay -S powerline powerline-fonts powerline-common awesome-terminal-fonts<br>$ git clone <a href="https://github.com/bhilburn/powerlevel9k">https://github.com/bhilburn/powerlevel9k</a> &amp;&amp; mv powerlevel9k/ ~/.oh-my-zsh</p>
+</blockquote>
+<p>Następnie w pliku ~/.zshrc należy odnaleźć linię <strong>ZSH_THEME</strong> i dopisać do niej <em>powerlevel9k/powerlevel9k</em></p>
+<p><img alt="9klvl" src="https://i.imgur.com/KnYcIEe.png"></p>
+<p>Ktoś może zapytać: "<em>Ala dlaczego akurat powerlevel9k, a nie np. agnoster?</em>".<br>Odpowiedź na tak postawione pytanie jest bardzo prosta, a mianowicie możliwości konfiguracyjne. Agnoster nie dostarcza ich w odpowiednim stopniu. A już na pewno nie są one tak łatwo dostępne.</p>
+<p>Osobiście zdecydowałem się na dość skromne stylowanie, jednak <a href="https://github.com/bhilburn/powerlevel9k">TUTAJ</a> śmiało można odnaleźć pełną listę obsługiwanych słów kluczowych i dostosować całość wedle własnego uznania.</p>
+<blockquote>
+<p>POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(user dir_writable dir ssh vcs)<br>POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs host)</p>
+</blockquote>
+<p><img alt="zshconf" src="https://i.imgur.com/dgfX56B.png"></p>
+<p>Sama składnia myślę jest na tyle prosta, że nie ma coś się nad całością rozwodzić, niemniej warto wspomnieć o najważniejszych rzeczach:</p>
+<ul>
+<li><p><strong>dir_writable</strong> - komunikuje użytkownikowi, czy ma uprawnienia pozwalające na zapis plików w folderze, w którym się znajduje</p>
+</li>
+<li><p><strong>ssh</strong> - mały indykator informujący użytkownika, że jest to sesja ustanowiona za pomocą SSH</p>
+</li>
+<li><p><strong>vcs</strong> - pozwala korzystać z symboli zawartych w paczce <em>Awesome Terminal Fonts</em></p>
+</li>
+<li><p><strong>status</strong> - zwraca status wykonania się ostatniej komendy</p>
+</li>
+</ul>
+<p>Jedną z ostatnich rzeczy do zrobienia, jest pobranie dwóch bardzo przydatnych pluginów:</p>
+<blockquote>
+<p>$ git clone <a href="https://github.com/zsh-users/zsh-autosuggestions">https://github.com/zsh-users/zsh-autosuggestions</a> ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions</p>
+</blockquote>
+<blockquote>
+<p>$ git clone <a href="https://github.com/zsh-users/zsh-syntax-highlighting.git">https://github.com/zsh-users/zsh-syntax-highlighting.git</a> ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting</p>
+</blockquote>
+<p>Pierwszy z nich śledzi historię wprowadzonych poleceń, aby następnie na podstawie słów kluczowych, czy nawet pierwszych liter, podpowiadać całe, długie komendy. Przydatne przy powtarzających się terminalowych czynnościach.</p>
+<p>Drugi podkreśla składnię poleceń i odpowiednimi kolorami sygnalizuje nam pomyłkę (lub tez sukces) przy wprowadzaniu komendy do CLI. Osobiście nie potrafię już żyć bez tych dwóch pluginów.</p>
+<p>Aby zmusić je do działania, wymagana jest edycja linii <em>plugins</em> i dopisanie tam odpowiednich wartości:</p>
+<blockquote>
+<p>plugins=(<br>  git<br>  zsh-autosuggestions<br>  zsh-syntax-highlighting<br>  )</p>
+</blockquote>
+<p><img alt="plugins" src="https://i.imgur.com/B0SvK7q.png"></p>
+<p>Oraz wykonanie polecenia:</p>
+<blockquote>
+<p>$ source ~/.zshrc</p>
+</blockquote>
+<p>W ten oto sposób, już nawet restart naszego systemu nie powinien mieć negatywnego wpływu na shell i odwrotnie. Zaś my, jako użytkownicy, możemy nacieszyć oko całkiem ładnym i nowoczesnym wyglądem terminala.</p>
+<h5 id="konfiguracja-vima">Konfiguracja VIMa</h5>
 <h5 id="konfiguracja-openboxa">Konfiguracja OpenBoxa</h5>
 <h5 id="konfiguracja-xfce">Konfiguracja XFCE</h5>
 <p>///</p></body>
