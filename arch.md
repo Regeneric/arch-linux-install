@@ -777,6 +777,112 @@ W ten oto sposób, już nawet restart naszego systemu nie powinien mieć negatyw
 
 ##### Konfiguracja OpenBoxa
 
+Pomimo świadomej i pewnej decyzji, jaką podjąłem instalując **XFCE**, oraz jaką sam polecam, mam pełną świadomość tego, że w chwili pisania tego tekstu, jest to jedno z najmniej przyszłościowych środowisk graficznych dostępnych na rynku.
+
+Nie dzieje się tak przez czysty przypadek. Grupa ludzi pracująca na łataniem dziur i rozwijająca projekt jest tak niewielka, że często garażowe projekty czy kilkunastogodzinne game jamy posiadają liczniejszą załogę.  
+Powoduje to dwojaką sytuację, w której aktualizacje są oddalone od siebie o całe dziesiątki tygodni nie wnosząc wcale tak dużo (następna duża aktualizacja, 4.14, jako swój killer feature przynosi jedynie pełną integracją z GTK3).
+
+W stosunku do **KDE** czy **GNOME**, dwóch bardzo dużych projektów (ten drugi ma nawet fanowski fork nie wymagający do działania *systemd*), jest to aż smutne.  
+Jednak druga strona medalu jest taka, że twórcy projektu *XFCE* doskonale zdają sobie sprawę z tego, jak ma się sytuacja, więc całe środowisko zbudowali w taki sposób, aby było bardzo silnie modyfikowalne przez zapalonych użytkowników.
+
+To, czego oni nie są nam w stanie dostarczyć, naprawiamy i dodajemy sami.  
+Wielu ludzi takie podejście odstrasza, ale według mnie jest to sytuacja niemal idealna do zabawy i zdobycia całkiem sporych umiejętności.
+
+Czynniki wypisane w powyższych akapitach wpłynęły także na mnie i moje postrzeganie tego DE, a zwłaszcza menadżera okien *XFWM*.  
+Mimo bycia potężnym, a zarazem lekkim kawałkiem oprogramowania, brakuje mu sporo funkcji znanych z choćby *KWin* lub... **OpenBoxa**.
+
+**OpenBox** w przeciwieństwie do *FluxBoxa* lub *JWM* skupia się na jednym zadaniu.  
+Byciu wydajnym, lekkim i bardzo mocno modyfikowalnym menadżerem okien (WM).  
+Dzięki ogromnej społeczności zgromadzonej wokół niego oraz dzięki plikom konfiguracyjnym w formacie **XML**, jesteśmy w stanie zbudować nawet niezależny desktop, korzystając tylko i wyłącznie z *OpenBoxa*.
+
+Ja jednak postanowiłem ograniczyć jego rolę tylko (i aż) do tego, aby trzymał moje środowisko graficzne w ryzach, zarządzając oknami czy pulpitami.  
+Fakt, nie jest on tak przyjazny i intuicyjny, jak *XFWM*, jednak i na to są odpowiednie rady i aplikacje. Niemniej pasuje wziąć się do roboty, więc wydajemy komendy:
+
+> $ yay openbox  
+> $ openbox --replace
+
+I tak naprawdę tyle wystarczyło, aby pozbyć się XFWM. Oczywiście nie całkowicie!
+
+Zdaję sobie sprawę, że w stanie surowym podmiana menadżera okien może wydawać się okropnym pomysłem, zwłaszcza kiedy ujrzymy, jaki bałagan to spowodowało na naszym pulpicie.
+
+Jednak kolejny krok, to pobranie dwóch aplikacji, które sprawią, że cały proces konfiguracji stanie się zwykłą przyjmenością:
+
+> $ yay -S obconf obkey
+
+Następnie dobrze jest zaopatrzyć się w porządne style graficzne dla naszego menadżera okien.  
+Sposobów na zdobycie takowych jest kilka. Na przykład świetnym miejsce na złapanie inpiracji jest [/r/unixporn](https://www.reddit.com/r/unixporn/) - subreddit na którym ludzie dzielą się swoimi modyfikacjami i stylami na niemalże wszystkich środowiskach i dystrybucjach.
+
+Do dyspozycji jest także strona [Box-Look.org](https://www.box-look.org/browse/cat/140/), która stara się katlogować mniej i bardziej popularne style graficzne. Warto się rozejrzeć, bo zarówno fan retro stylu, jak i futuryzmu znajdzie tutaj coś dla siebie.
+
+Od siebie szczerze polecam [TO](https://github.com/addy-dclxvi/openbox-theme-collections) repozytorium na GitHubie użytkownika *addy-dclxvi*. Gość robi niesamowitą robotę na tak dużo różnych środowisk i menadżerów, że można tutaj wracać po kilkanaście razy i znajdować to, co nas najbardziej interesuje.
+
+Aby zaopatrzyć się w paczkę, wpisujemy komendę:
+
+> $ git clone https://github.com/addy-dclxvi/openbox-theme-collections.git  
+> $ sudo mv openbox-theme-collections/ /usr/share/themes/
+
+Folder, do którego trafiły nasze style, jest użyteczny także dla modyfikowania DE, oraz daje dostęp innym użytkownikom systemowym do pobranych skórek.
+
+Następnie wydajemy prostą komendę:
+
+> $ obconf
+
+I jesteśmy gotowi na konfigurację *OpenBoxa*, którą pokrótce opiszę.
+
+Na start w oczy rzuca się zakładka, która od razu zachęca do wybrania interesującego nas stylu. Osobiście zdecydowałem się tutaj na *Raven-Cyan*, przez kontrastowy title bar i dopasowanie reszty kolorystki do mojego aktualnego upodobania raczej zimnymi kolorami.
+
+![themes](https://i.imgur.com/jnXLbhB.png)
+
+W zakładce "*Appearance*" śmiało możemy zaszaleć z czcionką, jaka będzie reprezentować nasz system. Jak widać jestem razczej stonowany w tej kwestii, ale może kogoś fantazja poniesie?  
+Jest to także miejsce, w którym możemy przearażnować ułożenie przycisków okien. Jeśli ktoś przywykł do *macOS* albo *Ubuntu*, to bez problemu może całość przenieść z prawej strony na lewą.
+
+![appearance](https://i.imgur.com/LkK1tqe.png)
+
+Zakładka "*Windows*" jest szczególnie przydatna dla konfiguracji z więcej, niż jednym monitorem. W łatwy sposób można zarządzać, gdzie i dlaczego mają pojawiać się nowe okna oraz powiadomienia. Na szczególną pochwałę zasługuje możliwość inteligentnego rozmieszczania rzeczy pod naszym kursorem myszy, ogromna wygoda.
+
+![windows](https://i.imgur.com/c2LScVx.png)
+
+W następnym polu mamy całkiem sporo kompleksowych opcji dotyczących migracji i zmiany rozmiaru okien aplikacji i folderów. W przypadku korzystania z kilku obszarów roboczych jest to tym bardziej ważne, aby odpowiednio dostosować wartości do naszych preferencji.
+
+![moveres](https://i.imgur.com/HLAkKQ1.png)
+
+Podobnie jest także w przypadku ustawień myszy, z których sam zdecydowałem się zrezygnować. Moim preferowanym urządzeniem wejścia jest klawiatura i to ona ma być mi najbardziej pomocna. Zadaniem myszki jest jedynie nie przeszkadzać.
+
+![mouse](https://i.imgur.com/ZA7iw3P.png)
+
+Obszary robocze to rozwiązanie, które sobie niezywkle cenię. Pozwalają sprawnie i wygodnie zarządzać pracą na naszym pulpicie, a przy okazji trzymają wszystko odpowiednio zorganizowane. Do tego odpowiednio skonfigurowane skróty klawiszowe pozwalają się między nimi sprawnie przełączać.  
+
+![desktops](https://i.imgur.com/U97bMht.png)
+
+Ostatnie dwie zakładki w mojej opinii nie są już warte przedstawienia dla systemu, jaki ten tekst buduje. Niemniej na własną rękę warto tam zajrzeć, może jednak znajdzie się tam opcja, której tak desperacko poszukujemy?
+
+Następnie polecenie:
+
+> $ obkey
+
+Pozwala nam wywołać okno konfiguracyjne skrótów klawiszowych. Jednak jest to na tyle indywidualna opcja, że ciężko mi cokolwiek polecać. Warto jest jednak poświęcić chwilę i przewertować listę dostępnych akcji i samemu zdecydować, co nam będzie potrzebne.
+
+Od siebie dodam, że kombinacje jak *Alt+Tab* czy *Alt+F4* są swego rodzaju standardem, który warto zaimplementować także u siebie.
+
+![obkey](https://i.imgur.com/Lg6GXls.png)
+
+Za pomocą plusa w lewym, górnym rogu aplikacji dodajemy definicję nowego skrótu. Klikając w nią, program zacznie oczekiwać na wciśnięcie odpowiedniej konfiguracji klawiszy. Jeśli jednak nie chce to działać poprawnie, zawsze można wpisać ręcznie porządany skrót w kolumnę **Key (text)**.
+
+Nastęþnie używając zielonego plusa w prawym, dolnym rogu ekranu możemy do naszego skrótu podpiąć akcje, jakie ma on wykonywać. To jest najtrudniejsza część, bo wymagana od nas porządnego zastanowienia się. Niemniej bez strachu, zawsze można tutaj wrócić i dodać odpowiednie wpisy wedle potrzeb.
+
+Całość konfiguracji zapisujemy niebieską strzałą w lewym, górnym rogu ekranu. Jest to moment, od którego wszystkie skróty powinny być już aktywne i funkcjonalne.
+
+Ostatnią rzeczą jaką dobrze jest zrobić, to wrzucić polecenie podmieniające *XFWM* na *OpenBoxa*.  
+Można to zrobić bezpośrednio w menu ustawień *XFCE*, zakładka "*Session and Startup*".
+
+Wystarczy dodać nowy wpis, a w pole *command* wpisać:
+
+> openbox --replace
+
+I całość zapisać. Takim oto sposobem udało się wykonać dość poważną ingerencję w środowisko graficzne, jednak bez zbędnego bólu potrzebnego na edycję plików XML.
+
+![startup](https://i.imgur.com/JVtWWOc.png)
+
 
 ##### Konfiguracja XFCE
 
