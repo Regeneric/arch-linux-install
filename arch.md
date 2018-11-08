@@ -4,6 +4,26 @@
 Dlaczego więc Arch Linux owiany jest takim mistycyzmem? Co stoi za jego sukcesem i dlaczego jest to świetny system dla naszego desktopa?
 Sprawdźmy to!
 
+## Spis treści 
+
+* [**Arch Linux**](#Arch-Linux)
+  * [**Pochodne dystrybucje**](#Pochodne-dystrybucje-Archa)
+  * [**Wstępna konfiguracja**](#Wstępna-konfiguracja)
+* [**Partycjonowanie dysku**](#Partycjonowanie-i-formatowanie-dysków)
+  * [**LVM**](#LVM)
+  * [**LUKS**](#LUKS)
+  * [**Klasycznie**](#Klasycznie)
+* [**Instalacja i konfiguracja systemu**](#Instalacja-i-konfiguracja-systemu)
+* [**Bootloader**](#Bootloader-(systemd-boot))
+* [**Środowisko graficzne**](#Środowisko-graficzne)
+  * [**Konfiguracja SDDM**](#Konfiguracja-SDDM)
+  * [**Konfiguracja i3lock**](#Konfiguracja-i3lock)
+  * [**Konfiguracja ZSH**](#Konfiguracja-ZSH)
+  * [**Konfiguracja VIMa**](#Konfiguracja-VIMa)
+  * [**Konfiguracja OpenBoxa**](#Konfiguracja-OpenBoxa)
+  * [**Konfiguracha XFCE**](#Konfiguracja-XFCE)
+* [**Podsumowanie**](#Podsumowanie)
+
 ### Arch Linux
 
 Dystrybucja stworzona przez Judda Vineta, która za cel obrała sobie łatwość konfiguracji, użytkowania, a także szybkość, stabilność i aktualność.
@@ -76,7 +96,8 @@ Adresy IP podajemy oczywiście odpowiadające rzeczywistym wartościom używanym
 
 ![ping-succ](https://i.imgur.com/edQ5dEI.png)
 
-### Partycjonowanie i formatowanie dysków (LVM, bez szyfrowania)
+## Partycjonowanie i formatowanie dysków
+### LVM
 
 Partycjonowanie dysku, to ciut bardziej skomplikowany proces, mimo to, wcale nie należy się go bać.
 Na początek musimy odnaleźć dysk, na którym nasz system ma być zainstalowany, komendą:
@@ -228,7 +249,11 @@ Musimy zamontować swoje partycje w odpowiednich miejscach za pomocą komend:
 > $ mount /dev/home/phome /mnt/home  
 > $ mount /dev/sdXY /mnt/boot
 
-##### Partycjonowanie i formatowanie dysków (klasyczne)
+### LUKS
+
+tutaj będzie luks
+
+### Klasycznie
 
 Tutaj jedyną różnicą, jaką uświadczymy jest to, że nasze dyski i partycje są bezpośrednio montowane w odpowiednich punktach. Pozwala to choćby odczytać zawartość naszego dysku z poziomu Windowsa (o ile korzystamy z *ext4* i oprogramowania *Ext2FSD*).
 Jest to także problem, ponieważ nie możemy tutaj mówić o żadnym prostym i skutecznym sposobie, na powiększenie istniejącej już partycji.
