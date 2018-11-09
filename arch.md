@@ -313,11 +313,12 @@ Do edycji wymagany będzie jakikolwiek edytor. Osobiście preferuję **vima**, d
 
 Następnie musimy odszukać linijkę "*HOOKS*", można to zrobić prosto takim oto skrótem w *vimie*:
 
-> Esc %2F hooks Enter n
+> Esc `/` hooks Enter n
 
-Gdzie *%2F* oznacza *slash*, a *n* przesuwanie się między kolejnymi wynikami. Można to także zrobić ręcznie, jeśli ktoś chce. Tekstu nie ma wiele.
+Gdzie  *n* oznacza przesuwanie się między kolejnymi wynikami. Można to także zrobić ręcznie, jeśli ktoś chce. Tekstu nie ma wiele.
 
-Następnie musimy dopisać ***lvm2*** po wyrazie *block*. Trzeba uważać, bo kolejność ma znacznie. Może nie aż tak duże, w przypadku samego **LVM**, ale przy zabawie z choćby *VFIO* warto o tym pamiętać.
+Następnie musimy dopisać ***lvm2*** po wyrazie *block*. Trzeba uważać, bo kolejność ma znacznie. Może nie aż tak duże, w przypadku samego **LVM**, ale przy zabawie z choćby *VFIO* warto o tym pamiętać.  
+Aby to zrobić, należy na klawiaturze wcisnąć **I** (*jak igła*) i przejść do trybu **insert** edytora.
 
 ![mkinit](https://i.imgur.com/iv83i5G.png)
 
@@ -827,6 +828,88 @@ W ten oto sposób, już nawet restart naszego systemu nie powinien mieć negatyw
 ##### Konfiguracja VIMa
 
 ###### [Do góry](#Spis-treści)
+**VIM** to jeden z najpopularniejszych i najlepszych edytorów tekstu działający w CLI. Jego największymi zaletami są m.in. pełna konfigurowalności, ogromne możliwości skryptowe oraz ogromne zaawansowanie, które pozwala na jego podstawie zbudować pełnoprawne IDE do pracy z C++, Javą, C# i czym tylko człowiek zapragnie.
+
+Są to też niestety rzeczy, które na starcie bardzo mocno odrzucają początkujących. Słynny żart o tym "*jak wyjść z vima*" stał się tak popularny, że nawet ludzie nie korzystający z tego edytora w ogóle, całkiem dobrze go znają.  
+Osobiście twierdzę, że znajomość *vima* (a tak właściwie, to jeszcze lepiej *vi*) to na tyle przydatna umiejętność, że warto poświęcić kilka chwil na zaznajomienie się podstawami. W przyszłości może to przynieść sporo korzyści i oszczędzić jeszcze więcej czasu.
+
+W tej sekcji głównym celem będzie integracja PowerLine'a z edytorem, aby zachować jednolitość i unifikację z samym terminalem, w którym *vim* pracuje oraz wytłumaczenie podstawowych komend i możliwości konfiguracyjnych.
+
+Na sam początek dobrze będzie pobrać następujące paczki:
+
+> $ yay -S vim-runtime powerline-vim vim-pathogen python
+
+Pathogen w prosty i przyjemny sposób pozwala nam integrować pluginy z *vimem*, co podobnie jak w przypadku *Oh My ZSH* znacznie usprawni naszą pracę nad konfiguracją.
+
+Następnie należy edytować plik **~/.vimrc** i wkleić do niego [TEN](https://pastebin.com/m1Hu4ag1) config za pomocą skrótu klawiszowego **Shift + Insert** lub środkowego przycisku myszy. Ale to w zależności w którym schowku zapisaliśmy linie konfiguracyjne.  
+Pokrótce objaśniam:
+
+Początkowe linie determinują obsługę i działanie Pathogena oraz sprawdzają, czy Python został poprawnie zainstalowany. Jeśli wszystko przebiegło tak, jak trzeba, nie powinniśmy uświadczyć żadnych błędów.
+
+> " colorscheme gruvbox
+
+Linijki zaczynające się od znaku **"** to komentarze. W pliku jest ich całkiem sporo przez to, że każdy musi dobrać ustawienia wedle własnego uznania i tego, co potrzebuje. W tym wypadku determinowany jest schemat kolorów *gruvbox*. Zakomentowanie tej linii sprawi, że *vim* będzie korzystać z systemowego schematu ustawionego w naszym terminalu.
+
+> set tabstop=4       " number of visual spaces per TAB  
+> set softtabstop=4   " number of spaces in tab when editing  
+> set shiftwidth=4    " number of spaces used for autoindent, command: <<, >>, == (auto entire doc: gg=G )  
+> set expandtab       " tabs are converted into spaces  
+
+Wpisy szczególnie przydatne dla programistów, czy ogólnie ludzi edytujących np. pliki XML. Określają to, jak program ma interpretować wciśnięcie przycisku Tab na klawiaturze, oraz jak ma reprezentować swoje akcje nam, użytkownikom.  
+Bardzo ważną linią jest *expandtab*, która automatycznie zamienia taby na spacje. Należy ją ustawić odpowiednio do wykorzystywanego języka, bo w niektórych, jak np. *Pascal*, ma to duże znaczenie.
+
+> set number          " show line numbers  
+> " set relativenumber  " show relative distances to make commands such as 8dd faster. Abslut number is still shown on curor line
+
+Pierwszy wpis mówi sam za siebie, natomiast drugi jest już ciut bardziej enigmatyczny. Usunięcie komentarza sprawi, że numer linii będzie pokazywany względem naszego wskaźnika do początku i końca dokumentu. Oznacza to, że nasz wskaźnik zawsze jest linią numer 0, a wszystko poniżej i powyżej liczone jest od niego. 
+
+> set showmatch       " Highlight matching {[()]} probably enabled by deffault as well
+
+Podświetlanie klamer zaczynających i kończących dany blok w programie, czy dowolnym innym pliku. Przydatne, żeby szybko i wizualnie móc rozeznać się  między blokami w np. podwójnej pętli for.
+
+> map `<C-c> :s/^/\/\//<Enter>`  
+> map `<C-u> :s/^\/\///<Enter>`
+ 
+Definiowanie skrótów klawiszowych w pliku konfiguracyjnym może być na starcie dosyć mylące, jednak należy pamiętać, że są to zwykłe wyrażenia regularne, których zrozumienie procentuje także w takich językach, jak np. JavaScript.  
+W tym wypadku za pomocą kombinacji **Ctr+C** i **Ctrl+U** możemy komentować całe bloki kodu i te komentarze usuwać. Ino należy mieć na uwadze, że jest to komentarz w stylu **`//`**, więc jeśli dany typ pliku takowego nie obsługuje, on sam nie zadziała. 
+
+> map `<C-e> :q!<Enter>`  
+> map `<C-w> :wq<Enter>`
+ 
+Kombinacja **Ctrl+E** umożliwia opuszczenie edytora bez zapisywania jakichkolwiek zmian, a **Ctrl+W** najpierw zmiany zapisze, a dopiero potem wyjdzie z programu.
+
+> map `<F9> :make<Enter>`  
+> map `<F5> :w<Enter>`
+
+Skróty znane z wielu popularnych IDE. **F9** pozwala skompliować aktualnie pisany kod, a **F5** zapisuje zmiany bez wychodzenia z edytora.
+
+Podstawowe skróty klawiszowe można rozpisać w następujący sposób:
+
+Poruszanie się po tekście:  
+* h - przesunięcie kursora w lewo
+* l - przesunięcie kursora w prawo
+* j - przesunięcie kursora w dół
+* k - przesunięcie kursora w górę
+
+Edycja i wstawianie:
+* i - przejście w tryb *insert*
+* s - przejście w tryb *insert* z usunięciem aktualnego znaku 
+* a - przejście w tryb *insert* z przesunięciem kursora w prawo
+* o - dodanie nowej linii poniżej aktualnej i przejście w tryb *insert*
+* I - przejście w tryb *insert* z przesunięciem kursora na pierwszy znak w linii
+* A - przejście w tryb *insert* z przesunięciem kursora na ostatni znak w linii
+* Esc - wyjście z dowolnego trybu i przejście w tryb *normal*
+
+Zapis i wyjście (w trybie *normal*):
+* :w - zapis pliku
+* :w <NAZWA> - zapis pliku pod daną nazwą
+* :wq - zapis i wyjście z pliku
+* :q - wyjście z pliku
+* :q! - wyjście z pliku, nawet jeśli zmiany nie zostały zapisane
+
+Na start jest to w 100% wystarczające. W trakcie dalszego korzystania z *vima* nasze umiejętności będą w naturalny sposób się rozwijać. Od siebie mogę jeszcze polecić aplikację **vim master** dostępną na telefony z Androidem, która od samego podstaw, aż do najbardziej skomplikowanych wyrażeń jest w stanie nas nauczyć korzystania z tego programu.
+
+![vim](https://i.imgur.com/c8QCMSw.png)
 
 ##### Konfiguracja OpenBoxa
 
