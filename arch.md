@@ -616,6 +616,7 @@ Gdzie powinniśmy odpowiednio ustawić następujące parametry:
 **blur** - wartość "true" oznacza, że tło na ekranie logowanie będzie rozmazane o wartości zdefiniowane w dwóch, kolejnych liniach, stosować wedle gustu
 
 **recursiveBlurLoops**  - odpowiednik zapisu AxB, gdzie za A należy podstawić wartość od 0 w górę
+
 **recursiveBlurRadius** - odpowiednik zapisu AxB, gdzie za B nalezy podstawić wartość większą od 1
 
 ![theme.conf](https://i.imgur.com/M6cv1Q1.png)
