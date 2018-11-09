@@ -786,7 +786,7 @@ Sama składnia myślę jest na tyle prosta, że nie ma coś się nad całością
 
 Dobrze by też było dopasować styl kolorystyczny terminala do naszej aktualnej palety kolorów dostępnej na pulpicie. Tutaj będzie nam potrzebna aplikacja:
 
-> $ yay wal  
+> $ yay python-pywal  
 > $ wal -n -i /sciezka/do/tapety.jpg
 
 W taki oto sposób program sam odczyta i ustawi w naszej konsoli pasujący styl. Nie jest to jeszcze permanentne i wykorzystujemy tylko ułamek możliwości całej aplikacji, ale bardziej zaawansowane rozwiązanie są świetnie opisanie w manualu, do którego warto zajrzeć.
