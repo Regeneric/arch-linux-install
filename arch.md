@@ -789,7 +789,7 @@ Sama składnia myślę jest na tyle prosta, że nie ma coś się nad całością
 Dobrze by też było dopasować styl kolorystyczny terminala do naszej aktualnej palety kolorów dostępnej na pulpicie. Tutaj będzie nam potrzebna aplikacja:
 
 > $ yay python-pywal  
-> $ wal -n -i $(xfconf-query -c xfce4-desktop -p /backdrop/screen0/monitor0/workspace1/last-image)
+> $ wal -n -i $(xfconf-query -c xfce4-desktop -p /backdrop/screen0/monitor0/workspace0/last-image)
 
 W taki oto sposób program sam odczyta i ustawi w naszej konsoli pasujący styl, opierając się na tapecie z głównego monitora i pierwszego obszaru roboczego. Nie jest to jeszcze permanentne i wykorzystujemy tylko ułamek możliwości całej aplikacji, ale bardziej zaawansowane rozwiązanie są świetnie opisanie w manualu, do którego warto zajrzeć.
 
@@ -1024,6 +1024,95 @@ I całość zapisać. Takim oto sposobem udało się wykonać dość poważną i
 ##### Konfiguracja XFCE
 
 ###### [Do góry](#Spis-treści)
+Ostatnim krokiem nad skończeniem budowania systemu, jest samo XFCE. Sprawa jest o tyle ułatwiona, że wszystko można ustawić z poziomu GUI.  
+Warto spędzić tutaj chwilę dobierając interesujące nas theme, ikony czy font.  
+Postaram się pokrótce opisać najważniejsze opcje i zakładki, a resztę pozostawię do własnej, dowolnej eksploracji i dostosowania pod osobiste preferencje.
+
+Całość warto jednak zacząć od zaopatrzenia się w style graficzne z [TEGO](https://github.com/addy-dclxvi/xfwm4-theme-collections) repozytorium, które zostało już m.in. wspomniane przy OpenBoxie. 
+
+> $ git clone https://github.com/addy-dclxvi/xfwm4-theme-collections.git  
+> $ sudo mv xfwm4-theme-collections/ /usr/share/themes/
+
+Następnie przechodzimy do ustawień systemowych i zakładki "*Appearance*".
+
+![appe](https://i.imgur.com/MwRRSUh.png)
+
+To tutaj pojawią się pobrane style graficzne, nad którymi mamy pełną wolność wyboru i ogranicza nas jedynie poczucie estetyki i własny gust.  
+W razie problemów zawsze istnieje możliwość, aby ręcznie edytować pliki **CSS** w folderze /themes/ i ustawić interesujące nas wartości.
+
+![numix-circle](https://i.imgur.com/5UstyKB.png)
+
+Jako ogromny fan okrągłych ikon mam słabość do stylu Numix Circle. Są to tak urocze i trafiające do mnie ikony, że czuję się źle, kiedy nie są one obecne w moim systemie. Oczywiście nie jest to jedyny dostępnt styl. Odwiedzając [TĘ](https://www.xfce-look.org/browse/cat/132/) stronę możemy przebierać i wybrzydzać wedle woli. 
+
+Po pobraniu paczki należy ją wypakować poleceniem *tar*, a następnie umieścić całość w folderze **/usr/share/icons/**, aby pojawiły się one w menu wyboru.  
+Można też spróbować znaleźć daną paczkę w AUR, a wtedy jedna komenda załatwia za nas sprawę:
+
+> $ yay numix-circle-icon-theme-git
+
+![font](https://i.imgur.com/eYll231.png)
+
+Następna zakładka jest nie tylko miejsce, gdzie dostosujemy systemową czcionkę. Jest to miejsce szczególnie przydatne dla osób posiadających np. ekrany 4K lub korzystające z telewizorów, jako swoich codziennych monitorów.
+
+To właśnie tutaj można dostosować DPI w taki sposób, aby wszystko było odpowiednio dopasowane i naturalne. W końcu nikt nie chce ramki szerokość 10% wysokość ekranu z fontem jak ziarna maku, prawda?  
+Jednak dla większości wyświetlaczy 1080p wartość 96 DPI powinna być całkowicie wystarczająca.
+
+Wychodząc z menu "*Appearance*" i przechodząc do "*Notifications*" mamy możlwiość ustawienia powiadomień systemowych oraz tych, które wychodzą od samych aplikacji.
+
+![not](https://i.imgur.com/U7mAdgo.png)
+![notapp](https://i.imgur.com/QeExAZS.png)
+
+W zakładce "*Display*" w łatwy sposób możemy zarządzać rozdzielczością, częstotliwością odświeżania, orientacją czy ułożeniem naszych monitorów. Szczególnie przydatne w konfiguracjach 2+.
+
+![display](https://i.imgur.com/MAUj18N.png)
+
+"*Settings Editor*" to graficzna nakładka dla *Xfconf*. To, co normalnie robi się w linii komend, tutaj można odpowiednio wyklikać myszą.  
+Jest to jednak już zaawansowany poziom edycji i polecam tutaj nie mieszać losowymi wpisami, jeśli nie wiemy co robimy.
+
+Jeśli jednak nabierzemy ciut wprawy i doświadczenia, *Xfconf* staje się potężnym narzędziem przydatnym zwłaszcza podczas pisania skryptów rozszerzających funkcjonalność naszego DE.
+
+![xfconf](https://i.imgur.com/rrVtoMt.png)
+
+Na sam koniec zostawułem menu paneli. To tutaj jest cała esencja tego, jak wyglądać i zachowywać będzie się nasz pulpit. To na panelach umieszczane będą ikony, powiadomienia, akcje kontekstowe i co tak naprawdę dusza zapragnie.
+
+Sam preferuję je jako jedyne źródło interakcji z programami i nie korzystam z ikon na pulpicie - pozwala to utrzymać porządek i jednolitą estetykę.  
+Oczywiście nie zmuszam nikogo do takiego stylu pracy, to jedynie moja wizja na zbudowanie systemu.
+
+![panel](https://i.imgur.com/Vp25FSO.png)
+
+Pierwsza zakładka pozwala nam dodać kolejne panele do naszego systemu. Także tutaj określa się ich rozmiar, kolor, umieszczenie oraz zachowanie. Mogą one równie dobrze działać jako dock na aplikacje, który będzie się inteligentnie chował w momencie, kiedy jakaś inna aplikacja go zasłoni.
+
+![launchers](https://i.imgur.com/xttPbTc.png)
+
+Poszczególne aplikacje dodawane są na pasek za pośrednictwem zakładki "*Items*". To w tym miejscu budowana jest struktura i zastosowanie dla panelu.
+
+Najpopularniejszy element to *launcher*, za pomocą którego możemy uruchamiać zdefiniowane w nim aplikacje, oraz *separator*, który rozdziela od siebie poszczególne elementy na pasku.
+
+![myconf](https://i.imgur.com/W2unJTs.jpg)
+
+Moja konfiguracja pulpitu przewiduje po 4 panele na jeden monitor, podzielone na poszczególne grupy:
+ 1. Launchery poszczególnych aplikacji - zastępują ikony na pulpicie
+ 2. Panel przeznaczony na wyświetlanie skróconego tytułu aktualnie otwartego okan na pełnym ekranie. 
+ 3. Podstawowe narzędzia systemowe pozwalające się wylogować, kontrolować głośność czy sprawdzić godzinę
+ 4. Panel przeznaczony na wyświetlanie otwartych aplikacji oraz powiadomień
+
+Dodatkowo, aby całość mogła się integrować odpowiednio z aplikacjami, wymagany jest pakiet **Orcsome**, plugin **Windowck** i [TEN](https://pastebin.com/dGZUrrL9) skrypt Pythona napisany z jego wykorzystaniem:
+
+> $ yay -S orcsome xfce4-windowck-plugin
+
+Należy edytować plik **~./config/orcsome/rc.py**, do którego trzeba wkleić powyższe linie konfiguracyjne. 
+Sprawia on, że aplikacje otwierane na pełnym ekranie nie posiadają paska z tytułem, czy przyciskami pozwalającymi na ich zamknięcie. 
+
+Zamiast tego całość zintegrowana jest z panelami - oszczędza to miejsce na ekranie i poprawia estetykę. 
+Należy także pamiętać, aby do interesujących nas paneli dodać następujące elemnty:
+
+> Window Header - Title  
+> Window Header - Buttons 
+
+![windowck](https://i.imgur.com/xp9uT9R.jpg)
+
+I tak naprawdę to wszystko, co mogę przekazać z najważniejszych aspektów XFCE.  Cała reszta konfiguracji spoczywa na użytkowniku, jego odczuciach, potrzebach i preferencjach. A że każdy jest inny, to nie jestem w stanie przewidzieć każdej możliwości.
+
+Jednak co mogę zalecić, to nie bać się zmieniać rzeczy i z nimi eksperymentować. Po to własnie Pingwiny są otwartymi systemami, aby z tego korzystać!
 
 ## Podsumowanie
 
