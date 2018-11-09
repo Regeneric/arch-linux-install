@@ -26,6 +26,7 @@ Sprawdźmy to!
 
 ### Arch Linux
 
+###### [Do góry](#Spis-treści)
 Dystrybucja stworzona przez Judda Vineta, która za cel obrała sobie łatwość konfiguracji, użytkowania, a także szybkość, stabilność i aktualność.
 
 Problemem dla osób początkujących z Linuksem jest to, że cała łatwość nie opiera się na graficznym reprezentowaniu parametrów i klikaniu myszą w odpowiednie miejsca.
@@ -41,6 +42,7 @@ Operuje on właśnie na repozytoriach AUR i usprawnia cały proces instalacji.
 
 ### Pochodne dystrybucje Archa
 
+###### [Do góry](#Spis-treści)
 Zanim przejdziemy do spraw instalacji i podstawowej konfiguracji systemu, trzeba jasno powiedzieć — nie musimy instalować Archa, by cieszyć się jego najlepszymi cechami.
 
 Dystrybucje takie jak **Manjaro**, **Antergos** czy **Bridge Linux** pozwalają nam zaznać plusów systemu, ale bez całego żmudnego i niejako zaawansowanego procesu instalacji.
@@ -56,6 +58,7 @@ Mimo to każdemu o odmiennych poglądach polecam zapoznać się z wymienionymi w
 
 ### Wstępna konfiguracja
 
+###### [Do góry](#Spis-treści)
 Metodę przygotowania medium instalacyjnego pozostawiam Wam. Sposobów i nośników jest tyle, co ludzi instalujących system, a niech każdy wybierze to, co mu najbardziej odpowiada.
 
 Osobiście skorzystam z bootowalnego pendrive’a, stworzonego za pomocą komendy **dd**, dla instalacji na dysku **GPT** pod PC wspierającym **UEFI**.
@@ -99,6 +102,7 @@ Adresy IP podajemy oczywiście odpowiadające rzeczywistym wartościom używanym
 ## Partycjonowanie i formatowanie dysków
 ### LVM
 
+###### [Do góry](#Spis-treści)
 Partycjonowanie dysku, to ciut bardziej skomplikowany proces, mimo to, wcale nie należy się go bać.
 Na początek musimy odnaleźć dysk, na którym nasz system ma być zainstalowany, komendą:
 
@@ -251,10 +255,12 @@ Musimy zamontować swoje partycje w odpowiednich miejscach za pomocą komend:
 
 ### LUKS
 
+###### [Do góry](#Spis-treści)
 tutaj będzie luks
 
 ### Klasycznie
 
+###### [Do góry](#Spis-treści)
 Tutaj jedyną różnicą, jaką uświadczymy jest to, że nasze dyski i partycje są bezpośrednio montowane w odpowiednich punktach. Pozwala to choćby odczytać zawartość naszego dysku z poziomu Windowsa (o ile korzystamy z *ext4* i oprogramowania *Ext2FSD*).
 Jest to także problem, ponieważ nie możemy tutaj mówić o żadnym prostym i skutecznym sposobie, na powiększenie istniejącej już partycji.
 
@@ -273,6 +279,7 @@ Całość operacji klasycznego partycjonowania i formatowania można przedstawi�
 
 ### Instalacja i konfiguracja systemu
 
+###### [Do góry](#Spis-treści)
 Pobranie pakietów i instalacja systemu mieści się w jednej komendzie:
 
 > $ pacstrap /mnt base base-devel
@@ -379,6 +386,7 @@ Ustalamy dla niego hasło.
 
 ### Bootloader (systemd-boot)
 
+###### [Do góry](#Spis-treści)
 Jednym z ostatnich kroków, jakie musimy podjąć, jest instalacja bootloadera na partycji EFI.  
 Do tego celu skorzystamy z komendy:
 
@@ -491,6 +499,7 @@ Zapisujemy, zamykamy i kiedy wszystko jest gotowe, wciskamy **Ctrl+D**, a nastę
 
 ### Środowisko graficzne
 
+###### [Do góry](#Spis-treści)
 Żeby w ogóle móc korzystać z jakiegokolwiek DE, potrzebujemy serwera X. Możemy go pobrać razem z terminalem XTerm za pomocą komendy:
 
 > $ yay -S xorg xorg-xinit xterm
@@ -529,6 +538,7 @@ Poniżej przedstawiam swoją propozycję na zbudowanie wydajnego i eleganckiego 
 
 ##### Konfiguracja SDDM
 
+###### [Do góry](#Spis-treści)
 Jak widać na screenshotach wyżej, standardowy **SDDM**, który decydujemy się sami zainstalować nijak ma się do tego znanego choćby z *KDE*. W środowiskach FOSS (*Free and Open Source Software*) nie jest to jednak problemem i mamy niemalże pełną kontrolę nad systemem.
 
 Swoje pierwsze kroki powinniśmy skierować na stronę https://store.kde.org/  
@@ -648,6 +658,7 @@ Kiedy całość jest już zapisana i odpowiednio edytowana, *SDDM Configurator* 
 
 ##### Konfiguracja i3lock
 
+###### [Do góry](#Spis-treści)
 Dobrze jest posiadać w systemie możliwość zablokowania ekranu i wymagania od użytkownika wprowadzenia hasła, ale bez konieczności wylogowania się.  
 Do tego posłuży nam właśnie *i3lock*, który jest jedną wielu alternatyw dla tego typu rozwiązań.
 
@@ -709,6 +720,7 @@ Oczywiście, efekt blur jest stosunkowo prosto odwracalny w programach graficzny
 
 ##### Konfiguracja ZSH
 
+###### [Do góry](#Spis-treści)
 > ZSH (Z shell) – uniksowa powłoka (ang. shell) nadająca się zarówno do interaktywnej pracy z systemem jak i do wykonywania skryptów. Spośród standardowych powłok, ZSH najbardziej przypomina Korn Shell, ale zawiera wiele ulepszeń. zsh posiada edycję wiersza poleceń, wbudowaną korekcję pisowni, programowalne dopełnianie poleceń, funkcje (z automatycznym ładowaniem), historię poleceń i mnóstwo innych cech.
 
 Tyle tytułem wstępu, dzięki uprzejmości polskiej Wikipedi. Nie mówi to co prawda zbyt wiele, ale nie szkodzi, śpieszę z wyjaśnieniem.
@@ -813,8 +825,11 @@ W ten oto sposób, już nawet restart naszego systemu nie powinien mieć negatyw
 
 ##### Konfiguracja VIMa
 
+###### [Do góry](#Spis-treści)
+
 ##### Konfiguracja OpenBoxa
 
+###### [Do góry](#Spis-treści)
 Pomimo świadomej i pewnej decyzji, jaką podjąłem instalując **XFCE**, oraz jaką sam polecam, mam pełną świadomość tego, że w chwili pisania tego tekstu, jest to jedno z najmniej przyszłościowych środowisk graficznych dostępnych na rynku.
 
 Nie dzieje się tak przez czysty przypadek. Grupa ludzi pracująca na łataniem dziur i rozwijająca projekt jest tak niewielka, że często garażowe projekty czy kilkunastogodzinne game jamy posiadają liczniejszą załogę.  
@@ -923,5 +938,11 @@ I całość zapisać. Takim oto sposobem udało się wykonać dość poważną i
 
 
 ##### Konfiguracja XFCE
+
+###### [Do góry](#Spis-treści)
+
+## Podsumowanie
+
+###### [Do góry](#Spis-treści)
 
 ///
