@@ -749,7 +749,7 @@ A następnie dobrze jest zaopatrzyć się we framework **Oh My ZSH**. Nie jest o
 
 Sam pakiet co prawda znajduje się repozytorium, lecz polecam zainteresować się poleceniem prosto z Gita twórcy:
 
-> $ yay wget
+> $ yay wget  
 > $ sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
 
 Pozwala nam ono nie tylko pobrać samo *ZSH*, ale także ustawić jako aktywną powłokę dla naszego użytkownika.  
