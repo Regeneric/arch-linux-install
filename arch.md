@@ -772,6 +772,19 @@ Sama składnia myślę jest na tyle prosta, że nie ma coś się nad całością
 
 * **status** - zwraca status wykonania się ostatniej komendy
 
+Dobrze by też było dopasować styl kolorystyczny terminala do naszej aktualnej palety kolorów dostępnej na pulpicie. Tutaj będzie nam potrzebna aplikacja:
+
+> $ yay wal  
+> $ wal -n -i /sciezka/do/tapety.jpg
+
+W taki oto sposób program sam odczyta i ustawi w naszej konsoli pasujący styl. Nie jest to jeszcze permanentne i wykorzystujemy tylko ułamek możliwości całej aplikacji, ale bardziej zaawansowane rozwiązanie są świetnie opisanie w manualu, do którego warto zajrzeć.
+
+Następnie trzeba dopisać w pliku ~/.zshrc linię:
+
+> (cat ~/.cache/wal/sequences &)
+
+Co sprawi, że każdy nowo otwarty terminal będzie korzystał z wygenerowanego schemtu kolorystycznego.
+
 Jedną z ostatnich rzeczy do zrobienia, jest pobranie dwóch bardzo przydatnych pluginów:
 
 > $ git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
