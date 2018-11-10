@@ -391,7 +391,7 @@ Ustalamy dla niego hasło.
 Jednym z ostatnich kroków, jakie musimy podjąć, jest instalacja bootloadera na partycji EFI.  
 Do tego celu skorzystamy z komendy:
 
-> $ bootctl-install
+> $ bootctl install
 
 Następnie przechodzimy do odpowiedniego katalogu za pomocą polecenia:
 
