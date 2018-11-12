@@ -509,6 +509,12 @@ pre.editor-colors .fold-marker:after {
 .syntax--source.syntax--js .syntax--keyword.syntax--operator.syntax--void {
   color: #c678dd;
 }
+.syntax--source.syntax--ts .syntax--keyword.syntax--operator {
+  color: #56b6c2;
+}
+.syntax--source.syntax--flow .syntax--keyword.syntax--operator {
+  color: #56b6c2;
+}
 .syntax--source.syntax--json .syntax--meta.syntax--structure.syntax--dictionary.syntax--json > .syntax--string.syntax--quoted.syntax--json {
   color: #e06c75;
 }
@@ -580,7 +586,33 @@ pre.editor-colors .fold-marker:after {
 <p>Świat systemów GNU/Linux jest rozległy i fascynujący. Każda dystrybucja ma pomysł na samą siebie, potrafi zebrać rzeszę nie tyle prostych użytkowników, ile ludzi powiązanych mniej lub bardziej z systemem. Pingwinki są od ludzi, dla ludzi, o czym wielu często zapomina.
 Dlaczego więc Arch Linux owiany jest takim mistycyzmem? Co stoi za jego sukcesem i dlaczego jest to świetny system dla naszego desktopa?
 Sprawdźmy to!</p>
+<h2 id="spis-tre-ci">Spis treści</h2>
+<ul>
+<li><a href="#Arch-Linux"><strong>Arch Linux</strong></a><ul>
+<li><a href="#Pochodne-dystrybucje-Archa"><strong>Pochodne dystrybucje</strong></a></li>
+<li><a href="#Wstępna-konfiguracja"><strong>Wstępna konfiguracja</strong></a></li>
+</ul>
+</li>
+<li><a href="#Partycjonowanie-i-formatowanie-dysków"><strong>Partycjonowanie dysku</strong></a><ul>
+<li><a href="#LVM-i-LUKS"><strong>LVM i LUKS</strong></a></li>
+<li><a href="#Klasycznie"><strong>Klasycznie</strong></a></li>
+</ul>
+</li>
+<li><a href="#Instalacja-i-konfiguracja-systemu"><strong>Instalacja i konfiguracja systemu</strong></a></li>
+<li><a href="#Bootloader-(systemd-boot"><strong>Bootloader</strong></a>)</li>
+<li><a href="#Środowisko-graficzne"><strong>Środowisko graficzne</strong></a><ul>
+<li><a href="#Konfiguracja-SDDM"><strong>Konfiguracja SDDM</strong></a></li>
+<li><a href="#Konfiguracja-i3lock"><strong>Konfiguracja i3lock</strong></a></li>
+<li><a href="#Konfiguracja-ZSH"><strong>Konfiguracja ZSH</strong></a></li>
+<li><a href="#Konfiguracja-VIMa"><strong>Konfiguracja VIMa</strong></a></li>
+<li><a href="#Konfiguracja-OpenBoxa"><strong>Konfiguracja OpenBoxa</strong></a></li>
+<li><a href="#Konfiguracja-XFCE"><strong>Konfiguracha XFCE</strong></a></li>
+</ul>
+</li>
+<li><a href="#Podsumowanie"><strong>Podsumowanie</strong></a></li>
+</ul>
 <h3 id="arch-linux">Arch Linux</h3>
+<h6 id="do-g-ry"><a href="#Spis-treści">Do góry</a></h6>
 <p>Dystrybucja stworzona przez Judda Vineta, która za cel obrała sobie łatwość konfiguracji, użytkowania, a także szybkość, stabilność i aktualność.</p>
 <p>Problemem dla osób początkujących z Linuksem jest to, że cała łatwość nie opiera się na graficznym reprezentowaniu parametrów i klikaniu myszą w odpowiednie miejsca.
 Ideą jest przemyślane rozmieszczenie i zaprojektowanie skryptów, programów czy plików konfiguracyjnych.
@@ -591,6 +623,7 @@ Działa jednak znacznie lepiej i sprawniej. Za pomocą <a href="https://aur.arch
 Co więcej – nie musimy tam nawet zaglądać, bo z pomocą przychodzi nam kolejny menadżer pakietów, jakim jest <em>yay</em>.
 Operuje on właśnie na repozytoriach AUR i usprawnia cały proces instalacji.</p>
 <h3 id="pochodne-dystrybucje-archa">Pochodne dystrybucje Archa</h3>
+<h6 id="do-g-ry"><a href="#Spis-treści">Do góry</a></h6>
 <p>Zanim przejdziemy do spraw instalacji i podstawowej konfiguracji systemu, trzeba jasno powiedzieć — nie musimy instalować Archa, by cieszyć się jego najlepszymi cechami.</p>
 <p>Dystrybucje takie jak <strong>Manjaro</strong>, <strong>Antergos</strong> czy <strong>Bridge Linux</strong> pozwalają nam zaznać plusów systemu, ale bez całego żmudnego i niejako zaawansowanego procesu instalacji.</p>
 <p>Nie są one idealne i nie oddają w 100% systemu, który sami sobie skonfigurujemy od A do Z, ale są dobrym punktem zaczepienia dla ludzi, którzy nie są do końca przekonani o sensowności korzystania z Archa.</p>
@@ -599,6 +632,7 @@ Operuje on właśnie na repozytoriach AUR i usprawnia cały proces instalacji.</
 <p>Osobiście nie jestem ich zwolennikiem, bo uważam, że dobrze i samodzielnie postawiony Arch to ogrom doświadczenia, a także świadomość, co nam na dysku gra.
 Mimo to każdemu o odmiennych poglądach polecam zapoznać się z wymienionymi wyżej dystrybucjami. Jest to krok w dobrą stronę!</p>
 <h3 id="wst-pna-konfiguracja">Wstępna konfiguracja</h3>
+<h6 id="do-g-ry"><a href="#Spis-treści">Do góry</a></h6>
 <p>Metodę przygotowania medium instalacyjnego pozostawiam Wam. Sposobów i nośników jest tyle, co ludzi instalujących system, a niech każdy wybierze to, co mu najbardziej odpowiada.</p>
 <p>Osobiście skorzystam z bootowalnego pendrive’a, stworzonego za pomocą komendy <strong>dd</strong>, dla instalacji na dysku <strong>GPT</strong> pod PC wspierającym <strong>UEFI</strong>.</p>
 <p>Nie ma co się oszukiwać — <strong>MBR</strong> to przestarzałe rozwiązanie, które powinno zniknąć już dłuższy czas temu. Trzeba wspierać nowe technologie i korzystać z ich dobrodziejstw — zwłaszcza wtedy, kiedy przynosi nam to wymierne korzyści.</p>
@@ -625,9 +659,18 @@ Musimy więc przerwać instalację i odpowiednio ustawić opcje na naszej płyci
 </blockquote>
 <p>Adresy IP podajemy oczywiście odpowiadające rzeczywistym wartościom używanym w naszej sieci. To samo tyczy się także nazwy naszej karty sieciowej (tutaj: <em>enp3s0</em>). W moim wypadku taki adres uwarunkowany jest ukryciem się za NATem, gdyż całość instalacji przeprowadzam na maszynie wirtualnej.</p>
 <p><img alt="ping-succ" src="https://i.imgur.com/edQ5dEI.png"></p>
-<h3 id="partycjonowanie-i-formatowanie-dysk-w-lvm-bez-szyfrowania-">Partycjonowanie i formatowanie dysków (LVM, bez szyfrowania)</h3>
-<p>Partycjonowanie dysku, to ciut bardziej skomplikowany proces, mimo to, wcale nie należy się go bać.
-Na początek musimy odnaleźć dysk, na którym nasz system ma być zainstalowany, komendą:</p>
+<h2 id="partycjonowanie-i-formatowanie-dysk-w">Partycjonowanie i formatowanie dysków</h2>
+<h6 id="do-g-ry"><a href="#Spis-treści">Do góry</a></h6>
+<p>Następnym krokiem będzie partycjonowanie i przygotowanie dysków do instalacji systemu. Jest to nieco bardziej skomplikowany proces, mimo to, wcale nie należy się go bać.</p>
+<p>Możemy zrobić to w klasyczny sposób, lub też przy użyciu mechanizmu LVM i/lub szyfrowania LUKS.
+LVM pozwala na połączenie partycji znajdujących się na różnych urządzeniach pamięci masowej w jeden dysk wirtualny. Jego rozmiar nie jest zdefiniowany na stałe – jeśli zachodzi taka potrzeba, istnieje możliwość jego rozszerzenia o nową przestrzeń pamięciową. Jednak proces partycjonowania jest wówczas nieco trudniejszy. </p>
+<p>Oprócz tego dyski działające na LVM świetnie działają z szyfrowaniem LUKS, które zabezpieczy nasze dyski przed nieproszonymi gościami. Warto zastanowić się nad takim rozwiązaniem, szczególnie, jeżeli instalujemy system na komputerze przenośnym. Wówczas, w przypadku kradzieży, nawet przy użyciu specjalnego oprogramowania, dostęp do naszych danych będzie niemożliwy.</p>
+<p>Moim zdaniem warto poświęcić na instalację trochę więcej czasu i zastosować LVM, chociażby po to, żeby w przyszłości nie mieć problemu z brakiem miejsca na partycji systemowej.</p>
+<h6 id="partycjonowanie-z-u-yciem-lvm"><a href="#LVM">Partycjonowanie z użyciem LVM</a></h6>
+<h6 id="partycjonowanie-klasyczne"><a href="#Klasycznie">Partycjonowanie klasyczne</a></h6>
+<h3 id="lvm-i-luks">LVM i LUKS</h3>
+<h6 id="do-g-ry"><a href="#Spis-treści">Do góry</a></h6>
+<p>Na początek musimy odnaleźć dysk, na którym nasz system ma być zainstalowany, komendą:</p>
 <blockquote>
 <p>$ fdisk -l</p>
 </blockquote>
@@ -663,7 +706,6 @@ Ich rozmiar jest bezpośrednio związy z posiadaną przez nas przestrzenią dysk
 <p>Dla bardziej zaawansowanych użytkowników, całkiem dobrym wyjściem będzie także rozbicie <strong>/var</strong> oraz <strong>/usr</strong> na osobne punkty montowania z odpowiednią ilością przydzielonego im miejsca. W tym poradniku jednak nie będziemy się tym zajmować.</p>
 <p>Jedyną różnicą, jaką zastosujemy przy partycjonowaniu naszego dysku będzie to, że teraz zamiast korzystać z kodu hex <del><em>EF00</em></del>, użyjemy <strong>8E00</strong>, aby móc skorzystać z zalet <strong>LVM</strong>.</p>
 <p><img alt="lvm" src="https://i.imgur.com/OmGUzO1.png"></p>
-<p><em>Logical Volume Manager</em> - mechanizm systemu operacyjnego do zarządzania przestrzenią pamięci masowej. Pozwala na połączenie partycji znajdujących się na różnych urządzeniach pamięci masowej w jeden dysk wirtualny. Jego rozmiar nie jest zdefiniowany na stałe – jeśli zachodzi taka potrzeba, istnieje możliwość jego rozszerzenia o nową przestrzeń pamięciową.</p>
 <p>Na sam koniec wystarczy zatwierdzić zmiany i potwierdzić, że zdajemy sobie sprawę z ryzyka utratych ważnych danych z dysku. O ile oczywiście jakieś są.</p>
 <p><img alt="save" src="https://i.imgur.com/d3Yyp9w.png"></p>
 <p>W tym miejscu warto wyświetlić sobie listę naszych partycji na poszczególnym dysku za pomocą:</p>
@@ -702,14 +744,14 @@ Aby móc to uczynić wydajemy polecenie:</p>
 <blockquote>
 <p>$ lvcreate -L 100%FREE -n proot root<br>$ lvcreate -L 100%FREE -n phome home</p>
 </blockquote>
-<p>Poa na tłumaczenie:</p>
+<p>Pora na tłumaczenie:</p>
 <ul>
 <li><strong>-L 100%FREE</strong> - określamy rozmiar naszego logicznego wolumenu, w tym wypadku oznacza to wypełnienie całej wolnej przestrzeni na naszej partycji</li>
 <li><strong>-n proot</strong> oraz <strong>-n phome</strong> - są to nazwy utworzonych partycji w obrębie grupy, p zostało zastosowane w celu doróżniania od siebie tych dwóch tworów</li>
 <li><strong>root</strong> oraz <strong>home</strong> - nazwy utworzonych wcześniej grupy</li>
 </ul>
 <p><img alt="lvcreate" src="https://i.imgur.com/kxQw6FI.png"></p>
-<p>Ostatnim krokiem jest już tylko wybranie systemu plików, jaki ma być obceny na naszych partycjach. Osobiście polecam zastanowić się nad czterema możliwościami:</p>
+<p>Ostatnim krokiem jest już tylko wybranie systemu plików, jaki ma być obceny na naszych partycjach. Osobiście polecam zastanowić się nad trzema możliwościami:</p>
 <ul>
 <li><strong>btrfs</strong></li>
 <li><strong>xfs</strong></li>
@@ -730,17 +772,84 @@ Musimy zamontować swoje partycje w odpowiednich miejscach za pomocą komend:</p
 <blockquote>
 <p>$ mount /dev/root/proot /mnt<br>$ mkdir /mnt/home<br>$ mkdir /mnt/boot<br>$ mount /dev/home/phome /mnt/home<br>$ mount /dev/sdXY /mnt/boot</p>
 </blockquote>
-<h5 id="partycjonowanie-i-formatowanie-dysk-w-klasyczne-">Partycjonowanie i formatowanie dysków (klasyczne)</h5>
-<p>Tutaj jedyną różnicą, jaką uświadczymy jest to, że nasze dyski i partycje są bezpośrednio montowane w odpowiednich punktach. Pozwala to choćby odczytać zawartość naszego dysku z poziomu Windowsa (o ile korzystamy z <em>ext4</em> i oprogramowania <em>Ext2FSD</em>).
-Jest to także problem, ponieważ nie możemy tutaj mówić o żadnym prostym i skutecznym sposobie, na powiększenie istniejącej już partycji.</p>
-<p>Całość operacji klasycznego partycjonowania i formatowania można przedstawić w następującyh komendach:</p>
+<h3 id="klasycznie">Klasycznie</h3>
+<h6 id="do-g-ry"><a href="#Spis-treści">Do góry</a></h6>
+<p>Na początek musimy odnaleźć dysk, na którym nasz system ma być zainstalowany, komendą:</p>
 <blockquote>
-<p>$ gdisk /dev/sdXY (i każdy kolejny dysk)<br>$ mkfs.vfat /dev/sdAB<br>$ mkfs.ext4 /dev/sdCD<br>$ mkfs.xfs /dev/sdXY</p>
+<p>$ fdisk -l</p>
 </blockquote>
+<p><img alt="drives" src="https://i.imgur.com/zoUiCPs.png"></p>
+<p>Wypisujemy na ekranie wszystkie dyski i partycje, jakie w danej chwili znajdują się na naszym PC. Następnie korzystając z komendy:</p>
+<blockquote>
+<p>$ gdisk /dev/sdX</p>
+</blockquote>
+<p>Gdzie X oznacza literę interesującego nas dysku, przechodzimy do narzędzia umożliwiającego podzielenie dysku na partycje.</p>
+<p>Tutaj korzystamy odpowiednio z takich komend jak:</p>
+<ul>
+<li><strong>o</strong> - usuwa istniejącą tablicę partycji i tworzy nową w schemacie <strong>GPT</strong></li>
+<li><strong>n</strong> - umożliwia stworzenie nowej partycji</li>
+<li><strong>w</strong> - zapisuje wszystkie zmiany wprowadzone na dysku twardym</li>
+</ul>
+<p>Aby w ogóle móc zabrać się za stworzenie czegokolwiek, musimy dokładnie prześledzić nazwy, typy i rozmiary naszych dysków, aby się nie pomylić. Na tym etapie co prawda nie ma to żadnego znaczenia, bo nasz magazyn na dane jest pusty, jednak nie ma co sobie dodawać niepotrzebnie prac.</p>
+<p>Po ustaleniu, który z dysków będzie przechowywał w sobie system, tworzymy nowy schemat partycjonowania, a następnie partycję <strong>ESP</strong>.</p>
+<p><img alt="gpt" src="https://i.imgur.com/5C4S8E5.png"></p>
+<p><em>EFI System Partition</em> - wykorzystywana w nowoczesnych systemach do przechowywania m.in. bootloaderów naszych OSów. Więc niezależnie od tego ile ich będzie na naszym PC, partycja <strong>ESP</strong> zawsze będzie (i ma być) tylko jedna.</p>
+<p>Pierwsze zapytanie dotyczy numeru, z jakim będzie identyfikowana. Możemy pozostawić domyślną – <strong>1</strong>.</p>
+<p>Następnie ustalamy, od którego sektora nasza partycja będzie się zaczynać.
+Dobrym nawykiem jest instalacja systemu na końcowych sektorach naszego dysku, jeśli robimy to na klasycznym dysku talerzowym. W przypadku dysków SSD nie ma to większego znaczniea. Tutaj także nie musimy niczego zmieniać.
+Dobrze jednak jest się upewnić, że domyślny sektor to 2048 – od niego powinniśmy zacząć partycjonowanie.</p>
+<p>Trzecim krokiem jest ustalenie sektora, gdzie partycja ma się kończyć. Znacznie wygodniejszym wyjściem jest podać to w mega lub gigabajtach.
+My wpiszemy tutaj <strong>+512M</strong> – zdecydowanie wystarczająco dużo, jesli chodzi o partycję <strong>ESP</strong>.</p>
+<p>Ostatnim krokiem jest podanie kodu hex dla naszej partycji. Skąd mamy wiedzieć co tutaj wpisać?
+Bardzo prostym sposobem — wstukanie <strong>L</strong> na klawiaturze pozwoli nam zobaczyć listę wszystkich, dostępnych dla nas kodów.
+Coby jednak nie szukać — dla partycji <strong>ESP</strong> użyjemy kodu <strong><em>EF00</em></strong>.</p>
+<p><img alt="esp" src="https://i.imgur.com/CRLfbKc.png"></p>
+<p>Następnie musimy utworzyć odpowiednio partycje <strong>/</strong> i <strong>/home</strong>.
+Ich rozmiar jest bezpośrednio związy z posiadaną przez nas przestrzenią dyskową.</p>
+<p>Osobiście zalecam <em>minimalne</em> granice rozmiaru na <strong>/</strong> ustalić w przedziale <strong>15 - 35GB</strong>, oraz całą resztę dostępnej przestrzeni na <strong>/home</strong>.</p>
+<p>Dla bardziej zaawansowanych użytkowników, całkiem dobrym wyjściem będzie także rozbicie <strong>/var</strong> oraz <strong>/usr</strong> na osobne punkty montowania z odpowiednią ilością przydzielonego im miejsca. W tym poradniku jednak nie będziemy się tym zajmować.</p>
+<p>Jedyną różnicą, jaką zastosujemy przy partycjonowaniu naszego dysku będzie to, że użyjemy innego kodu HEX. Kod dla partycji to będzie w tym wypadku <strong><em>8300</em></strong>.</p>
+<p><img alt="fs" src="https://i.imgur.com/7RKt2az.png"></p>
+<p>Na sam koniec wystarczy zatwierdzić zmiany i potwierdzić, że zdajemy sobie sprawę z ryzyka utratych ważnych danych z dysku. O ile oczywiście jakieś są.</p>
+<p><img alt="save" src="https://i.imgur.com/d3Yyp9w.png"></p>
+<p>W tym miejscu warto wyświetlić sobie listę naszych partycji na poszczególnym dysku za pomocą:</p>
+<blockquote>
+<p>$ gdisk -l /dev/sdX</p>
+</blockquote>
+<p>Lub wszystkich dostępnych w naszym systemie, ponawiając komendę:</p>
+<blockquote>
+<p>$ fdisk -l</p>
+</blockquote>
+<p>Pozwoli nam to w łatwy sposób zorientować się, która partycja ma jaki numer.
+Ja będę oznaczał je jako <strong>/dev/sdXY</strong> – gdzie pod te parametry musicie wstawić swoje rzeczywiste dane (np. <em>/dev/sda1</em> lub w przypadku nowoczesnych dysków PCIe <em>/dev/nvme0n1p1</em>).</p>
+<p><img alt="fdisk" src="https://i.imgur.com/movccGU.png"></p>
+<p>Formatowanie partycji <strong>ESP</strong> jest krokiem najprostszym i wymagającym od nas najmniej. Wystarczy jedna, prosta komenda:</p>
+<blockquote>
+<p>$ mkfs.vfat /dev/sdXY</p>
+</blockquote>
+<p>Aby załatwić sprawę i móc później zamontować ją później w odpowiednim miejscu.</p>
+<p>Ostatnim krokiem jest już tylko wybranie systemu plików, jaki ma być obceny na naszych pozostałych dwóch partycjach. Osobiście polecam zastanowić się nad trzema możliwościami:</p>
+<ul>
+<li><strong>btrfs</strong></li>
+<li><strong>xfs</strong></li>
+<li><strong>ext4</strong></li>
+</ul>
+<p><strong><em>btrfs</em></strong> - korzystając z zalet i rozwiązań starszego i bardzo popularnego w środowiskach BSD <strong><em>zfs</em></strong>, zapewnia możliwość kopiowania przy zapisie, tworzenia snapshotów, replikacji danych czy zwiększania swojego rozmiaru dynamicznie, nie potrzebując do tego mechanizmu <strong>LVM</strong>. Jednak ma to swoje odbicie w wydajności i zastosowanie go na klasycznym dysku talerzowym może drastycznie obniżyć szybkość działania naszego systemu.</p>
+<p><strong><em>xfs</em></strong> - posiada szereg cech zaawansowanego systemu plików do zastosowań serwerowych oraz dla wydajnych stacji roboczych. Maksymalny rozmiar wolumenu to <em>16000000TB</em>, a pojedynczego pliku ponad <em>8000000TB</em>.<br>Mimo dosyć zaawansowanego i groźnie brzmiącego opisu, nadaje się świetnie także do domowych zastosowań, jest trwały, stabilny oraz nowoczesny, dzięki implementacji techonoligii takich jak np, <em>sparse files</em>, <em>security labels</em> czy POSIXowych list dostępu (ACL)</p>
+<p><strong><em>ext4</em></strong> - najpopularniejszy, linuksowy system plików stosowany szeroko zarówno w domowych warunkach, jak i na mniejszych, i większych serwerach. Sprawia to, że w razie problemów uzyskanie wsparcia i pomocy jest banalnie proste, a także sama dokumentacja jest bogata w szczegóły.</p>
+<p>W domu wykorzystuję <strong><em>btrfs</em></strong> na dysku SSD oraz <strong><em>xfs</em></strong> na dysku HDD. Działają w świetnej symbiozie i jestem spokojny o swoje dane. Mimo doniesień o braku stabilności samego <strong><em>xfs</em></strong> w przypadkach nagłej utraty zasilania, nie doszukałem się żadnych informacji, aby był to problem palący i szeroko znany. Obstawiam lokalne problemy na komputerach pechowców, którzy swoje dane utracili.</p>
+<p>Uprzedzając pytania o replikację plików i jej wpływie na dyski SSD - <strong><em>btrfs</em></strong> domyślnie w takim wypadku ją wyłącza (choć można wymusić jej ponowne włączenie). No i oczywiście takie mechanizmy jak <strong>TRIM</strong> lub technologie <strong>NVMe</strong> nie są tutaj nikomu obce, a całość działa odpowiednio stabilnie i responsywnie.</p>
+<p>Na potrzeby tego poradnika przyjmuję, że partycja oznaczona jako <strong>/dev/sdAB</strong> jest przeznaczona na katalog główny /, a ta ukryta pod <strong>/dev/sdCD</strong> na /home. Dysk <strong>/dev/sdXY</strong> jest to natomiast partycja EFI /boot, którą sformatowaliśmy wcześniej.</p>
+<blockquote>
+<p>$ mkfs.btrfs /dev/sdAB<br>$ mkfs.xfs /dev/sdCD</p>
+</blockquote>
+<p>Jesteśmy gotowi, by przejść powoli do instalacji bazowego systemu.
+Musimy zamontować swoje partycje w odpowiednich miejscach za pomocą komend:</p>
 <blockquote>
 <p>$ mount /dev/sdAB /mnt<br>$ mkdir /mnt/home<br>$ mkdir /mnt/boot<br>$ mount /dev/sdCD /mnt/home<br>$ mount /dev/sdXY /mnt/boot</p>
 </blockquote>
 <h3 id="instalacja-i-konfiguracja-systemu">Instalacja i konfiguracja systemu</h3>
+<h6 id="do-g-ry"><a href="#Spis-treści">Do góry</a></h6>
 <p>Pobranie pakietów i instalacja systemu mieści się w jednej komendzie:</p>
 <blockquote>
 <p>$ pacstrap /mnt base base-devel</p>
@@ -766,10 +875,10 @@ Sama komenda chroot wzięła się od słów „<em>change root</em>”, co świe
 </blockquote>
 <p>Następnie musimy odszukać linijkę "<em>HOOKS</em>", można to zrobić prosto takim oto skrótem w <em>vimie</em>:</p>
 <blockquote>
-<p>Esc %2F hooks Enter n</p>
+<p>Esc <code style="font-family: Menlo, Consolas, &quot;DejaVu Sans Mono&quot;, monospace;">/</code> hooks Enter n</p>
 </blockquote>
-<p>Gdzie <em>%2F</em> oznacza <em>slash</em>, a <em>n</em> przesuwanie się między kolejnymi wynikami. Można to także zrobić ręcznie, jeśli ktoś chce. Tekstu nie ma wiele.</p>
-<p>Następnie musimy dopisać <strong><em>lvm2</em></strong> po wyrazie <em>block</em>. Trzeba uważać, bo kolejność ma znacznie. Może nie aż tak duże, w przypadku samego <strong>LVM</strong>, ale przy zabawie z choćby <em>VFIO</em> warto o tym pamiętać.</p>
+<p>Gdzie  <em>n</em> oznacza przesuwanie się między kolejnymi wynikami. Można to także zrobić ręcznie, jeśli ktoś chce. Tekstu nie ma wiele.</p>
+<p>Następnie musimy dopisać <strong><em>lvm2</em></strong> po wyrazie <em>block</em>. Trzeba uważać, bo kolejność ma znacznie. Może nie aż tak duże, w przypadku samego <strong>LVM</strong>, ale przy zabawie z choćby <em>VFIO</em> warto o tym pamiętać.<br>Aby to zrobić, należy na klawiaturze wcisnąć <strong>I</strong> (<em>jak igła</em>) i przejść do trybu <strong>insert</strong> edytora.</p>
 <p><img alt="mkinit" src="https://i.imgur.com/iv83i5G.png"></p>
 <p>Wychodzimy z <em>vima</em> za pomocą:</p>
 <blockquote>
@@ -824,9 +933,10 @@ Wykorzystując polecenie <em>echo</em> i strumienie, dodajemy do pliku <strong>L
 </blockquote>
 <p>Ustalamy dla niego hasło.</p>
 <h3 id="bootloader-systemd-boot-">Bootloader (systemd-boot)</h3>
+<h6 id="do-g-ry"><a href="#Spis-treści">Do góry</a></h6>
 <p>Jednym z ostatnich kroków, jakie musimy podjąć, jest instalacja bootloadera na partycji EFI.<br>Do tego celu skorzystamy z komendy:</p>
 <blockquote>
-<p>$ bootctl-install</p>
+<p>$ bootctl install</p>
 </blockquote>
 <p>Następnie przechodzimy do odpowiedniego katalogu za pomocą polecenia:</p>
 <blockquote>
@@ -884,16 +994,11 @@ Ale także nie możemy zapomnieć, by na końcu dopisać <strong>rw</strong>!</p
 <p>$ pacman -Syu</p>
 </blockquote>
 <p>Wprowadzić nasze zmiany w życie.</p>
-<p>Następnie zaopatrzymy się w menadżer pakietów <em>yay</em>, który posiada integrację nie tylko z oficjalnym repozytorium Archa, ale także z <em>AUR</em>, na czym nam najbardziej zależy.<br>Musimy wpisać więc:</p>
-<blockquote>
-<p>$ pacman -S git &amp;&amp; git clone <a href="https://aur.archlinux.org/yay.git">https://aur.archlinux.org/yay.git</a><br>$ cd yay/ &amp;&amp; makepkg -sri</p>
-</blockquote>
-<p>Takimi oto sposobem zaopatrzyliśmy się w rozwiązanie, z którego korzysta aktualnie większość społeczności Archa.<br>Od teraz pobieranie pakietów i aktualizacja systemu zawiera się w tej jednej komendzie i jeśli sytuacja nas do tego nie zmusza, nie są wymagane żadne dodatkowe parametry.</p>
 <p>Co do wpisu o <em>intel-ucode</em>, są to mikrokody dla naszego procesora.
 W przypadku AMD całość zawarta jest w linux-firmware, dla Intela trzeba je pobrać osobno, co jest mocno wskazane.
 Używając polecenia:</p>
 <blockquote>
-<p>$ yay intel-ucode</p>
+<p>$ pacman -S intel-ucode</p>
 </blockquote>
 <p>Możemy zrealizować tą czynność, wybierając pakiet z listy i zatwierdzając jego numer. I jeśli nasza partycja <em>ESP</em> zamontowana jest w /boot, sprawa załatwiona. W innym wypadku należy przenieść wszystko w miejsce, gdzie ona się znajduje.</p>
 <p>Zanim będziemy gotowi zrestartować swój system, warto edytować odpowiednio plik <em>sudoers</em>, by móc korzystać z polecenia <strong>sudo</strong>.<br>Do tego celu wpisujemy:</p>
@@ -907,6 +1012,13 @@ Używając polecenia:</p>
 <p><img alt="sudoers" src="https://i.imgur.com/qftGrac.png"></p>
 <p>Zapisujemy, zamykamy i kiedy wszystko jest gotowe, wciskamy <strong>Ctrl+D</strong>, a następnie wpisujemy <em>reboot</em> i uruchamiamy Arch Linuxa prosto z naszego dysku!</p>
 <h3 id="-rodowisko-graficzne">Środowisko graficzne</h3>
+<h6 id="do-g-ry"><a href="#Spis-treści">Do góry</a></h6>
+<p>Przed rozpoczęciem konfiguracji środowiska graficznego warto zaopatrzyć się w menadżer pakietów, który znacząco ułatwi pobieranie i instalację paczek.
+Aktualnie najlepszym rozwiązaniem jest menadżer pakietów <em>yay</em>, który posiada integrację nie tylko z oficjalnym repozytorium Archa, ale także z <em>AUR</em>, na czym nam najbardziej zależy.<br>Musimy wpisać więc:</p>
+<blockquote>
+<p>$ pacman -S git &amp;&amp; git clone <a href="https://aur.archlinux.org/yay.git">https://aur.archlinux.org/yay.git</a><br>$ cd yay/ &amp;&amp; makepkg -sri</p>
+</blockquote>
+<p>Takimi oto sposobem zaopatrzyliśmy się w rozwiązanie, z którego korzysta aktualnie większość społeczności Archa.<br>Od teraz pobieranie pakietów i aktualizacja systemu zawiera się w tej jednej komendzie i jeśli sytuacja nas do tego nie zmusza, nie są wymagane żadne dodatkowe parametry.</p>
 <p>Żeby w ogóle móc korzystać z jakiegokolwiek DE, potrzebujemy serwera X. Możemy go pobrać razem z terminalem XTerm za pomocą komendy:</p>
 <blockquote>
 <p>$ yay -S xorg xorg-xinit xterm</p>
@@ -930,6 +1042,7 @@ Zanim to jednak nastąpi, musimy wpisać następujące polecenie:</p>
 <p><img alt="xfce" src="https://i.imgur.com/k1PYaHn.png"></p>
 <h3 id="personalizacja-rodowiska-graficznego">Personalizacja środowiska graficznego</h3>
 <h5 id="konfiguracja-sddm">Konfiguracja SDDM</h5>
+<h6 id="do-g-ry"><a href="#Spis-treści">Do góry</a></h6>
 <p>Jak widać na screenshotach wyżej, standardowy <strong>SDDM</strong>, który decydujemy się sami zainstalować nijak ma się do tego znanego choćby z <em>KDE</em>. W środowiskach FOSS (<em>Free and Open Source Software</em>) nie jest to jednak problemem i mamy niemalże pełną kontrolę nad systemem.</p>
 <p>Swoje pierwsze kroki powinniśmy skierować na stronę <a href="https://store.kde.org/">https://store.kde.org/</a><br>Co nie powinno być dla nikogo zaskoczniem. Przeglądając treści tam zawarte, bardzo szybko możemy natrafić na zakładkę "<a href="https://store.kde.org/browse/cat/101/"><em>SDDM Login Themes</em></a>", która w tym momencie najbardziej nas interesuje.</p>
 <p>Pozwala nam ona przebierać w różnych stylach dla naszego menadżera logowania, lecz trzeba być tutaj ostrożnym, bo nie wszystkie działają one bez <strong>Plasmy</strong>! Najczęściej jednak występują dwa warianty, z czego jeden dla ludzi, którzy zdecydowali się na <em>SDDM</em> w wersji standalone.</p>
@@ -978,8 +1091,8 @@ Zanim to jednak nastąpi, musimy wpisać następujące polecenie:</p>
 <p><strong>ScreenWidth</strong> - w przypadku dwóch lub więcej monitorów, ustawić najwyższą, dostępną na wszystkich rozdzielczość<br><em>Opcjonalnie</em>: ustawić najwyższą dostępną rozdzielczość na pojedynczym monitorze, a następnie odpowiednio skonfigurować plik Xsetup</p>
 <p><strong>ScreenHeight</strong> - w przypadku dwóch lub więcej monitorów, ustawić najwyższą, dostępną na wszystkich rozdzielczość<br><em>Opcjonalnie</em>: ustawić najwyższą dostępną rozdzielczość na pojedynczym monitorze, a następnie odpowiednio skonfigurować plik Xsetup</p>
 <p><strong>blur</strong> - wartość "true" oznacza, że tło na ekranie logowanie będzie rozmazane o wartości zdefiniowane w dwóch, kolejnych liniach, stosować wedle gustu</p>
-<p><strong>recursiveBlurLoops</strong>  - odpowiednik zapisu AxB, gdzie za A należy podstawić wartość od 0 w górę
-<strong>recursiveBlurRadius</strong> - odpowiednik zapisu AxB, gdzie za B nalezy podstawić wartość większą od 1</p>
+<p><strong>recursiveBlurLoops</strong>  - odpowiednik zapisu AxB, gdzie za A należy podstawić wartość od 0 w górę</p>
+<p><strong>recursiveBlurRadius</strong> - odpowiednik zapisu AxB, gdzie za B nalezy podstawić wartość większą od 1</p>
 <p><img alt="theme.conf" src="https://i.imgur.com/M6cv1Q1.png"></p>
 <p><strong>Xsetup</strong> - do pliku znajdującego się w <em>/usr/share/sddm/scripts/</em> należy dopisać:</p>
 <blockquote>
@@ -1011,6 +1124,7 @@ Zanim to jednak nastąpi, musimy wpisać następujące polecenie:</p>
 <p>Kiedy całość jest już zapisana i odpowiednio edytowana, <em>SDDM Configurator</em> pozwala nam podejrzeć efekt pracy. Wystarczy wcisnąć przycisk <em>preview</em>, aby się przekonać, czy wszystko poszło po naszej myśli.</p>
 <p><img alt="preview" src="https://i.imgur.com/ZjC496G.png"></p>
 <h5 id="konfiguracja-i3lock">Konfiguracja i3lock</h5>
+<h6 id="do-g-ry"><a href="#Spis-treści">Do góry</a></h6>
 <p>Dobrze jest posiadać w systemie możliwość zablokowania ekranu i wymagania od użytkownika wprowadzenia hasła, ale bez konieczności wylogowania się.<br>Do tego posłuży nam właśnie <em>i3lock</em>, który jest jedną wielu alternatyw dla tego typu rozwiązań.</p>
 <p>Wybrałem go dlatego, że społeczność skupiona wokół samego i3wm, oraz ogromna skalowalność i podatność na proste modyfikacje to coś, z czego warto skorzystać w swoim domowym (i nie tylko) zaciszu.</p>
 <p>Zanim zaczniemy, musimy zaopatrzyć się w dwa narzędzia, które pozwolą nam bawić się obrazem, który zostanie podłożny jako tło naszego ekranu blokady:</p>
@@ -1043,6 +1157,7 @@ Zanim to jednak nastąpi, musimy wpisać następujące polecenie:</p>
 <p>Oczywiście, efekt blur jest stosunkowo prosto odwracalny w programach graficznych, ale <em>i3lock</em> nie ma robić tutaj za zabezpieczenie definitywne, a jedynie za ograniczenie zbyt ciekawskich ludzi.</p>
 <p><img alt="i3lock" src="https://i.imgur.com/lsfs2PS.jpg"></p>
 <h5 id="konfiguracja-zsh">Konfiguracja ZSH</h5>
+<h6 id="do-g-ry"><a href="#Spis-treści">Do góry</a></h6>
 <blockquote>
 <p>ZSH (Z shell) – uniksowa powłoka (ang. shell) nadająca się zarówno do interaktywnej pracy z systemem jak i do wykonywania skryptów. Spośród standardowych powłok, ZSH najbardziej przypomina Korn Shell, ale zawiera wiele ulepszeń. zsh posiada edycję wiersza poleceń, wbudowaną korekcję pisowni, programowalne dopełnianie poleceń, funkcje (z automatycznym ładowaniem), historię poleceń i mnóstwo innych cech.</p>
 </blockquote>
@@ -1065,8 +1180,7 @@ Zanim to jednak nastąpi, musimy wpisać następujące polecenie:</p>
 <p>A następnie dobrze jest zaopatrzyć się we framework <strong>Oh My ZSH</strong>. Nie jest on co prawda w żaden sposób wymagany, ale jego popularność i prostota obsługi sprawiają, że warto go mieć w swoim systemie, aby sprawnie konfigurować swój nowy shell.</p>
 <p>Sam pakiet co prawda znajduje się repozytorium, lecz polecam zainteresować się poleceniem prosto z Gita twórcy:</p>
 <blockquote>
-<p>$ yay wget
-$ sh -c "$(wget <a href="https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh">https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh</a> -O -)"</p>
+<p>$ yay wget<br>$ sh -c "$(wget <a href="https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh">https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh</a> -O -)"</p>
 </blockquote>
 <p>Pozwala nam ono nie tylko pobrać samo <em>ZSH</em>, ale także ustawić jako aktywną powłokę dla naszego użytkownika.<br>Już teraz można pokusić się o zaglądnięcie do pliku ~/.zshrc, jednak polecam się z tym wstrzymać.</p>
 <p>Następny krok to pobranie odpowiednio stylu oraz PowerLine'a:</p>
@@ -1092,6 +1206,16 @@ $ sh -c "$(wget <a href="https://raw.githubusercontent.com/robbyrussell/oh-my-zs
 <li><p><strong>status</strong> - zwraca status wykonania się ostatniej komendy</p>
 </li>
 </ul>
+<p>Dobrze by też było dopasować styl kolorystyczny terminala do naszej aktualnej palety kolorów dostępnej na pulpicie. Tutaj będzie nam potrzebna aplikacja:</p>
+<blockquote>
+<p>$ yay python-pywal<br>$ wal -n -i $(xfconf-query -c xfce4-desktop -p /backdrop/screen0/monitor0/workspace0/last-image)</p>
+</blockquote>
+<p>W taki oto sposób program sam odczyta i ustawi w naszej konsoli pasujący styl, opierając się na tapecie z głównego monitora i pierwszego obszaru roboczego. Nie jest to jeszcze permanentne i wykorzystujemy tylko ułamek możliwości całej aplikacji, ale bardziej zaawansowane rozwiązanie są świetnie opisanie w manualu, do którego warto zajrzeć.</p>
+<p>Następnie trzeba dopisać w pliku ~/.zshrc linię:</p>
+<blockquote>
+<p>(cat ~/.cache/wal/sequences &amp;)</p>
+</blockquote>
+<p>Co sprawi, że każdy nowo otwarty terminal będzie korzystał z wygenerowanego schemtu kolorystycznego.</p>
 <p>Jedną z ostatnich rzeczy do zrobienia, jest pobranie dwóch bardzo przydatnych pluginów:</p>
 <blockquote>
 <p>$ git clone <a href="https://github.com/zsh-users/zsh-autosuggestions">https://github.com/zsh-users/zsh-autosuggestions</a> ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions</p>
@@ -1112,7 +1236,75 @@ $ sh -c "$(wget <a href="https://raw.githubusercontent.com/robbyrussell/oh-my-zs
 </blockquote>
 <p>W ten oto sposób, już nawet restart naszego systemu nie powinien mieć negatywnego wpływu na shell i odwrotnie. Zaś my, jako użytkownicy, możemy nacieszyć oko całkiem ładnym i nowoczesnym wyglądem terminala.</p>
 <h5 id="konfiguracja-vima">Konfiguracja VIMa</h5>
+<h6 id="do-g-ry"><a href="#Spis-treści">Do góry</a></h6>
+<p><strong>VIM</strong> to jeden z najpopularniejszych i najlepszych edytorów tekstu działający w CLI. Jego największymi zaletami są m.in. pełna konfigurowalności, ogromne możliwości skryptowe oraz ogromne zaawansowanie, które pozwala na jego podstawie zbudować pełnoprawne IDE do pracy z C++, Javą, C# i czym tylko człowiek zapragnie.</p>
+<p>Są to też niestety rzeczy, które na starcie bardzo mocno odrzucają początkujących. Słynny żart o tym "<em>jak wyjść z vima</em>" stał się tak popularny, że nawet ludzie nie korzystający z tego edytora w ogóle, całkiem dobrze go znają.<br>Osobiście twierdzę, że znajomość <em>vima</em> (a tak właściwie, to jeszcze lepiej <em>vi</em>) to na tyle przydatna umiejętność, że warto poświęcić kilka chwil na zaznajomienie się podstawami. W przyszłości może to przynieść sporo korzyści i oszczędzić jeszcze więcej czasu.</p>
+<p>W tej sekcji głównym celem będzie integracja PowerLine'a z edytorem, aby zachować jednolitość i unifikację z samym terminalem, w którym <em>vim</em> pracuje oraz wytłumaczenie podstawowych komend i możliwości konfiguracyjnych.</p>
+<p>Na sam początek dobrze będzie pobrać następujące paczki:</p>
+<blockquote>
+<p>$ yay -S vim-runtime powerline-vim vim-pathogen python</p>
+</blockquote>
+<p>Pathogen w prosty i przyjemny sposób pozwala nam integrować pluginy z <em>vimem</em>, co podobnie jak w przypadku <em>Oh My ZSH</em> znacznie usprawni naszą pracę nad konfiguracją.</p>
+<p>Następnie należy edytować plik <strong>~/.vimrc</strong> i wkleić do niego <a href="https://pastebin.com/m1Hu4ag1">TEN</a> config za pomocą skrótu klawiszowego <strong>Shift + Insert</strong> lub środkowego przycisku myszy. Ale to w zależności w którym schowku zapisaliśmy linie konfiguracyjne.<br>Pokrótce objaśniam:</p>
+<p>Początkowe linie determinują obsługę i działanie Pathogena oraz sprawdzają, czy Python został poprawnie zainstalowany. Jeśli wszystko przebiegło tak, jak trzeba, nie powinniśmy uświadczyć żadnych błędów.</p>
+<blockquote>
+<p>" colorscheme gruvbox</p>
+</blockquote>
+<p>Linijki zaczynające się od znaku <strong>"</strong> to komentarze. W pliku jest ich całkiem sporo przez to, że każdy musi dobrać ustawienia wedle własnego uznania i tego, co potrzebuje. W tym wypadku determinowany jest schemat kolorów <em>gruvbox</em>. Zakomentowanie tej linii sprawi, że <em>vim</em> będzie korzystać z systemowego schematu ustawionego w naszym terminalu.</p>
+<blockquote>
+<p>set tabstop=4       " number of visual spaces per TAB<br>set softtabstop=4   " number of spaces in tab when editing<br>set shiftwidth=4    " number of spaces used for autoindent, command: &lt;&lt;, &gt;&gt;, == (auto entire doc: gg=G )<br>set expandtab       " tabs are converted into spaces  </p>
+</blockquote>
+<p>Wpisy szczególnie przydatne dla programistów, czy ogólnie ludzi edytujących np. pliki XML. Określają to, jak program ma interpretować wciśnięcie przycisku Tab na klawiaturze, oraz jak ma reprezentować swoje akcje nam, użytkownikom.<br>Bardzo ważną linią jest <em>expandtab</em>, która automatycznie zamienia taby na spacje. Należy ją ustawić odpowiednio do wykorzystywanego języka, bo w niektórych, jak np. <em>Pascal</em>, ma to duże znaczenie.</p>
+<blockquote>
+<p>set number          " show line numbers<br>" set relativenumber  " show relative distances to make commands such as 8dd faster. Abslut number is still shown on curor line</p>
+</blockquote>
+<p>Pierwszy wpis mówi sam za siebie, natomiast drugi jest już ciut bardziej enigmatyczny. Usunięcie komentarza sprawi, że numer linii będzie pokazywany względem naszego wskaźnika do początku i końca dokumentu. Oznacza to, że nasz wskaźnik zawsze jest linią numer 0, a wszystko poniżej i powyżej liczone jest od niego. </p>
+<blockquote>
+<p>set showmatch       " Highlight matching {[()]} probably enabled by deffault as well</p>
+</blockquote>
+<p>Podświetlanie klamer zaczynających i kończących dany blok w programie, czy dowolnym innym pliku. Przydatne, żeby szybko i wizualnie móc rozeznać się  między blokami w np. podwójnej pętli for.</p>
+<blockquote>
+<p>map <code style="font-family: Menlo, Consolas, &quot;DejaVu Sans Mono&quot;, monospace;">&lt;C-c&gt; :s/^/\/\//&lt;Enter&gt;</code><br>map <code style="font-family: Menlo, Consolas, &quot;DejaVu Sans Mono&quot;, monospace;">&lt;C-u&gt; :s/^\/\///&lt;Enter&gt;</code></p>
+</blockquote>
+<p>Definiowanie skrótów klawiszowych w pliku konfiguracyjnym może być na starcie dosyć mylące, jednak należy pamiętać, że są to zwykłe wyrażenia regularne, których zrozumienie procentuje także w takich językach, jak np. JavaScript.<br>W tym wypadku za pomocą kombinacji <strong>Ctr+C</strong> i <strong>Ctrl+U</strong> możemy komentować całe bloki kodu i te komentarze usuwać. Ino należy mieć na uwadze, że jest to komentarz w stylu <strong><code style="font-family: Menlo, Consolas, &quot;DejaVu Sans Mono&quot;, monospace;">//</code></strong>, więc jeśli dany typ pliku takowego nie obsługuje, on sam nie zadziała. </p>
+<blockquote>
+<p>map <code style="font-family: Menlo, Consolas, &quot;DejaVu Sans Mono&quot;, monospace;">&lt;C-e&gt; :q!&lt;Enter&gt;</code><br>map <code style="font-family: Menlo, Consolas, &quot;DejaVu Sans Mono&quot;, monospace;">&lt;C-w&gt; :wq&lt;Enter&gt;</code></p>
+</blockquote>
+<p>Kombinacja <strong>Ctrl+E</strong> umożliwia opuszczenie edytora bez zapisywania jakichkolwiek zmian, a <strong>Ctrl+W</strong> najpierw zmiany zapisze, a dopiero potem wyjdzie z programu.</p>
+<blockquote>
+<p>map <code style="font-family: Menlo, Consolas, &quot;DejaVu Sans Mono&quot;, monospace;">&lt;F9&gt; :make&lt;Enter&gt;</code><br>map <code style="font-family: Menlo, Consolas, &quot;DejaVu Sans Mono&quot;, monospace;">&lt;F5&gt; :w&lt;Enter&gt;</code></p>
+</blockquote>
+<p>Skróty znane z wielu popularnych IDE. <strong>F9</strong> pozwala skompliować aktualnie pisany kod, a <strong>F5</strong> zapisuje zmiany bez wychodzenia z edytora.</p>
+<p>Podstawowe skróty klawiszowe można rozpisać w następujący sposób:</p>
+<p>Poruszanie się po tekście:  </p>
+<ul>
+<li>h - przesunięcie kursora w lewo</li>
+<li>l - przesunięcie kursora w prawo</li>
+<li>j - przesunięcie kursora w dół</li>
+<li>k - przesunięcie kursora w górę</li>
+</ul>
+<p>Edycja i wstawianie:</p>
+<ul>
+<li>i - przejście w tryb <em>insert</em></li>
+<li>s - przejście w tryb <em>insert</em> z usunięciem aktualnego znaku </li>
+<li>a - przejście w tryb <em>insert</em> z przesunięciem kursora w prawo</li>
+<li>o - dodanie nowej linii poniżej aktualnej i przejście w tryb <em>insert</em></li>
+<li>I - przejście w tryb <em>insert</em> z przesunięciem kursora na pierwszy znak w linii</li>
+<li>A - przejście w tryb <em>insert</em> z przesunięciem kursora na ostatni znak w linii</li>
+<li>Esc - wyjście z dowolnego trybu i przejście w tryb <em>normal</em></li>
+</ul>
+<p>Zapis i wyjście (w trybie <em>normal</em>):</p>
+<ul>
+<li>:w - zapis pliku</li>
+<li>:w  - zapis pliku pod daną nazwą</li>
+<li>:wq - zapis i wyjście z pliku</li>
+<li>:q - wyjście z pliku</li>
+<li>:q! - wyjście z pliku, nawet jeśli zmiany nie zostały zapisane</li>
+</ul>
+<p>Na start jest to w 100% wystarczające. W trakcie dalszego korzystania z <em>vima</em> nasze umiejętności będą w naturalny sposób się rozwijać. Od siebie mogę jeszcze polecić aplikację <strong>vim master</strong> dostępną na telefony z Androidem, która od samego podstaw, aż do najbardziej skomplikowanych wyrażeń jest w stanie nas nauczyć korzystania z tego programu.</p>
+<p><img alt="vim" src="https://i.imgur.com/c8QCMSw.png"></p>
 <h5 id="konfiguracja-openboxa">Konfiguracja OpenBoxa</h5>
+<h6 id="do-g-ry"><a href="#Spis-treści">Do góry</a></h6>
 <p>Pomimo świadomej i pewnej decyzji, jaką podjąłem instalując <strong>XFCE</strong>, oraz jaką sam polecam, mam pełną świadomość tego, że w chwili pisania tego tekstu, jest to jedno z najmniej przyszłościowych środowisk graficznych dostępnych na rynku.</p>
 <p>Nie dzieje się tak przez czysty przypadek. Grupa ludzi pracująca na łataniem dziur i rozwijająca projekt jest tak niewielka, że często garażowe projekty czy kilkunastogodzinne game jamy posiadają liczniejszą załogę.<br>Powoduje to dwojaką sytuację, w której aktualizacje są oddalone od siebie o całe dziesiątki tygodni nie wnosząc wcale tak dużo (następna duża aktualizacja, 4.14, jako swój killer feature przynosi jedynie pełną integracją z GTK3).</p>
 <p>W stosunku do <strong>KDE</strong> czy <strong>GNOME</strong>, dwóch bardzo dużych projektów (ten drugi ma nawet fanowski fork nie wymagający do działania <em>systemd</em>), jest to aż smutne.<br>Jednak druga strona medalu jest taka, że twórcy projektu <em>XFCE</em> doskonale zdają sobie sprawę z tego, jak ma się sytuacja, więc całe środowisko zbudowali w taki sposób, aby było bardzo silnie modyfikowalne przez zapalonych użytkowników.</p>
@@ -1173,5 +1365,63 @@ $ sh -c "$(wget <a href="https://raw.githubusercontent.com/robbyrussell/oh-my-zs
 <p>I całość zapisać. Takim oto sposobem udało się wykonać dość poważną ingerencję w środowisko graficzne, jednak bez zbędnego bólu potrzebnego na edycję plików XML.</p>
 <p><img alt="startup" src="https://i.imgur.com/JVtWWOc.png"></p>
 <h5 id="konfiguracja-xfce">Konfiguracja XFCE</h5>
-<p>///</p></body>
+<h6 id="do-g-ry"><a href="#Spis-treści">Do góry</a></h6>
+<p>Ostatnim krokiem nad skończeniem budowania systemu, jest samo XFCE. Sprawa jest o tyle ułatwiona, że wszystko można ustawić z poziomu GUI.<br>Warto spędzić tutaj chwilę dobierając interesujące nas theme, ikony czy font.<br>Postaram się pokrótce opisać najważniejsze opcje i zakładki, a resztę pozostawię do własnej, dowolnej eksploracji i dostosowania pod osobiste preferencje.</p>
+<p>Całość warto jednak zacząć od zaopatrzenia się w style graficzne z <a href="https://github.com/addy-dclxvi/xfwm4-theme-collections">TEGO</a> repozytorium, które zostało już m.in. wspomniane przy OpenBoxie. </p>
+<blockquote>
+<p>$ git clone <a href="https://github.com/addy-dclxvi/xfwm4-theme-collections.git">https://github.com/addy-dclxvi/xfwm4-theme-collections.git</a><br>$ sudo mv xfwm4-theme-collections/ /usr/share/themes/</p>
+</blockquote>
+<p>Następnie przechodzimy do ustawień systemowych i zakładki "<em>Appearance</em>".</p>
+<p><img alt="appe" src="https://i.imgur.com/MwRRSUh.png"></p>
+<p>To tutaj pojawią się pobrane style graficzne, nad którymi mamy pełną wolność wyboru i ogranicza nas jedynie poczucie estetyki i własny gust.<br>W razie problemów zawsze istnieje możliwość, aby ręcznie edytować pliki <strong>CSS</strong> w folderze /themes/ i ustawić interesujące nas wartości.</p>
+<p><img alt="numix-circle" src="https://i.imgur.com/5UstyKB.png"></p>
+<p>Jako ogromny fan okrągłych ikon mam słabość do stylu Numix Circle. Są to tak urocze i trafiające do mnie ikony, że czuję się źle, kiedy nie są one obecne w moim systemie. Oczywiście nie jest to jedyny dostępnt styl. Odwiedzając <a href="https://www.xfce-look.org/browse/cat/132/">TĘ</a> stronę możemy przebierać i wybrzydzać wedle woli. </p>
+<p>Po pobraniu paczki należy ją wypakować poleceniem <em>tar</em>, a następnie umieścić całość w folderze <strong>/usr/share/icons/</strong>, aby pojawiły się one w menu wyboru.<br>Można też spróbować znaleźć daną paczkę w AUR, a wtedy jedna komenda załatwia za nas sprawę:</p>
+<blockquote>
+<p>$ yay numix-circle-icon-theme-git</p>
+</blockquote>
+<p><img alt="font" src="https://i.imgur.com/eYll231.png"></p>
+<p>Następna zakładka jest nie tylko miejsce, gdzie dostosujemy systemową czcionkę. Jest to miejsce szczególnie przydatne dla osób posiadających np. ekrany 4K lub korzystające z telewizorów, jako swoich codziennych monitorów.</p>
+<p>To właśnie tutaj można dostosować DPI w taki sposób, aby wszystko było odpowiednio dopasowane i naturalne. W końcu nikt nie chce ramki szerokość 10% wysokość ekranu z fontem jak ziarna maku, prawda?<br>Jednak dla większości wyświetlaczy 1080p wartość 96 DPI powinna być całkowicie wystarczająca.</p>
+<p>Wychodząc z menu "<em>Appearance</em>" i przechodząc do "<em>Notifications</em>" mamy możlwiość ustawienia powiadomień systemowych oraz tych, które wychodzą od samych aplikacji.</p>
+<p><img alt="not" src="https://i.imgur.com/U7mAdgo.png">
+<img alt="notapp" src="https://i.imgur.com/QeExAZS.png"></p>
+<p>W zakładce "<em>Display</em>" w łatwy sposób możemy zarządzać rozdzielczością, częstotliwością odświeżania, orientacją czy ułożeniem naszych monitorów. Szczególnie przydatne w konfiguracjach 2+.</p>
+<p><img alt="display" src="https://i.imgur.com/MAUj18N.png"></p>
+<p>"<em>Settings Editor</em>" to graficzna nakładka dla <em>Xfconf</em>. To, co normalnie robi się w linii komend, tutaj można odpowiednio wyklikać myszą.<br>Jest to jednak już zaawansowany poziom edycji i polecam tutaj nie mieszać losowymi wpisami, jeśli nie wiemy co robimy.</p>
+<p>Jeśli jednak nabierzemy ciut wprawy i doświadczenia, <em>Xfconf</em> staje się potężnym narzędziem przydatnym zwłaszcza podczas pisania skryptów rozszerzających funkcjonalność naszego DE.</p>
+<p><img alt="xfconf" src="https://i.imgur.com/rrVtoMt.png"></p>
+<p>Na sam koniec zostawułem menu paneli. To tutaj jest cała esencja tego, jak wyglądać i zachowywać będzie się nasz pulpit. To na panelach umieszczane będą ikony, powiadomienia, akcje kontekstowe i co tak naprawdę dusza zapragnie.</p>
+<p>Sam preferuję je jako jedyne źródło interakcji z programami i nie korzystam z ikon na pulpicie - pozwala to utrzymać porządek i jednolitą estetykę.<br>Oczywiście nie zmuszam nikogo do takiego stylu pracy, to jedynie moja wizja na zbudowanie systemu.</p>
+<p><img alt="panel" src="https://i.imgur.com/Vp25FSO.png"></p>
+<p>Pierwsza zakładka pozwala nam dodać kolejne panele do naszego systemu. Także tutaj określa się ich rozmiar, kolor, umieszczenie oraz zachowanie. Mogą one równie dobrze działać jako dock na aplikacje, który będzie się inteligentnie chował w momencie, kiedy jakaś inna aplikacja go zasłoni.</p>
+<p><img alt="launchers" src="https://i.imgur.com/xttPbTc.png"></p>
+<p>Poszczególne aplikacje dodawane są na pasek za pośrednictwem zakładki "<em>Items</em>". To w tym miejscu budowana jest struktura i zastosowanie dla panelu.</p>
+<p>Najpopularniejszy element to <em>launcher</em>, za pomocą którego możemy uruchamiać zdefiniowane w nim aplikacje, oraz <em>separator</em>, który rozdziela od siebie poszczególne elementy na pasku.</p>
+<p><img alt="myconf" src="https://i.imgur.com/W2unJTs.jpg"></p>
+<p>Moja konfiguracja pulpitu przewiduje po 4 panele na jeden monitor, podzielone na poszczególne grupy:</p>
+<ol>
+<li>Launchery poszczególnych aplikacji - zastępują ikony na pulpicie</li>
+<li>Panel przeznaczony na wyświetlanie skróconego tytułu aktualnie otwartego okan na pełnym ekranie. </li>
+<li>Podstawowe narzędzia systemowe pozwalające się wylogować, kontrolować głośność czy sprawdzić godzinę</li>
+<li>Panel przeznaczony na wyświetlanie otwartych aplikacji oraz powiadomień</li>
+</ol>
+<p>Dodatkowo, aby całość mogła się integrować odpowiednio z aplikacjami, wymagany jest pakiet <strong>Orcsome</strong>, plugin <strong>Windowck</strong> i <a href="https://pastebin.com/dGZUrrL9">TEN</a> skrypt Pythona napisany z jego wykorzystaniem:</p>
+<blockquote>
+<p>$ yay -S orcsome xfce4-windowck-plugin</p>
+</blockquote>
+<p>Należy edytować plik <strong>~./config/orcsome/rc.py</strong>, do którego trzeba wkleić powyższe linie konfiguracyjne. 
+Sprawia on, że aplikacje otwierane na pełnym ekranie nie posiadają paska z tytułem, czy przyciskami pozwalającymi na ich zamknięcie. </p>
+<p>Zamiast tego całość zintegrowana jest z panelami - oszczędza to miejsce na ekranie i poprawia estetykę. 
+Należy także pamiętać, aby do interesujących nas paneli dodać następujące elemnty:</p>
+<blockquote>
+<p>Window Header - Title<br>Window Header - Buttons </p>
+</blockquote>
+<p><img alt="windowck" src="https://i.imgur.com/xp9uT9R.jpg"></p>
+<p>I tak naprawdę to wszystko, co mogę przekazać z najważniejszych aspektów XFCE.  Cała reszta konfiguracji spoczywa na użytkowniku, jego odczuciach, potrzebach i preferencjach. A że każdy jest inny, to nie jestem w stanie przewidzieć każdej możliwości.</p>
+<p>Jednak co mogę zalecić, to nie bać się zmieniać rzeczy i z nimi eksperymentować. Po to własnie Pingwiny są otwartymi systemami, aby z tego korzystać!</p>
+<h2 id="podsumowanie">Podsumowanie</h2>
+<h6 id="do-g-ry"><a href="#Spis-treści">Do góry</a></h6>
+<p>tutaj będzie podsumowanie</p>
+<p><strong>Autorzy:</strong> Hubert Batkiewicz, Gabriel Król<br><strong>Korekta:</strong> Julia Trychta<br><strong>Testy i wsparcie:</strong> Radosław Kołodziejski</p></body>
 </html>
