@@ -1,3 +1,7 @@
+## Wstęp
+
+tutaj będzie ładny wstęp
+
 ## Spis treści 
 
 * [**Środowiska graficzne (DE)**](#Środowiska-graficzne-(DE))

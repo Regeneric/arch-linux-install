@@ -1219,6 +1219,6 @@ Jednak co mogę zalecić, to nie bać się zmieniać rzeczy i z nimi eksperyment
 ###### [Do góry](#Spis-treści)
 tutaj będzie podsumowanie
 
-**Autor:** Hubert Batkiewicz  
+**Autorzy:** Hubert Batkiewicz, Gabriel Król  
 **Korekta:** Julia Trychta  
-**Testy i wsparcie:** Radosław Kołodziejski, Gabriel Król
+**Testy i wsparcie:** Radosław Kołodziejski
