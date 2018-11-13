@@ -14,13 +14,14 @@ Sprawdźmy to!
   * [**Klasycznie**](#Klasycznie)
 * [**Instalacja i konfiguracja systemu**](#Instalacja-i-konfiguracja-systemu)
 * [**Bootloader**](#Bootloader-(systemd-boot))
-* [**Środowisko graficzne**](#Środowisko-graficzne)
+* [**Środowisko graficzne XFCE**](#Środowisko-graficzne-XFCE)
   * [**Konfiguracja SDDM**](#Konfiguracja-SDDM)
   * [**Konfiguracja i3lock**](#Konfiguracja-i3lock)
   * [**Konfiguracja ZSH**](#Konfiguracja-ZSH)
   * [**Konfiguracja VIMa**](#Konfiguracja-VIMa)
   * [**Konfiguracja OpenBoxa**](#Konfiguracja-OpenBoxa)
-  * [**Konfiguracha XFCE**](#Konfiguracja-XFCE)
+  * [**Konfiguracja XFCE**](#Konfiguracja-XFCE)
+* [**Środowisko graficzne - KDE**](#Środowisko-graficzne-KDE)
 * [**Podsumowanie**](#Podsumowanie)
 
 ### Arch Linux
@@ -635,7 +636,7 @@ Poniżej przedstawiam swoją propozycję na zbudowanie wydajnego i eleganckiego 
 
 ![xfce](https://i.imgur.com/k1PYaHn.png)
 
-### Personalizacja środowiska graficznego
+### Środowisko graficzne XFCE
 
 ##### Konfiguracja SDDM
 
@@ -1213,6 +1214,11 @@ Należy także pamiętać, aby do interesujących nas paneli dodać następując
 I tak naprawdę to wszystko, co mogę przekazać z najważniejszych aspektów XFCE.  Cała reszta konfiguracji spoczywa na użytkowniku, jego odczuciach, potrzebach i preferencjach. A że każdy jest inny, to nie jestem w stanie przewidzieć każdej możliwości.
 
 Jednak co mogę zalecić, to nie bać się zmieniać rzeczy i z nimi eksperymentować. Po to własnie Pingwiny są otwartymi systemami, aby z tego korzystać!
+
+### Środowisko graficzne KDE
+
+###### [Do góry](#Spis-treści)
+tutaj będzie kde
 
 ## Podsumowanie
 
