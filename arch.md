@@ -21,7 +21,7 @@ Sprawdźmy to!
   * [**Konfiguracja VIMa**](#Konfiguracja-VIMa)
   * [**Konfiguracja OpenBoxa**](#Konfiguracja-OpenBoxa)
   * [**Konfiguracja XFCE**](#Konfiguracja-XFCE)
-* [**Środowisko graficzne - KDE**](#Środowisko-graficzne-KDE)
+* [**Środowisko graficzne KDE**](#Środowisko-graficzne-KDE)
 * [**Podsumowanie**](#Podsumowanie)
 
 ### Arch Linux
