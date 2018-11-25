@@ -14,7 +14,7 @@ Sprawdźmy to!
   * [**LVM i LUKS**](#LVM-i-LUKS)
   * [**Klasycznie**](#Klasycznie)
 * [**Instalacja i konfiguracja systemu**](#Instalacja-i-konfiguracja-systemu)
-* [**Bootloader**](#Bootloader-(systemd-boot))
+* [**Bootloader**](#Bootloader-systemd-boot)
 * [**Środowisko graficzne XFCE**](#Środowisko-graficzne-XFCE)
   * [**Konfiguracja SDDM**](#Konfiguracja-SDDM)
   * [**Konfiguracja i3lock**](#Konfiguracja-i3lock)
@@ -385,7 +385,8 @@ Pora na tłumaczenie:
 
 ![lvcreate](https://i.imgur.com/lIfH9dy.png)
 
-Następnym krokiem będzie ustawienie szyfrowania dysku. Podczas instalacji polecam zaszyfrować jedynie partycję **/**, a pozostałymi zająć się później. Nie mniej jednak pokażę, jak zaszyfrować partycję **/** jak i inne, np. **/home**.
+Następnym krokiem będzie ustawienie szyfrowania dysku. Podczas instalacji polecam zaszyfrować jedynie partycję **/**, a pozostałymi zająć się później.
+Informacja o tym jak zaszyfrować partycję już po instalcji systemu znajduje się [tutaj](https://wiki.archlinux.org/index.php/Dm-crypt/Encrypting_an_entire_system#Encrypting_logical_volume_/home "Arch Wiki")
 
 W tym celu używamy następujących komend:
 
@@ -657,7 +658,7 @@ Tworzymy nowego użytkownika, a dzięki:
 
 Ustalamy dla niego hasło.
 
-### Bootloader (systemd-boot)
+### Bootloader systemd-boot
 
 ###### [Do góry](#Spis-treści)
 Jednym z ostatnich kroków, jakie musimy podjąć, jest instalacja bootloadera na partycji EFI.  
@@ -685,7 +686,11 @@ Zapisujemy dokonane zmiany i przechodzimy do edycji naszego wpisu do loadera:
 > $ cd entries/  
 > $ vim arch.conf
 
-Następnie dopisujemy tutaj w przypadku instalacji **LVM**:
+Zmiany które tutaj wprowadzimy powinny być różne, zależnie od rodzaju instalacji, na który się zdecydowaliśmy:
+
+---
+
+**LVM**:
 
 **title Arch Linux  
 linux /vmlinuz-linux  
@@ -693,13 +698,15 @@ initrd /initramfs-linux.img
 initrd /intel-ucode.img  
 options root=/dev/mapper/root-proot rw**
 
-W przypadku instalcji **LVM** oraz **LUKS** wpisujemy:
+---
+
+**LVM** oraz **LUKS**:
 
 **title Arch Linux  
 linux /vmlinuz-linux  
 initrd /initramfs-linux.img  
 initrd /intel-ucode.img  
-options cryptdevice=UUID=6265d89d-d8b0-4809-9ce1-3a75796fd237:root root=/dev/mapper/root rw
+options cryptdevice=UUID=6265d89d-d8b0-4809-9ce1-3a75796fd237:root root=/dev/mapper/root rw**
 
 Tytuł możemy nadać dowolny, ale UUID musimy wpisać odpowiadające naszej **/dev/VolGrp/cryptroot**  
 Za pomocą polecenia:.
@@ -710,10 +717,9 @@ Możemy na ekranie wyświetlić sobie informacje o naszych partycjach.
 
 ![blkid](https://i.imgur.com/MtyyPcX.png)
 
-Do tego możemy wykorzystać także:
+Ale także nie możemy zapomnieć, by na końcu dopisać **rw**!
 
-> $ cat /etc/fstab
-
+---
 
 W przypadku partycjonowania **klasycznego**:
 
@@ -735,12 +741,15 @@ Do tego możemy wykorzystać także:
 
 > $ cat /etc/fstab
 
-
 Używamy komend i wpisów zależnie od tego, jak nam wygodniej, choć ja *BARDZO* mocno zalecam użyć **PARTUUID**.
 A to dlatego, że *UUID* identyfikuje system plików, a **PARTUUID** partycję *GPT*, z czego to drugie nie zmienia się przy formacie.
 
 W pliku *arch.conf* musimy wpisać **PARTUUID** naszej głównej partycji – /
+
+
 Ale także nie możemy zapomnieć, by na końcu dopisać **rw**!
+
+---
 
 Zanim zaczniemy cokolwiek więcej pobierać, warto skonfigurować odpowiednio menadżer pakietów *pacman* i zadbać o to, aby *yay* było dostępne na naszym dysku. W tym celu wpisujemy:
 
