@@ -10,6 +10,7 @@ Sprawdźmy to!
   * [**Pochodne dystrybucje**](#Pochodne-dystrybucje-Archa)
   * [**Wstępna konfiguracja**](#Wstępna-konfiguracja)
 * [**Partycjonowanie dysku**](#Partycjonowanie-i-formatowanie-dysków)
+  * [**LVM**](#LVM)
   * [**LVM i LUKS**](#LVM-i-LUKS)
   * [**Klasycznie**](#Klasycznie)
 * [**Instalacja i konfiguracja systemu**](#Instalacja-i-konfiguracja-systemu)
@@ -108,12 +109,163 @@ Następnym krokiem będzie partycjonowanie i przygotowanie dysków do instalacji
 Możemy zrobić to w klasyczny sposób, lub też przy użyciu mechanizmu LVM i/lub szyfrowania LUKS.
 LVM pozwala na połączenie partycji znajdujących się na różnych urządzeniach pamięci masowej w jeden dysk wirtualny. Jego rozmiar nie jest zdefiniowany na stałe – jeśli zachodzi taka potrzeba, istnieje możliwość jego rozszerzenia o nową przestrzeń pamięciową. Jednak proces partycjonowania jest wówczas nieco trudniejszy. 
 
-Oprócz tego dyski działające na LVM świetnie działają z szyfrowaniem LUKS, które zabezpieczy nasze dyski przed nieproszonymi gościami. Warto zastanowić się nad takim rozwiązaniem, szczególnie, jeżeli instalujemy system na komputerze przenośnym. Wówczas, w przypadku kradzieży, nawet przy użyciu specjalnego oprogramowania, dostęp do naszych danych będzie niemożliwy.
+Oprócz tego dyski działające na LVM świetnie działają z szyfrowaniem LUKS, które zabezpieczy nasze dyski przed nieproszonymi gościami. Warto zastanowić się nad takim rozwiązaniem, szczególnie, jeżeli instalujemy system na komputerze przenośnym. Wówczas, w przypadku kradzieży, nawet przy użyciu specjalnego oprogramowania, dostęp do naszych danych będzie niemożliwy. Szyfrowanie LUKS możemy postawić pod lub nad LVM. Ta druga opcja jest znaczenie lepsza, ponieważ dzięki niej zachowujemy największą zaletę LVM, czyli możliwość prostej i bezproblemowej zmiany rozmiaru partycji. Dlatego też pokażę tę właśnie konfigruację.
 
 Moim zdaniem warto poświęcić na instalację trochę więcej czasu i zastosować LVM, chociażby po to, żeby w przyszłości nie mieć problemu z brakiem miejsca na partycji systemowej.
 
 ###### [Partycjonowanie z użyciem LVM](#LVM)
+###### [Partycjonowanie z użyciem LVM i LUKS](#LVM-i-Luks)
 ###### [Partycjonowanie klasyczne](#Klasycznie)
+
+### LVM
+
+###### [Do góry](#Spis-treści)
+Na początek musimy odnaleźć dysk, na którym nasz system ma być zainstalowany, komendą:
+
+> $ fdisk -l
+
+![drives](https://i.imgur.com/zoUiCPs.png)
+
+Wypisujemy na ekranie wszystkie dyski i partycje, jakie w danej chwili znajdują się na naszym PC. Następnie korzystając z komendy:
+
+> $ gdisk /dev/sdX
+
+Gdzie X oznacza literę interesującego nas dysku, przechodzimy do narzędzia umożliwiającego podzielenie dysku na partycje.
+
+Tutaj korzystamy odpowiednio z takich komend jak:
+
+* **o** - usuwa istniejącą tablicę partycji i tworzy nową w schemacie **GPT**
+* **n** - umożliwia stworzenie nowej partycji
+* **w** - zapisuje wszystkie zmiany wprowadzone na dysku twardym
+
+Aby w ogóle móc zabrać się za stworzenie czegokolwiek, musimy dokładnie prześledzić nazwy, typy i rozmiary naszych dysków, aby się nie pomylić. Na tym etapie co prawda nie ma to żadnego znaczenia, bo nasz magazyn na dane jest pusty, jednak nie ma co sobie dodawać niepotrzebnie prac.
+
+Po ustaleniu, który z dysków będzie przechowywał w sobie system, tworzymy nowy schemat partycjonowania, a następnie partycję **ESP**.
+
+![gpt](https://i.imgur.com/5C4S8E5.png)
+
+*EFI System Partition* - wykorzystywana w nowoczesnych systemach do przechowywania m.in. bootloaderów naszych OSów. Więc niezależnie od tego ile ich będzie na naszym PC, partycja **ESP** zawsze będzie (i ma być) tylko jedna.
+
+Pierwsze zapytanie dotyczy numeru, z jakim będzie identyfikowana. Możemy pozostawić domyślną – **1**.
+
+Następnie ustalamy, od którego sektora nasza partycja będzie się zaczynać.
+Dobrym nawykiem jest instalacja systemu na końcowych sektorach naszego dysku, jeśli robimy to na klasycznym dysku talerzowym. W przypadku dysków SSD nie ma to większego znaczniea. Tutaj także nie musimy niczego zmieniać.
+Dobrze jednak jest się upewnić, że domyślny sektor to 2048 – od niego powinniśmy zacząć partycjonowanie.
+
+Trzecim krokiem jest ustalenie sektora, gdzie partycja ma się kończyć. Znacznie wygodniejszym wyjściem jest podać to w mega lub gigabajtach.
+My wpiszemy tutaj **+512M** – zdecydowanie wystarczająco dużo, jesli chodzi o partycję **ESP**.
+
+Ostatnim krokiem jest podanie kodu hex dla naszej partycji. Skąd mamy wiedzieć co tutaj wpisać?
+Bardzo prostym sposobem — wstukanie **L** na klawiaturze pozwoli nam zobaczyć listę wszystkich, dostępnych dla nas kodów.
+Coby jednak nie szukać — dla partycji **ESP** użyjemy kodu ***EF00***.
+
+![esp](https://i.imgur.com/CRLfbKc.png)
+
+Następnie musimy utworzyć odpowiednio partycje **/** i **/home**.
+Ich rozmiar jest bezpośrednio związy z posiadaną przez nas przestrzenią dyskową.
+
+Osobiście zalecam *minimalne* granice rozmiaru na **/** ustalić w przedziale **15 - 35GB**, oraz całą resztę dostępnej przestrzeni na **/home**.
+
+Dla bardziej zaawansowanych użytkowników, całkiem dobrym wyjściem będzie także rozbicie **/var** oraz **/usr** na osobne punkty montowania z odpowiednią ilością przydzielonego im miejsca. W tym poradniku jednak nie będziemy się tym zajmować.
+
+Jedyną różnicą, jaką zastosujemy przy partycjonowaniu naszego dysku będzie to, że teraz zamiast korzystać z kodu hex ~~*EF00*~~, użyjemy **8E00**, aby móc skorzystać z zalet **LVM**.
+
+![lvm](https://i.imgur.com/OmGUzO1.png)
+
+Na sam koniec wystarczy zatwierdzić zmiany i potwierdzić, że zdajemy sobie sprawę z ryzyka utratych ważnych danych z dysku. O ile oczywiście jakieś są.
+
+![save](https://i.imgur.com/d3Yyp9w.png)
+
+W tym miejscu warto wyświetlić sobie listę naszych partycji na poszczególnym dysku za pomocą:
+
+> $ gdisk -l /dev/sdX
+
+Lub wszystkich dostępnych w naszym systemie, ponawiając komendę:
+
+> $ fdisk -l
+
+Pozwoli nam to w łatwy sposób zorientować się, która partycja ma jaki numer.
+Ja będę oznaczał je jako **/dev/sdXY** – gdzie pod te parametry musicie wstawić swoje rzeczywiste dane (np. */dev/sda1* lub w przypadku nowoczesnych dysków PCIe */dev/nvme0n1p1*).
+
+![fdisk](https://i.imgur.com/movccGU.png)
+
+Formatowanie partycji **ESP** jest krokiem najprostszym i wymagającym od nas najmniej. Wystarczy jedna, prosta komenda:
+
+> $ mkfs.vfat /dev/sdXY
+
+Aby załatwić sprawę i móc później zamontować ją później w odpowiednim miejscu.
+
+W przypadku pozostałych dwóch partycji musimy się chwilę zastanowić nad tym, co posiadamy w naszym komputerze oraz jaki efekt finalny chcemy osiągnąć.
+W moim wypadku dostępne są trzy, różne dyski twarde i partycje.
+
+Dysk *256GB* będzie oznaczony jako **root**, ponieważ to na nim znajdzie się system.  
+Kolejne dwa dyski *1024GB* dostają wspólne oznaczenie **home**, ponieważ chcę móc wykorzystać ich sumaryczną pojemność w jednym miejscu.
+
+Kiedy mamy już wszystko ustalone, możemy zainicjować nasze fizyczne partycje tak, aby mogły one korzystać z zalet LVM. Potrzebujemy tutaj komendy:
+
+> $ pvcreate /dev/sdXY
+
+Wydajemy ją dla każdej partycji, którą chcemy wykorzystać. Jak już wyżej zostało ustalone, będą to kolejno trzy partycje, z trzech dysków.
+
+![pvcreate](https://i.imgur.com/WE7lxCI.png)
+
+Następnie musimy stworzyć odpowiednią grupę naszych wolumenów, aby możliwe było wykorzystanie dwóch, różnych dysków, jako jednej, ciągłej przestrzeni.  
+Zanim jednak zabierzemy się za **home**, to pasuje odpowiednio skonfigurować naszego **root**, który jest jeden, jak widać.  
+Nie jest to problem, ponieważa dzięki elastyczności **LVM** możemy do grupy w chwili tworzenia dodać tylko jedną partycję, aby w przyszłość, w razie ewentualnych potrzeb, móc ją rozszerzyć. W przypadku pomyłki, partycję można dodać komendą **vgextend**.
+
+> $ vgcreate root /dev/sdXY  
+> $ vgcreate home /dev/sdAB /dev/sdCD
+
+Oczywiście oznaczenia */dev/sdAB* oraz */dev/sdCD* zostały zastosowane jedynie w celu rozróżnienia poszczególnych wolumenów.
+
+![vgcreate](https://i.imgur.com/pd7zOXK.png)
+
+Finalnie możemy się już zabrać za tworzenie logicznej struktury na naszym dysku. Jest to ostatni krok przed odpowiednim sformatowaniem oraz zamontowaniem naszych partycji.
+Aby móc to uczynić wydajemy polecenie:
+
+> $ lvcreate -l 100%FREE -n proot root  
+> $ lvcreate -l 100%FREE -n phome home
+
+Pora na tłumaczenie:
+
+* **-l 100%FREE** - określamy rozmiar naszego logicznego wolumenu, w tym wypadku oznacza to wypełnienie całej wolnej przestrzeni na naszej partycji
+* **-n proot** oraz **-n phome** - są to nazwy utworzonych partycji w obrębie grupy, p zostało zastosowane w celu doróżniania od siebie tych dwóch tworów
+* **root** oraz **home** - nazwy utworzonych wcześniej grupy
+
+![lvcreate](https://i.imgur.com/kxQw6FI.png)
+
+Ostatnim krokiem jest już tylko wybranie systemu plików, jaki ma być obceny na naszych partycjach. Osobiście polecam zastanowić się nad trzema możliwościami:
+
+* **btrfs**
+* **xfs**
+* **ext4**
+
+***btrfs*** - korzystając z zalet i rozwiązań starszego i bardzo popularnego w środowiskach BSD ***zfs***, zapewnia możliwość kopiowania przy zapisie, tworzenia snapshotów, replikacji danych czy zwiększania swojego rozmiaru dynamicznie, nie potrzebując do tego mechanizmu **LVM**. Jednak ma to swoje odbicie w wydajności i zastosowanie go na klasycznym dysku talerzowym może drastycznie obniżyć szybkość działania naszego systemu.
+
+***xfs*** - posiada szereg cech zaawansowanego systemu plików do zastosowań serwerowych oraz dla wydajnych stacji roboczych. Maksymalny rozmiar wolumenu to *16000000TB*, a pojedynczego pliku ponad *8000000TB*.  
+Mimo dosyć zaawansowanego i groźnie brzmiącego opisu, nadaje się świetnie także do domowych zastosowań, jest trwały, stabilny oraz nowoczesny, dzięki implementacji techonoligii takich jak np, *sparse files*, *security labels* czy POSIXowych list dostępu (ACL)
+
+***ext4*** - najpopularniejszy, linuksowy system plików stosowany szeroko zarówno w domowych warunkach, jak i na mniejszych, i większych serwerach. Sprawia to, że w razie problemów uzyskanie wsparcia i pomocy jest banalnie proste, a także sama dokumentacja jest bogata w szczegóły.
+
+W domu wykorzystuję ***btrfs*** na dysku SSD oraz ***xfs*** na dysku HDD. Działają w świetnej symbiozie i jestem spokojny o swoje dane. Mimo doniesień o braku stabilności samego ***xfs*** w przypadkach nagłej utraty zasilania, nie doszukałem się żadnych informacji, aby był to problem palący i szeroko znany. Obstawiam lokalne problemy na komputerach pechowców, którzy swoje dane utracili.
+
+Uprzedzając pytania o replikację plików i jej wpływie na dyski SSD - ***btrfs*** domyślnie w takim wypadku ją wyłącza (choć można wymusić jej ponowne włączenie). No i oczywiście takie mechanizmy jak **TRIM** lub technologie **NVMe** nie są tutaj nikomu obce, a całość działa odpowiednio stabilnie i responsywnie.
+
+Na potrzeby tego poradnika przyjmuję, że mój dysk oznaczony jako **root** jest SSD, a te ukryte pod **home** są klasyczne, HDD.
+
+> $ mkfs.btrfs /dev/root/proot  
+> $ mkfs.xfs /dev/home/phome
+
+W tym wypadku komendy dla **LVM** są dosłowne, więc podąrzając za poradnikiem i wpisując je w okno terminalu, nie powinniśmy uświadczyć żadnych błędów.
+
+Jesteśmy gotowi, by przejść powoli do instalacji bazowego systemu.
+Musimy zamontować swoje partycje w odpowiednich miejscach za pomocą komend:
+
+> $ mount /dev/root/proot /mnt  
+> $ mkdir /mnt/home  
+> $ mkdir /mnt/boot  
+> $ mount /dev/home/phome /mnt/home  
+> $ mount /dev/sdXY /mnt/boot
 
 ### LVM i LUKS
 
@@ -208,29 +360,44 @@ Wydajemy ją dla każdej partycji, którą chcemy wykorzystać. Jak już wyżej 
 ![pvcreate](https://i.imgur.com/WE7lxCI.png)
 
 Następnie musimy stworzyć odpowiednią grupę naszych wolumenów, aby możliwe było wykorzystanie dwóch, różnych dysków, jako jednej, ciągłej przestrzeni.  
-Zanim jednak zabierzemy się za **home**, to pasuje odpowiednio skonfigurować naszego **root**, który jest jeden, jak widać.  
-Nie jest to problem, ponieważa dzięki elastyczności **LVM** możemy do grupy w chwili tworzenia dodać tylko jedną partycję, aby w przyszłość, w razie ewentualnych potrzeb, móc ją rozszerzyć.
+Tworzymy grupę, którą potem podzielimy na partycje logiczne.
+Nie jest to problem, ponieważa dzięki elastyczności **LVM** możemy do grupy w chwili tworzenia dodać tylko jedną partycję, aby w przyszłość, w razie ewentualnych potrzeb, móc ją rozszerzyć. W przypadku pomyłki, partycję można dodać komendą **vgextend**.
+Do grupy możemy dodać dowolną ilość dysków.
 
-> $ vgcreate root /dev/sdXY  
-> $ vgcreate home /dev/sdAB /dev/sdCD
+> $ vgcreate VolGrp /dev/sdXY /dev/sdAB
 
-Oczywiście oznaczenia */dev/sdAB* oraz */dev/sdCD* zostały zastosowane jedynie w celu rozróżnienia poszczególnych wolumenów.
+Oczywiście oznaczenia */dev/sdAB* oraz */dev/sdXY* zostały zastosowane jedynie w celu rozróżnienia poszczególnych wolumenów.
 
-![vgcreate](https://i.imgur.com/pd7zOXK.png)
+![vgcreate](https://i.imgur.com/HbuV9Qf.png)
 
 Finalnie możemy się już zabrać za tworzenie logicznej struktury na naszym dysku. Jest to ostatni krok przed odpowiednim sformatowaniem oraz zamontowaniem naszych partycji.
 Aby móc to uczynić wydajemy polecenie:
 
-> $ lvcreate -L 100%FREE -n proot root  
-> $ lvcreate -L 100%FREE -n phome home
+> $ lvcreate **-L** 35GB -n cryptroot VolGrp  
+> $ lvcreate **-l** 100%FREE -n crypthome VolGrp
 
 Pora na tłumaczenie:
 
-* **-L 100%FREE** - określamy rozmiar naszego logicznego wolumenu, w tym wypadku oznacza to wypełnienie całej wolnej przestrzeni na naszej partycji
+* **-L 35GB** - określamy rozmiar naszego logicznego wolumenu, w tym wypadku 35GB
+* **-l 100%FREE** - określamy rozmiar naszego logicznego wolumenu, w tym wypadku oznacza to wypełnienie całej wolnej przestrzeni na naszej partycji
 * **-n proot** oraz **-n phome** - są to nazwy utworzonych partycji w obrębie grupy, p zostało zastosowane w celu doróżniania od siebie tych dwóch tworów
 * **root** oraz **home** - nazwy utworzonych wcześniej grupy
 
-![lvcreate](https://i.imgur.com/kxQw6FI.png)
+![lvcreate](https://i.imgur.com/lIfH9dy.png)
+
+Następnym krokiem będzie ustawienie szyfrowania dysku. Podczas instalacji polecam zaszyfrować jedynie partycję **/**, a pozostałymi zająć się później. Nie mniej jednak pokażę, jak zaszyfrować partycję **/** jak i inne, np. **/home**.
+
+W tym celu używamy następujących komend:
+
+> $ cryptsetup luksFormat --type luks2 /dev/VolGrp/cryptroot
+
+> $ cryptsetup open /dev/VolGrp/cryptroot root
+
+Otrzymamy informacje o całkowitym usunięciu danych z partycji. W celu kontynuuowania należy wpisać **YES** Następnie należy podać wybrane przez nas hasło, które potrzebne będzie do odczytu danych z dysku. 
+
+![cryptsetup](https://i.imgur.com/nBsr4cP.png)
+
+Druga komenda pozwoli nam natomiast na dostęp do wolumenu już po uruchomieniu systemu. Potrzebne będzie to później, podczas montowania dysków.
 
 Ostatnim krokiem jest już tylko wybranie systemu plików, jaki ma być obceny na naszych partycjach. Osobiście polecam zastanowić się nad trzema możliwościami:
 
@@ -249,21 +416,19 @@ W domu wykorzystuję ***btrfs*** na dysku SSD oraz ***xfs*** na dysku HDD. Dzia�
 
 Uprzedzając pytania o replikację plików i jej wpływie na dyski SSD - ***btrfs*** domyślnie w takim wypadku ją wyłącza (choć można wymusić jej ponowne włączenie). No i oczywiście takie mechanizmy jak **TRIM** lub technologie **NVMe** nie są tutaj nikomu obce, a całość działa odpowiednio stabilnie i responsywnie.
 
-Na potrzeby tego poradnika przyjmuję, że mój dysk oznaczony jako **root** jest SSD, a te ukryte pod **home** są klasyczne, HDD.
+> $ mkfs.btrfs /dev/mapper/root
+> $ mkfs.xfs /dev/VolGrp/crypthome
 
-> $ mkfs.btrfs /dev/root/proot  
-> $ mkfs.xfs /dev/home/phome
-
-W tym wypadku komendy dla **LVM** są dosłowne, więc podąrzając za poradnikiem i wpisując je w okno terminalu, nie powinniśmy uświadczyć żadnych błędów.
+W tym wypadku komendy dla **LVM** i **LUKS** są dosłowne, więc podąrzając za poradnikiem i wpisując je w okno terminalu, nie powinniśmy uświadczyć żadnych błędów. Różnica w zapisie wynika z tego, że **/** zostało wcześniej zaszyfrowanie, a **/home** nie.
 
 Jesteśmy gotowi, by przejść powoli do instalacji bazowego systemu.
 Musimy zamontować swoje partycje w odpowiednich miejscach za pomocą komend:
 
-> $ mount /dev/root/proot /mnt  
+> $ mount /dev/mapper/root /mnt
 > $ mkdir /mnt/home  
 > $ mkdir /mnt/boot  
-> $ mount /dev/home/phome /mnt/home  
-> $ mount /dev/sdXY /mnt/boot
+> $ mount /dev/VolGrp/crypthome /mnt/home  
+> $ mount /dev/sda1 /mnt/boot
 
 ### Klasycznie
 
@@ -416,7 +581,13 @@ Następnie musimy odszukać linijkę "*HOOKS*", można to zrobić prosto takim o
 
 Gdzie  *n* oznacza przesuwanie się między kolejnymi wynikami. Można to także zrobić ręcznie, jeśli ktoś chce. Tekstu nie ma wiele.
 
-Następnie musimy dopisać ***lvm2*** po wyrazie *block*. Trzeba uważać, bo kolejność ma znacznie. Może nie aż tak duże, w przypadku samego **LVM**, ale przy zabawie z choćby *VFIO* warto o tym pamiętać.  
+Jeżeli używamy samego **LVM** musimy dopisać ***lvm2*** po wyrazie *block*. Trzeba uważać, bo kolejność ma znacznie. Może nie aż tak duże, w przypadku samego **LVM**, ale przy zabawie z choćby *VFIO* warto o tym pamiętać.  
+
+W przypadku używania **LVM** oraz **LUKS** zmian jest nieco więcej. Nasze wpisy powinny być następujące:
+
+
+Należy pamiętać, że w tym wypadku kolejność ma ogromne znaczenie.
+
 Aby to zrobić, należy na klawiaturze wcisnąć **I** (*jak igła*) i przejść do trybu **insert** edytora.
 
 ![mkinit](https://i.imgur.com/iv83i5G.png)
@@ -443,6 +614,8 @@ Oraz podlinkować sobie odpowiednią dla naszego regionu strefę czasową:
 
 > $ ln -sf /usr/share/zoneinfo/Europe/Warsaw /etc/localtime  
 > $ hwclock --systohc
+
+Jeżeli jednak czas systemu nadal będzie niepoprawny, albo przesunięty o jedną godzinę, można go łatwo zmienić już po instalacji, w ustawieniach naszego środowiska graficznego.
 
 Przy wykorzystaniu edytora *vim* ustawimy zarówno język jak i układ klawiatury dla naszego systemu.
 Za pomocą komendy:
@@ -520,7 +693,29 @@ initrd /initramfs-linux.img
 initrd /intel-ucode.img  
 options root=/dev/mapper/root-proot rw**
 
-W momencie, kiedy zdecydowaliśmy się na klasyczne partycje, wpis ten powinien wyglądać tak:
+W przypadku instalcji **LVM** oraz **LUKS** wpisujemy:
+
+**title Arch Linux  
+linux /vmlinuz-linux  
+initrd /initramfs-linux.img  
+initrd /intel-ucode.img  
+options cryptdevice=UUID=6265d89d-d8b0-4809-9ce1-3a75796fd237:root root=/dev/mapper/root rw
+
+Tytuł możemy nadać dowolny, ale UUID musimy wpisać odpowiadające naszej **/dev/VolGrp/cryptroot**  
+Za pomocą polecenia:.
+
+> $ blkid /dev/VolGrp/cryptroot
+
+Możemy na ekranie wyświetlić sobie informacje o naszych partycjach.
+
+![blkid](https://i.imgur.com/MtyyPcX.png)
+
+Do tego możemy wykorzystać także:
+
+> $ cat /etc/fstab
+
+
+W przypadku partycjonowania **klasycznego**:
 
 **title Arch Linux  
 linux /vmlinuz-linux  
@@ -529,16 +724,17 @@ initrd /intel-ucode.img
 options root=PARTUUID=6265d89d-d8b0-4809-9ce1-3a75796fd237 rw**
 
 Tytuł możemy nadać dowolny, ale PARTUUID musimy wpisać odpowiadające naszej partycji roota!  
+Zamiast PARTUUID można skorzystać z UUID.
 Za pomocą polecenia:
 
 > $ blkid /dev/sdXY
 
 Możemy na ekranie wyświetlić sobie informacje o naszych partycjach.
 
-Co prawda można użyć także UUID czy po prostu wpisać /dev/sdXY.  
 Do tego możemy wykorzystać także:
 
 > $ cat /etc/fstab
+
 
 Używamy komend i wpisów zależnie od tego, jak nam wygodniej, choć ja *BARDZO* mocno zalecam użyć **PARTUUID**.
 A to dlatego, że *UUID* identyfikuje system plików, a **PARTUUID** partycję *GPT*, z czego to drugie nie zmienia się przy formacie.
