@@ -390,8 +390,7 @@ Informacja o tym jak zaszyfrować partycję już po instalcji systemu znajduje s
 
 W tym celu używamy następujących komend:
 
-> $ cryptsetup luksFormat --type luks2 /dev/VolGrp/cryptroot
-
+> $ cryptsetup luksFormat --type luks2 /dev/VolGrp/cryptroot  
 > $ cryptsetup open /dev/VolGrp/cryptroot root
 
 Otrzymamy informacje o całkowitym usunięciu danych z partycji. W celu kontynuuowania należy wpisać **YES** Następnie należy podać wybrane przez nas hasło, które potrzebne będzie do odczytu danych z dysku. 
@@ -417,7 +416,7 @@ W domu wykorzystuję ***btrfs*** na dysku SSD oraz ***xfs*** na dysku HDD. Dzia�
 
 Uprzedzając pytania o replikację plików i jej wpływie na dyski SSD - ***btrfs*** domyślnie w takim wypadku ją wyłącza (choć można wymusić jej ponowne włączenie). No i oczywiście takie mechanizmy jak **TRIM** lub technologie **NVMe** nie są tutaj nikomu obce, a całość działa odpowiednio stabilnie i responsywnie.
 
-> $ mkfs.btrfs /dev/mapper/root
+> $ mkfs.btrfs /dev/mapper/root  
 > $ mkfs.xfs /dev/VolGrp/crypthome
 
 W tym wypadku komendy dla **LVM** i **LUKS** są dosłowne, więc podąrzając za poradnikiem i wpisując je w okno terminalu, nie powinniśmy uświadczyć żadnych błędów. Różnica w zapisie wynika z tego, że **/** zostało wcześniej zaszyfrowanie, a **/home** nie.
@@ -425,7 +424,7 @@ W tym wypadku komendy dla **LVM** i **LUKS** są dosłowne, więc podąrzając z
 Jesteśmy gotowi, by przejść powoli do instalacji bazowego systemu.
 Musimy zamontować swoje partycje w odpowiednich miejscach za pomocą komend:
 
-> $ mount /dev/mapper/root /mnt
+> $ mount /dev/mapper/root /mnt  
 > $ mkdir /mnt/home  
 > $ mkdir /mnt/boot  
 > $ mount /dev/VolGrp/crypthome /mnt/home  
@@ -584,14 +583,15 @@ Gdzie  *n* oznacza przesuwanie się między kolejnymi wynikami. Można to także
 
 Jeżeli używamy samego **LVM** musimy dopisać ***lvm2*** po wyrazie *block*. Trzeba uważać, bo kolejność ma znacznie. Może nie aż tak duże, w przypadku samego **LVM**, ale przy zabawie z choćby *VFIO* warto o tym pamiętać.  
 
-W przypadku używania **LVM** oraz **LUKS** zmian jest nieco więcej. Nasze wpisy powinny być następujące:
-
-
-Należy pamiętać, że w tym wypadku kolejność ma ogromne znaczenie.
+![mkinit2](https://i.imgur.com/iv83i5G.png)
 
 Aby to zrobić, należy na klawiaturze wcisnąć **I** (*jak igła*) i przejść do trybu **insert** edytora.
 
-![mkinit](https://i.imgur.com/iv83i5G.png)
+W przypadku używania **LVM** oraz **LUKS** zmian jest nieco więcej. Nasze wpisy powinny być następujące:
+
+![mkinit1](https://i.imgur.com/FsvQPnc.png)
+
+Należy pamiętać, że w tym wypadku kolejność ma ogromne znaczenie.
 
 Wychodzimy z *vima* za pomocą:
 
