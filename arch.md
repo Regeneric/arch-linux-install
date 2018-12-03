@@ -13,16 +13,17 @@ Sprawdźmy to!
   * [**LVM**](#LVM)
   * [**LVM i LUKS**](#LVM-i-LUKS)
   * [**Klasycznie**](#Klasycznie)
-* [**Instalacja i konfiguracja systemu**](#Instalacja-i-konfiguracja-systemu)
+* [**Instalacja i podstawowa konfiguracja systemu**](#Instalacja-i-konfiguracja-systemu)
 * [**Bootloader**](#Bootloader-systemd-boot)
 * [**Środowisko graficzne XFCE**](#Środowisko-graficzne-XFCE)
   * [**Konfiguracja SDDM**](#Konfiguracja-SDDM)
-  * [**Konfiguracja i3lock**](#Konfiguracja-i3lock)
-  * [**Konfiguracja ZSH**](#Konfiguracja-ZSH)
-  * [**Konfiguracja VIMa**](#Konfiguracja-VIMa)
   * [**Konfiguracja OpenBoxa**](#Konfiguracja-OpenBoxa)
   * [**Konfiguracja XFCE**](#Konfiguracja-XFCE)
 * [**Środowisko graficzne KDE**](#Środowisko-graficzne-KDE)
+* [**Programy i aplikacje użytkowe**](#Programy-i-aplikacje-użytkowe)
+  * [**Konfiguracja i3lock**](#Konfiguracja-i3lock)
+  * [**Konfiguracja ZSH**](#Konfiguracja-ZSH)
+  * [**Konfiguracja VIMa**](#Konfiguracja-VIMa)
 * [**Podsumowanie**](#Podsumowanie)
 
 ### Arch Linux
@@ -1428,7 +1429,19 @@ tutaj będzie kde
 ## Podsumowanie
 
 ###### [Do góry](#Spis-treści)
-tutaj będzie podsumowanie
+
+Świat systemów spod znaku jakże rozpoznawalnego pingwina Tuxa jest ogromny i otwarty, czekający tylko na to, aby przyciągnąć do siebie nowych użytkowników.  
+Zarówno pasjonaci, jak i zwykli użytkownicy komputerów, mogą znaleźć tutaj coś dla siebie.
+
+Kiedy decyzja przychodzi naturlane, od naszej własnej chęci na spróbowanie czegoś nowego, a sam proces porzucania Windowsa (lub tylko ograniczania jego roli w naszym życiu), jest spokojny, powolny i odpowiednio rozciągnięty w czasie, aby nie powodować niepotrzebnego szkou, i zamieszania, Linux okazuje się być bardzo wdzięczny.
+
+Szansę na sprawdzenie samych siebie lub podzielenie się ze światem swoimi umiejętnościami mają zarówno graficy i web developerzy, którzy mogą tworzyć pamiętne i ładne style dla naszych systemów, jak i programiści. Ci drudzy mogą brać czynny udział nie tylko w rozwijaniu konkretnej dystrybucji, czy samego jądra systemu, ale także wspierać pomniejsze, fanowskie projekty (jak np. spotify-cli) lub tworzyć własne.  
+A nawet nie będąc w żadnej z tych grup, a jedynie korzystając z ich dorobku i otwartości systemu, możemy stworzyć setup, który docenią inni.
+
+Sposoby przedstawione w tym wpisie na budowę systemu są w wielu aspektach uniwersalne. Bo formatowanie dysków, czy sam proces instalacji systemu raczej pozostaje niezmienny.  
+Największe różnice zachodzą podczas konfiguracji DE czy WM, gdzie ogranicza nas tylko gust i wyobraźnia.  
+Tutaj pokazano tylko dwie propozycje, na dwóch całkowicie odmiennych od siebie środowiskach, zbudowane z inną myślą przewodnią oraz pod różny typ użytkownika.
+Może ktoś odnajdzie w tym inspirację? W końcu nauka na gotowych przykładach przynosi ludziom ogrom korzyści, do późniejszego, samodzielnego wykorzystania. 
 
 **Autorzy:** Hubert Batkiewicz, Gabriel Król  
 **Korekta:** Julia Trychta  
