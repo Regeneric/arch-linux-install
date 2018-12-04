@@ -13,13 +13,14 @@ Sprawdźmy to!
   * [**LVM**](#LVM)
   * [**LVM i LUKS**](#LVM-i-LUKS)
   * [**Klasycznie**](#Klasycznie)
-* [**Instalacja i podstawowa konfiguracja systemu**](#Instalacja-i-konfiguracja-systemu)
+* [**Instalacja i podstawowa konfiguracja**](#Instalacja-i-konfiguracja-systemu)
 * [**Bootloader**](#Bootloader-systemd-boot)
 * [**Środowisko graficzne XFCE**](#Środowisko-graficzne-XFCE)
   * [**Konfiguracja SDDM**](#Konfiguracja-SDDM)
   * [**Konfiguracja OpenBoxa**](#Konfiguracja-OpenBoxa)
   * [**Konfiguracja XFCE**](#Konfiguracja-XFCE)
 * [**Środowisko graficzne KDE**](#Środowisko-graficzne-KDE)
+* [**Qt i GTK - główne różnice**](#Qt-i-GTK---główne-różnice)
 * [**Programy i aplikacje użytkowe**](#Programy-i-aplikacje-użytkowe)
   * [**Konfiguracja i3lock**](#Konfiguracja-i3lock)
   * [**Konfiguracja ZSH**](#Konfiguracja-ZSH)
@@ -224,11 +225,17 @@ Oczywiście oznaczenia */dev/sdAB* oraz */dev/sdCD* zostały zastosowane jedynie
 Finalnie możemy się już zabrać za tworzenie logicznej struktury na naszym dysku. Jest to ostatni krok przed odpowiednim sformatowaniem oraz zamontowaniem naszych partycji.
 Aby móc to uczynić wydajemy polecenie:
 
-> $ lvcreate -l 100%FREE -n proot root  
-> $ lvcreate -l 100%FREE -n phome home
+> $ lvcreate **-l** 100%FREE -n proot root  
+> $ lvcreate **-l** 100%FREE -n phome home
+
+LUB
+
+> $ lvcreate **-L** 35GB -n proot root  
+> $ lvcreate **-l** 100%FREE -n phome home
 
 Pora na tłumaczenie:
 
+* **-L 35GB** - określamy rozmiar naszego logicznego wolumenu, w tym wypadku 35GB
 * **-l 100%FREE** - określamy rozmiar naszego logicznego wolumenu, w tym wypadku oznacza to wypełnienie całej wolnej przestrzeni na naszej partycji
 * **-n proot** oraz **-n phome** - są to nazwy utworzonych partycji w obrębie grupy, p zostało zastosowane w celu doróżniania od siebie tych dwóch tworów
 * **root** oraz **home** - nazwy utworzonych wcześniej grupy
@@ -374,15 +381,21 @@ Oczywiście oznaczenia */dev/sdAB* oraz */dev/sdXY* zostały zastosowane jedynie
 Finalnie możemy się już zabrać za tworzenie logicznej struktury na naszym dysku. Jest to ostatni krok przed odpowiednim sformatowaniem oraz zamontowaniem naszych partycji.
 Aby móc to uczynić wydajemy polecenie:
 
-> $ lvcreate **-L** 35GB -n cryptroot VolGrp  
+> $ lvcreate **-l** 100%FREE -n cryptroot VolGrp /dev/sdXY  
+> $ lvcreate **-l** 100%FREE -n crypthome VolGrp
+
+LUB
+
+> $ lvcreate **-L** 35GB -n cryptroot VolGrp /dev/sdXY  
 > $ lvcreate **-l** 100%FREE -n crypthome VolGrp
 
 Pora na tłumaczenie:
 
 * **-L 35GB** - określamy rozmiar naszego logicznego wolumenu, w tym wypadku 35GB
 * **-l 100%FREE** - określamy rozmiar naszego logicznego wolumenu, w tym wypadku oznacza to wypełnienie całej wolnej przestrzeni na naszej partycji
-* **-n proot** oraz **-n phome** - są to nazwy utworzonych partycji w obrębie grupy, p zostało zastosowane w celu doróżniania od siebie tych dwóch tworów
-* **root** oraz **home** - nazwy utworzonych wcześniej grupy
+* **-n cryptroot** oraz **-n crypthome** - są to nazwy utworzonych partycji w obrębie grupy, crypt zostało zastosowane w celu zaznaczenia, że korzysta się tutaj z szyfrowania
+* **VolGrp** - nazwy utworzonej wcześniej grupy
+* **/dev/sdXY** - dokładne sprecyzowanie, na jakim fizycznym dysku ma zostać utworzona dana partycja, w tym wypadku chcemy, aby cryptroot był na dysku SSD
 
 ![lvcreate](https://i.imgur.com/lIfH9dy.png)
 
@@ -542,7 +555,7 @@ Musimy zamontować swoje partycje w odpowiednich miejscach za pomocą komend:
 > $ mount /dev/sdXY /mnt/boot
 
 
-### Instalacja i konfiguracja systemu
+### Instalacja i podstawowa konfiguracja
 
 ###### [Do góry](#Spis-treści)
 Pobranie pakietów i instalacja systemu mieści się w jednej komendzie:
@@ -965,6 +978,220 @@ Kiedy całość jest już zapisana i odpowiednio edytowana, *SDDM Configurator* 
 
 ![preview](https://i.imgur.com/ZjC496G.png)
 
+##### Konfiguracja OpenBoxa
+
+###### [Do góry](#Spis-treści)
+Pomimo świadomej i pewnej decyzji, jaką podjąłem instalując **XFCE**, oraz jaką sam polecam, mam pełną świadomość tego, że w chwili pisania tego tekstu, jest to jedno z najmniej przyszłościowych środowisk graficznych dostępnych na rynku.
+
+Nie dzieje się tak przez czysty przypadek. Grupa ludzi pracująca na łataniem dziur i rozwijająca projekt jest tak niewielka, że często garażowe projekty czy kilkunastogodzinne game jamy posiadają liczniejszą załogę.  
+Powoduje to dwojaką sytuację, w której aktualizacje są oddalone od siebie o całe dziesiątki tygodni nie wnosząc wcale tak dużo (następna duża aktualizacja, 4.14, jako swój killer feature przynosi jedynie pełną integracją z GTK3).
+
+W stosunku do **KDE** czy **GNOME**, dwóch bardzo dużych projektów (ten drugi ma nawet fanowski fork nie wymagający do działania *systemd*), jest to aż smutne.  
+Jednak druga strona medalu jest taka, że twórcy projektu *XFCE* doskonale zdają sobie sprawę z tego, jak ma się sytuacja, więc całe środowisko zbudowali w taki sposób, aby było bardzo silnie modyfikowalne przez zapalonych użytkowników.
+
+To, czego oni nie są nam w stanie dostarczyć, naprawiamy i dodajemy sami.  
+Wielu ludzi takie podejście odstrasza, ale według mnie jest to sytuacja niemal idealna do zabawy i zdobycia całkiem sporych umiejętności.
+
+Czynniki wypisane w powyższych akapitach wpłynęły także na mnie i moje postrzeganie tego DE, a zwłaszcza menadżera okien *XFWM*.  
+Mimo bycia potężnym, a zarazem lekkim kawałkiem oprogramowania, brakuje mu sporo funkcji znanych z choćby *KWin* lub... **OpenBoxa**.
+
+**OpenBox** w przeciwieństwie do *FluxBoxa* lub *JWM* skupia się na jednym zadaniu.  
+Byciu wydajnym, lekkim i bardzo mocno modyfikowalnym menadżerem okien (WM).  
+Dzięki ogromnej społeczności zgromadzonej wokół niego oraz dzięki plikom konfiguracyjnym w formacie **XML**, jesteśmy w stanie zbudować nawet niezależny desktop, korzystając tylko i wyłącznie z *OpenBoxa*.
+
+Ja jednak postanowiłem ograniczyć jego rolę tylko (i aż) do tego, aby trzymał moje środowisko graficzne w ryzach, zarządzając oknami czy pulpitami.  
+Fakt, nie jest on tak przyjazny i intuicyjny, jak *XFWM*, jednak i na to są odpowiednie rady i aplikacje. Niemniej pasuje wziąć się do roboty, więc wydajemy komendy:
+
+> $ yay openbox  
+> $ openbox --replace
+
+I tak naprawdę tyle wystarczyło, aby pozbyć się XFWM. Oczywiście nie całkowicie!
+
+Zdaję sobie sprawę, że w stanie surowym podmiana menadżera okien może wydawać się okropnym pomysłem, zwłaszcza kiedy ujrzymy, jaki bałagan to spowodowało na naszym pulpicie.
+
+Jednak kolejny krok, to pobranie dwóch aplikacji, które sprawią, że cały proces konfiguracji stanie się zwykłą przyjmenością:
+
+> $ yay -S obconf obkey
+
+Następnie dobrze jest zaopatrzyć się w porządne style graficzne dla naszego menadżera okien.  
+Sposobów na zdobycie takowych jest kilka. Na przykład świetnym miejsce na złapanie inpiracji jest [/r/unixporn](https://www.reddit.com/r/unixporn/) - subreddit na którym ludzie dzielą się swoimi modyfikacjami i stylami na niemalże wszystkich środowiskach i dystrybucjach.
+
+Do dyspozycji jest także strona [Box-Look.org](https://www.box-look.org/browse/cat/140/), która stara się katlogować mniej i bardziej popularne style graficzne. Warto się rozejrzeć, bo zarówno fan retro stylu, jak i futuryzmu znajdzie tutaj coś dla siebie.
+
+Od siebie szczerze polecam [TO](https://github.com/addy-dclxvi/openbox-theme-collections) repozytorium na GitHubie użytkownika *addy-dclxvi*. Gość robi niesamowitą robotę na tak dużo różnych środowisk i menadżerów, że można tutaj wracać po kilkanaście razy i znajdować to, co nas najbardziej interesuje.
+
+Aby zaopatrzyć się w paczkę, wpisujemy komendę:
+
+> $ git clone https://github.com/addy-dclxvi/openbox-theme-collections.git  
+> $ sudo mv openbox-theme-collections/ /usr/share/themes/
+
+Folder, do którego trafiły nasze style, jest użyteczny także dla modyfikowania DE, oraz daje dostęp innym użytkownikom systemowym do pobranych skórek.
+
+Następnie wydajemy prostą komendę:
+
+> $ obconf
+
+I jesteśmy gotowi na konfigurację *OpenBoxa*, którą pokrótce opiszę.
+
+Na start w oczy rzuca się zakładka, która od razu zachęca do wybrania interesującego nas stylu. Osobiście zdecydowałem się tutaj na *Raven-Cyan*, przez kontrastowy title bar i dopasowanie reszty kolorystki do mojego aktualnego upodobania raczej zimnymi kolorami.
+
+![themes](https://i.imgur.com/jnXLbhB.png)
+
+W zakładce "*Appearance*" śmiało możemy zaszaleć z czcionką, jaka będzie reprezentować nasz system. Jak widać jestem razczej stonowany w tej kwestii, ale może kogoś fantazja poniesie?  
+Jest to także miejsce, w którym możemy przearażnować ułożenie przycisków okien. Jeśli ktoś przywykł do *macOS* albo *Ubuntu*, to bez problemu może całość przenieść z prawej strony na lewą.
+
+![appearance](https://i.imgur.com/LkK1tqe.png)
+
+Zakładka "*Windows*" jest szczególnie przydatna dla konfiguracji z więcej, niż jednym monitorem. W łatwy sposób można zarządzać, gdzie i dlaczego mają pojawiać się nowe okna oraz powiadomienia. Na szczególną pochwałę zasługuje możliwość inteligentnego rozmieszczania rzeczy pod naszym kursorem myszy, ogromna wygoda.
+
+![windows](https://i.imgur.com/c2LScVx.png)
+
+W następnym polu mamy całkiem sporo kompleksowych opcji dotyczących migracji i zmiany rozmiaru okien aplikacji i folderów. W przypadku korzystania z kilku obszarów roboczych jest to tym bardziej ważne, aby odpowiednio dostosować wartości do naszych preferencji.
+
+![moveres](https://i.imgur.com/HLAkKQ1.png)
+
+Podobnie jest także w przypadku ustawień myszy, z których sam zdecydowałem się zrezygnować. Moim preferowanym urządzeniem wejścia jest klawiatura i to ona ma być mi najbardziej pomocna. Zadaniem myszki jest jedynie nie przeszkadzać.
+
+![mouse](https://i.imgur.com/ZA7iw3P.png)
+
+Obszary robocze to rozwiązanie, które sobie niezywkle cenię. Pozwalają sprawnie i wygodnie zarządzać pracą na naszym pulpicie, a przy okazji trzymają wszystko odpowiednio zorganizowane. Do tego odpowiednio skonfigurowane skróty klawiszowe pozwalają się między nimi sprawnie przełączać.  
+
+![desktops](https://i.imgur.com/U97bMht.png)
+
+Ostatnie dwie zakładki w mojej opinii nie są już warte przedstawienia dla systemu, jaki ten tekst buduje. Niemniej na własną rękę warto tam zajrzeć, może jednak znajdzie się tam opcja, której tak desperacko poszukujemy?
+
+Następnie polecenie:
+
+> $ obkey
+
+Pozwala nam wywołać okno konfiguracyjne skrótów klawiszowych. Jednak jest to na tyle indywidualna opcja, że ciężko mi cokolwiek polecać. Warto jest jednak poświęcić chwilę i przewertować listę dostępnych akcji i samemu zdecydować, co nam będzie potrzebne.
+
+Od siebie dodam, że kombinacje jak *Alt+Tab* czy *Alt+F4* są swego rodzaju standardem, który warto zaimplementować także u siebie.
+
+![obkey](https://i.imgur.com/Lg6GXls.png)
+
+Za pomocą plusa w lewym, górnym rogu aplikacji dodajemy definicję nowego skrótu. Klikając w nią, program zacznie oczekiwać na wciśnięcie odpowiedniej konfiguracji klawiszy. Jeśli jednak nie chce to działać poprawnie, zawsze można wpisać ręcznie porządany skrót w kolumnę **Key (text)**.
+
+Nastęþnie używając zielonego plusa w prawym, dolnym rogu ekranu możemy do naszego skrótu podpiąć akcje, jakie ma on wykonywać. To jest najtrudniejsza część, bo wymagana od nas porządnego zastanowienia się. Niemniej bez strachu, zawsze można tutaj wrócić i dodać odpowiednie wpisy wedle potrzeb.
+
+Całość konfiguracji zapisujemy niebieską strzałą w lewym, górnym rogu ekranu. Jest to moment, od którego wszystkie skróty powinny być już aktywne i funkcjonalne.
+
+Ostatnią rzeczą jaką dobrze jest zrobić, to wrzucić polecenie podmieniające *XFWM* na *OpenBoxa*.  
+Można to zrobić bezpośrednio w menu ustawień *XFCE*, zakładka "*Session and Startup*".
+
+Wystarczy dodać nowy wpis, a w pole *command* wpisać:
+
+> openbox --replace
+
+I całość zapisać. Takim oto sposobem udało się wykonać dość poważną ingerencję w środowisko graficzne, jednak bez zbędnego bólu potrzebnego na edycję plików XML.
+
+![startup](https://i.imgur.com/JVtWWOc.png)
+
+
+##### Konfiguracja XFCE
+
+###### [Do góry](#Spis-treści)
+Ostatnim krokiem nad skończeniem budowania systemu, jest samo XFCE. Sprawa jest o tyle ułatwiona, że wszystko można ustawić z poziomu GUI.  
+Warto spędzić tutaj chwilę dobierając interesujące nas theme, ikony czy font.  
+Postaram się pokrótce opisać najważniejsze opcje i zakładki, a resztę pozostawię do własnej, dowolnej eksploracji i dostosowania pod osobiste preferencje.
+
+Całość warto jednak zacząć od zaopatrzenia się w style graficzne z [TEGO](https://github.com/addy-dclxvi/xfwm4-theme-collections) repozytorium, które zostało już m.in. wspomniane przy OpenBoxie. 
+
+> $ git clone https://github.com/addy-dclxvi/xfwm4-theme-collections.git  
+> $ sudo mv xfwm4-theme-collections/ /usr/share/themes/
+
+Następnie przechodzimy do ustawień systemowych i zakładki "*Appearance*".
+
+![appe](https://i.imgur.com/MwRRSUh.png)
+
+To tutaj pojawią się pobrane style graficzne, nad którymi mamy pełną wolność wyboru i ogranicza nas jedynie poczucie estetyki i własny gust.  
+W razie problemów zawsze istnieje możliwość, aby ręcznie edytować pliki **CSS** w folderze /themes/ i ustawić interesujące nas wartości.
+
+![numix-circle](https://i.imgur.com/5UstyKB.png)
+
+Jako ogromny fan okrągłych ikon mam słabość do stylu Numix Circle. Są to tak urocze i trafiające do mnie ikony, że czuję się źle, kiedy nie są one obecne w moim systemie. Oczywiście nie jest to jedyny dostępnt styl. Odwiedzając [TĘ](https://www.xfce-look.org/browse/cat/132/) stronę możemy przebierać i wybrzydzać wedle woli. 
+
+Po pobraniu paczki należy ją wypakować poleceniem *tar*, a następnie umieścić całość w folderze **/usr/share/icons/**, aby pojawiły się one w menu wyboru.  
+Można też spróbować znaleźć daną paczkę w AUR, a wtedy jedna komenda załatwia za nas sprawę:
+
+> $ yay numix-circle-icon-theme-git
+
+![font](https://i.imgur.com/eYll231.png)
+
+Następna zakładka jest nie tylko miejsce, gdzie dostosujemy systemową czcionkę. Jest to miejsce szczególnie przydatne dla osób posiadających np. ekrany 4K lub korzystające z telewizorów, jako swoich codziennych monitorów.
+
+To właśnie tutaj można dostosować DPI w taki sposób, aby wszystko było odpowiednio dopasowane i naturalne. W końcu nikt nie chce ramki szerokość 10% wysokość ekranu z fontem jak ziarna maku, prawda?  
+Jednak dla większości wyświetlaczy 1080p wartość 96 DPI powinna być całkowicie wystarczająca.
+
+Wychodząc z menu "*Appearance*" i przechodząc do "*Notifications*" mamy możlwiość ustawienia powiadomień systemowych oraz tych, które wychodzą od samych aplikacji.
+
+![not](https://i.imgur.com/U7mAdgo.png)
+![notapp](https://i.imgur.com/QeExAZS.png)
+
+W zakładce "*Display*" w łatwy sposób możemy zarządzać rozdzielczością, częstotliwością odświeżania, orientacją czy ułożeniem naszych monitorów. Szczególnie przydatne w konfiguracjach 2+.
+
+![display](https://i.imgur.com/MAUj18N.png)
+
+"*Settings Editor*" to graficzna nakładka dla *Xfconf*. To, co normalnie robi się w linii komend, tutaj można odpowiednio wyklikać myszą.  
+Jest to jednak już zaawansowany poziom edycji i polecam tutaj nie mieszać losowymi wpisami, jeśli nie wiemy co robimy.
+
+Jeśli jednak nabierzemy ciut wprawy i doświadczenia, *Xfconf* staje się potężnym narzędziem przydatnym zwłaszcza podczas pisania skryptów rozszerzających funkcjonalność naszego DE.
+
+![xfconf](https://i.imgur.com/rrVtoMt.png)
+
+Na sam koniec zostawułem menu paneli. To tutaj jest cała esencja tego, jak wyglądać i zachowywać będzie się nasz pulpit. To na panelach umieszczane będą ikony, powiadomienia, akcje kontekstowe i co tak naprawdę dusza zapragnie.
+
+Sam preferuję je jako jedyne źródło interakcji z programami i nie korzystam z ikon na pulpicie - pozwala to utrzymać porządek i jednolitą estetykę.  
+Oczywiście nie zmuszam nikogo do takiego stylu pracy, to jedynie moja wizja na zbudowanie systemu.
+
+![panel](https://i.imgur.com/Vp25FSO.png)
+
+Pierwsza zakładka pozwala nam dodać kolejne panele do naszego systemu. Także tutaj określa się ich rozmiar, kolor, umieszczenie oraz zachowanie. Mogą one równie dobrze działać jako dock na aplikacje, który będzie się inteligentnie chował w momencie, kiedy jakaś inna aplikacja go zasłoni.
+
+![launchers](https://i.imgur.com/xttPbTc.png)
+
+Poszczególne aplikacje dodawane są na pasek za pośrednictwem zakładki "*Items*". To w tym miejscu budowana jest struktura i zastosowanie dla panelu.
+
+Najpopularniejszy element to *launcher*, za pomocą którego możemy uruchamiać zdefiniowane w nim aplikacje, oraz *separator*, który rozdziela od siebie poszczególne elementy na pasku.
+
+![myconf](https://i.imgur.com/W2unJTs.jpg)
+
+Moja konfiguracja pulpitu przewiduje po 4 panele na jeden monitor, podzielone na poszczególne grupy:
+ 1. Launchery poszczególnych aplikacji - zastępują ikony na pulpicie
+ 2. Panel przeznaczony na wyświetlanie skróconego tytułu aktualnie otwartego okan na pełnym ekranie. 
+ 3. Podstawowe narzędzia systemowe pozwalające się wylogować, kontrolować głośność czy sprawdzić godzinę
+ 4. Panel przeznaczony na wyświetlanie otwartych aplikacji oraz powiadomień
+
+Dodatkowo, aby całość mogła się integrować odpowiednio z aplikacjami, wymagany jest pakiet **Orcsome**, plugin **Windowck** i [TEN](https://pastebin.com/dGZUrrL9) skrypt Pythona napisany z jego wykorzystaniem:
+
+> $ yay -S orcsome xfce4-windowck-plugin
+
+Należy edytować plik **~./config/orcsome/rc.py**, do którego trzeba wkleić powyższe linie konfiguracyjne. 
+Sprawia on, że aplikacje otwierane na pełnym ekranie nie posiadają paska z tytułem, czy przyciskami pozwalającymi na ich zamknięcie. 
+
+Zamiast tego całość zintegrowana jest z panelami - oszczędza to miejsce na ekranie i poprawia estetykę. 
+Należy także pamiętać, aby do interesujących nas paneli dodać następujące elemnty:
+
+> Window Header - Title  
+> Window Header - Buttons 
+
+![windowck](https://i.imgur.com/xp9uT9R.jpg)
+
+I tak naprawdę to wszystko, co mogę przekazać z najważniejszych aspektów XFCE.  Cała reszta konfiguracji spoczywa na użytkowniku, jego odczuciach, potrzebach i preferencjach. A że każdy jest inny, to nie jestem w stanie przewidzieć każdej możliwości.
+
+Jednak co mogę zalecić, to nie bać się zmieniać rzeczy i z nimi eksperymentować. Po to własnie Pingwiny są otwartymi systemami, aby z tego korzystać!
+
+### Środowisko graficzne KDE
+
+###### [Do góry](#Spis-treści)
+tutaj będzie kde
+
+### Qt i GTK - główne różnice
+
+###### [Do góry](#Spis-treści)
+gtk i qt
+
+### Programy i aplikacje użytkowe
 ##### Konfiguracja i3lock
 
 ###### [Do góry](#Spis-treści)
@@ -1217,214 +1444,6 @@ Zapis i wyjście (w trybie *normal*):
 Na start jest to w 100% wystarczające. W trakcie dalszego korzystania z *vima* nasze umiejętności będą w naturalny sposób się rozwijać. Od siebie mogę jeszcze polecić aplikację **vim master** dostępną na telefony z Androidem, która od samego podstaw, aż do najbardziej skomplikowanych wyrażeń jest w stanie nas nauczyć korzystania z tego programu.
 
 ![vim](https://i.imgur.com/c8QCMSw.png)
-
-##### Konfiguracja OpenBoxa
-
-###### [Do góry](#Spis-treści)
-Pomimo świadomej i pewnej decyzji, jaką podjąłem instalując **XFCE**, oraz jaką sam polecam, mam pełną świadomość tego, że w chwili pisania tego tekstu, jest to jedno z najmniej przyszłościowych środowisk graficznych dostępnych na rynku.
-
-Nie dzieje się tak przez czysty przypadek. Grupa ludzi pracująca na łataniem dziur i rozwijająca projekt jest tak niewielka, że często garażowe projekty czy kilkunastogodzinne game jamy posiadają liczniejszą załogę.  
-Powoduje to dwojaką sytuację, w której aktualizacje są oddalone od siebie o całe dziesiątki tygodni nie wnosząc wcale tak dużo (następna duża aktualizacja, 4.14, jako swój killer feature przynosi jedynie pełną integracją z GTK3).
-
-W stosunku do **KDE** czy **GNOME**, dwóch bardzo dużych projektów (ten drugi ma nawet fanowski fork nie wymagający do działania *systemd*), jest to aż smutne.  
-Jednak druga strona medalu jest taka, że twórcy projektu *XFCE* doskonale zdają sobie sprawę z tego, jak ma się sytuacja, więc całe środowisko zbudowali w taki sposób, aby było bardzo silnie modyfikowalne przez zapalonych użytkowników.
-
-To, czego oni nie są nam w stanie dostarczyć, naprawiamy i dodajemy sami.  
-Wielu ludzi takie podejście odstrasza, ale według mnie jest to sytuacja niemal idealna do zabawy i zdobycia całkiem sporych umiejętności.
-
-Czynniki wypisane w powyższych akapitach wpłynęły także na mnie i moje postrzeganie tego DE, a zwłaszcza menadżera okien *XFWM*.  
-Mimo bycia potężnym, a zarazem lekkim kawałkiem oprogramowania, brakuje mu sporo funkcji znanych z choćby *KWin* lub... **OpenBoxa**.
-
-**OpenBox** w przeciwieństwie do *FluxBoxa* lub *JWM* skupia się na jednym zadaniu.  
-Byciu wydajnym, lekkim i bardzo mocno modyfikowalnym menadżerem okien (WM).  
-Dzięki ogromnej społeczności zgromadzonej wokół niego oraz dzięki plikom konfiguracyjnym w formacie **XML**, jesteśmy w stanie zbudować nawet niezależny desktop, korzystając tylko i wyłącznie z *OpenBoxa*.
-
-Ja jednak postanowiłem ograniczyć jego rolę tylko (i aż) do tego, aby trzymał moje środowisko graficzne w ryzach, zarządzając oknami czy pulpitami.  
-Fakt, nie jest on tak przyjazny i intuicyjny, jak *XFWM*, jednak i na to są odpowiednie rady i aplikacje. Niemniej pasuje wziąć się do roboty, więc wydajemy komendy:
-
-> $ yay openbox  
-> $ openbox --replace
-
-I tak naprawdę tyle wystarczyło, aby pozbyć się XFWM. Oczywiście nie całkowicie!
-
-Zdaję sobie sprawę, że w stanie surowym podmiana menadżera okien może wydawać się okropnym pomysłem, zwłaszcza kiedy ujrzymy, jaki bałagan to spowodowało na naszym pulpicie.
-
-Jednak kolejny krok, to pobranie dwóch aplikacji, które sprawią, że cały proces konfiguracji stanie się zwykłą przyjmenością:
-
-> $ yay -S obconf obkey
-
-Następnie dobrze jest zaopatrzyć się w porządne style graficzne dla naszego menadżera okien.  
-Sposobów na zdobycie takowych jest kilka. Na przykład świetnym miejsce na złapanie inpiracji jest [/r/unixporn](https://www.reddit.com/r/unixporn/) - subreddit na którym ludzie dzielą się swoimi modyfikacjami i stylami na niemalże wszystkich środowiskach i dystrybucjach.
-
-Do dyspozycji jest także strona [Box-Look.org](https://www.box-look.org/browse/cat/140/), która stara się katlogować mniej i bardziej popularne style graficzne. Warto się rozejrzeć, bo zarówno fan retro stylu, jak i futuryzmu znajdzie tutaj coś dla siebie.
-
-Od siebie szczerze polecam [TO](https://github.com/addy-dclxvi/openbox-theme-collections) repozytorium na GitHubie użytkownika *addy-dclxvi*. Gość robi niesamowitą robotę na tak dużo różnych środowisk i menadżerów, że można tutaj wracać po kilkanaście razy i znajdować to, co nas najbardziej interesuje.
-
-Aby zaopatrzyć się w paczkę, wpisujemy komendę:
-
-> $ git clone https://github.com/addy-dclxvi/openbox-theme-collections.git  
-> $ sudo mv openbox-theme-collections/ /usr/share/themes/
-
-Folder, do którego trafiły nasze style, jest użyteczny także dla modyfikowania DE, oraz daje dostęp innym użytkownikom systemowym do pobranych skórek.
-
-Następnie wydajemy prostą komendę:
-
-> $ obconf
-
-I jesteśmy gotowi na konfigurację *OpenBoxa*, którą pokrótce opiszę.
-
-Na start w oczy rzuca się zakładka, która od razu zachęca do wybrania interesującego nas stylu. Osobiście zdecydowałem się tutaj na *Raven-Cyan*, przez kontrastowy title bar i dopasowanie reszty kolorystki do mojego aktualnego upodobania raczej zimnymi kolorami.
-
-![themes](https://i.imgur.com/jnXLbhB.png)
-
-W zakładce "*Appearance*" śmiało możemy zaszaleć z czcionką, jaka będzie reprezentować nasz system. Jak widać jestem razczej stonowany w tej kwestii, ale może kogoś fantazja poniesie?  
-Jest to także miejsce, w którym możemy przearażnować ułożenie przycisków okien. Jeśli ktoś przywykł do *macOS* albo *Ubuntu*, to bez problemu może całość przenieść z prawej strony na lewą.
-
-![appearance](https://i.imgur.com/LkK1tqe.png)
-
-Zakładka "*Windows*" jest szczególnie przydatna dla konfiguracji z więcej, niż jednym monitorem. W łatwy sposób można zarządzać, gdzie i dlaczego mają pojawiać się nowe okna oraz powiadomienia. Na szczególną pochwałę zasługuje możliwość inteligentnego rozmieszczania rzeczy pod naszym kursorem myszy, ogromna wygoda.
-
-![windows](https://i.imgur.com/c2LScVx.png)
-
-W następnym polu mamy całkiem sporo kompleksowych opcji dotyczących migracji i zmiany rozmiaru okien aplikacji i folderów. W przypadku korzystania z kilku obszarów roboczych jest to tym bardziej ważne, aby odpowiednio dostosować wartości do naszych preferencji.
-
-![moveres](https://i.imgur.com/HLAkKQ1.png)
-
-Podobnie jest także w przypadku ustawień myszy, z których sam zdecydowałem się zrezygnować. Moim preferowanym urządzeniem wejścia jest klawiatura i to ona ma być mi najbardziej pomocna. Zadaniem myszki jest jedynie nie przeszkadzać.
-
-![mouse](https://i.imgur.com/ZA7iw3P.png)
-
-Obszary robocze to rozwiązanie, które sobie niezywkle cenię. Pozwalają sprawnie i wygodnie zarządzać pracą na naszym pulpicie, a przy okazji trzymają wszystko odpowiednio zorganizowane. Do tego odpowiednio skonfigurowane skróty klawiszowe pozwalają się między nimi sprawnie przełączać.  
-
-![desktops](https://i.imgur.com/U97bMht.png)
-
-Ostatnie dwie zakładki w mojej opinii nie są już warte przedstawienia dla systemu, jaki ten tekst buduje. Niemniej na własną rękę warto tam zajrzeć, może jednak znajdzie się tam opcja, której tak desperacko poszukujemy?
-
-Następnie polecenie:
-
-> $ obkey
-
-Pozwala nam wywołać okno konfiguracyjne skrótów klawiszowych. Jednak jest to na tyle indywidualna opcja, że ciężko mi cokolwiek polecać. Warto jest jednak poświęcić chwilę i przewertować listę dostępnych akcji i samemu zdecydować, co nam będzie potrzebne.
-
-Od siebie dodam, że kombinacje jak *Alt+Tab* czy *Alt+F4* są swego rodzaju standardem, który warto zaimplementować także u siebie.
-
-![obkey](https://i.imgur.com/Lg6GXls.png)
-
-Za pomocą plusa w lewym, górnym rogu aplikacji dodajemy definicję nowego skrótu. Klikając w nią, program zacznie oczekiwać na wciśnięcie odpowiedniej konfiguracji klawiszy. Jeśli jednak nie chce to działać poprawnie, zawsze można wpisać ręcznie porządany skrót w kolumnę **Key (text)**.
-
-Nastęþnie używając zielonego plusa w prawym, dolnym rogu ekranu możemy do naszego skrótu podpiąć akcje, jakie ma on wykonywać. To jest najtrudniejsza część, bo wymagana od nas porządnego zastanowienia się. Niemniej bez strachu, zawsze można tutaj wrócić i dodać odpowiednie wpisy wedle potrzeb.
-
-Całość konfiguracji zapisujemy niebieską strzałą w lewym, górnym rogu ekranu. Jest to moment, od którego wszystkie skróty powinny być już aktywne i funkcjonalne.
-
-Ostatnią rzeczą jaką dobrze jest zrobić, to wrzucić polecenie podmieniające *XFWM* na *OpenBoxa*.  
-Można to zrobić bezpośrednio w menu ustawień *XFCE*, zakładka "*Session and Startup*".
-
-Wystarczy dodać nowy wpis, a w pole *command* wpisać:
-
-> openbox --replace
-
-I całość zapisać. Takim oto sposobem udało się wykonać dość poważną ingerencję w środowisko graficzne, jednak bez zbędnego bólu potrzebnego na edycję plików XML.
-
-![startup](https://i.imgur.com/JVtWWOc.png)
-
-
-##### Konfiguracja XFCE
-
-###### [Do góry](#Spis-treści)
-Ostatnim krokiem nad skończeniem budowania systemu, jest samo XFCE. Sprawa jest o tyle ułatwiona, że wszystko można ustawić z poziomu GUI.  
-Warto spędzić tutaj chwilę dobierając interesujące nas theme, ikony czy font.  
-Postaram się pokrótce opisać najważniejsze opcje i zakładki, a resztę pozostawię do własnej, dowolnej eksploracji i dostosowania pod osobiste preferencje.
-
-Całość warto jednak zacząć od zaopatrzenia się w style graficzne z [TEGO](https://github.com/addy-dclxvi/xfwm4-theme-collections) repozytorium, które zostało już m.in. wspomniane przy OpenBoxie. 
-
-> $ git clone https://github.com/addy-dclxvi/xfwm4-theme-collections.git  
-> $ sudo mv xfwm4-theme-collections/ /usr/share/themes/
-
-Następnie przechodzimy do ustawień systemowych i zakładki "*Appearance*".
-
-![appe](https://i.imgur.com/MwRRSUh.png)
-
-To tutaj pojawią się pobrane style graficzne, nad którymi mamy pełną wolność wyboru i ogranicza nas jedynie poczucie estetyki i własny gust.  
-W razie problemów zawsze istnieje możliwość, aby ręcznie edytować pliki **CSS** w folderze /themes/ i ustawić interesujące nas wartości.
-
-![numix-circle](https://i.imgur.com/5UstyKB.png)
-
-Jako ogromny fan okrągłych ikon mam słabość do stylu Numix Circle. Są to tak urocze i trafiające do mnie ikony, że czuję się źle, kiedy nie są one obecne w moim systemie. Oczywiście nie jest to jedyny dostępnt styl. Odwiedzając [TĘ](https://www.xfce-look.org/browse/cat/132/) stronę możemy przebierać i wybrzydzać wedle woli. 
-
-Po pobraniu paczki należy ją wypakować poleceniem *tar*, a następnie umieścić całość w folderze **/usr/share/icons/**, aby pojawiły się one w menu wyboru.  
-Można też spróbować znaleźć daną paczkę w AUR, a wtedy jedna komenda załatwia za nas sprawę:
-
-> $ yay numix-circle-icon-theme-git
-
-![font](https://i.imgur.com/eYll231.png)
-
-Następna zakładka jest nie tylko miejsce, gdzie dostosujemy systemową czcionkę. Jest to miejsce szczególnie przydatne dla osób posiadających np. ekrany 4K lub korzystające z telewizorów, jako swoich codziennych monitorów.
-
-To właśnie tutaj można dostosować DPI w taki sposób, aby wszystko było odpowiednio dopasowane i naturalne. W końcu nikt nie chce ramki szerokość 10% wysokość ekranu z fontem jak ziarna maku, prawda?  
-Jednak dla większości wyświetlaczy 1080p wartość 96 DPI powinna być całkowicie wystarczająca.
-
-Wychodząc z menu "*Appearance*" i przechodząc do "*Notifications*" mamy możlwiość ustawienia powiadomień systemowych oraz tych, które wychodzą od samych aplikacji.
-
-![not](https://i.imgur.com/U7mAdgo.png)
-![notapp](https://i.imgur.com/QeExAZS.png)
-
-W zakładce "*Display*" w łatwy sposób możemy zarządzać rozdzielczością, częstotliwością odświeżania, orientacją czy ułożeniem naszych monitorów. Szczególnie przydatne w konfiguracjach 2+.
-
-![display](https://i.imgur.com/MAUj18N.png)
-
-"*Settings Editor*" to graficzna nakładka dla *Xfconf*. To, co normalnie robi się w linii komend, tutaj można odpowiednio wyklikać myszą.  
-Jest to jednak już zaawansowany poziom edycji i polecam tutaj nie mieszać losowymi wpisami, jeśli nie wiemy co robimy.
-
-Jeśli jednak nabierzemy ciut wprawy i doświadczenia, *Xfconf* staje się potężnym narzędziem przydatnym zwłaszcza podczas pisania skryptów rozszerzających funkcjonalność naszego DE.
-
-![xfconf](https://i.imgur.com/rrVtoMt.png)
-
-Na sam koniec zostawułem menu paneli. To tutaj jest cała esencja tego, jak wyglądać i zachowywać będzie się nasz pulpit. To na panelach umieszczane będą ikony, powiadomienia, akcje kontekstowe i co tak naprawdę dusza zapragnie.
-
-Sam preferuję je jako jedyne źródło interakcji z programami i nie korzystam z ikon na pulpicie - pozwala to utrzymać porządek i jednolitą estetykę.  
-Oczywiście nie zmuszam nikogo do takiego stylu pracy, to jedynie moja wizja na zbudowanie systemu.
-
-![panel](https://i.imgur.com/Vp25FSO.png)
-
-Pierwsza zakładka pozwala nam dodać kolejne panele do naszego systemu. Także tutaj określa się ich rozmiar, kolor, umieszczenie oraz zachowanie. Mogą one równie dobrze działać jako dock na aplikacje, który będzie się inteligentnie chował w momencie, kiedy jakaś inna aplikacja go zasłoni.
-
-![launchers](https://i.imgur.com/xttPbTc.png)
-
-Poszczególne aplikacje dodawane są na pasek za pośrednictwem zakładki "*Items*". To w tym miejscu budowana jest struktura i zastosowanie dla panelu.
-
-Najpopularniejszy element to *launcher*, za pomocą którego możemy uruchamiać zdefiniowane w nim aplikacje, oraz *separator*, który rozdziela od siebie poszczególne elementy na pasku.
-
-![myconf](https://i.imgur.com/W2unJTs.jpg)
-
-Moja konfiguracja pulpitu przewiduje po 4 panele na jeden monitor, podzielone na poszczególne grupy:
- 1. Launchery poszczególnych aplikacji - zastępują ikony na pulpicie
- 2. Panel przeznaczony na wyświetlanie skróconego tytułu aktualnie otwartego okan na pełnym ekranie. 
- 3. Podstawowe narzędzia systemowe pozwalające się wylogować, kontrolować głośność czy sprawdzić godzinę
- 4. Panel przeznaczony na wyświetlanie otwartych aplikacji oraz powiadomień
-
-Dodatkowo, aby całość mogła się integrować odpowiednio z aplikacjami, wymagany jest pakiet **Orcsome**, plugin **Windowck** i [TEN](https://pastebin.com/dGZUrrL9) skrypt Pythona napisany z jego wykorzystaniem:
-
-> $ yay -S orcsome xfce4-windowck-plugin
-
-Należy edytować plik **~./config/orcsome/rc.py**, do którego trzeba wkleić powyższe linie konfiguracyjne. 
-Sprawia on, że aplikacje otwierane na pełnym ekranie nie posiadają paska z tytułem, czy przyciskami pozwalającymi na ich zamknięcie. 
-
-Zamiast tego całość zintegrowana jest z panelami - oszczędza to miejsce na ekranie i poprawia estetykę. 
-Należy także pamiętać, aby do interesujących nas paneli dodać następujące elemnty:
-
-> Window Header - Title  
-> Window Header - Buttons 
-
-![windowck](https://i.imgur.com/xp9uT9R.jpg)
-
-I tak naprawdę to wszystko, co mogę przekazać z najważniejszych aspektów XFCE.  Cała reszta konfiguracji spoczywa na użytkowniku, jego odczuciach, potrzebach i preferencjach. A że każdy jest inny, to nie jestem w stanie przewidzieć każdej możliwości.
-
-Jednak co mogę zalecić, to nie bać się zmieniać rzeczy i z nimi eksperymentować. Po to własnie Pingwiny są otwartymi systemami, aby z tego korzystać!
-
-### Środowisko graficzne KDE
-
-###### [Do góry](#Spis-treści)
-tutaj będzie kde
 
 ## Podsumowanie
 
