@@ -15,6 +15,7 @@ Sprawdźmy to!
   * [**Klasycznie**](#Klasycznie)
 * [**Instalacja i podstawowa konfiguracja**](#Instalacja-i-konfiguracja-systemu)
 * [**Bootloader**](#Bootloader-systemd-boot)
+* [**Pliki sudoers i pacman.conf**](#Ostatnie-szlify---sudoers-i-pacman.conf)
 * [**Środowisko graficzne XFCE**](#Środowisko-graficzne-XFCE)
   * [**Konfiguracja SDDM**](#Konfiguracja-SDDM)
   * [**Konfiguracja OpenBoxa**](#Konfiguracja-OpenBoxa)
@@ -767,7 +768,9 @@ W pliku *arch.conf* musimy wpisać **PARTUUID** naszej głównej partycji – /
 
 Ale także nie możemy zapomnieć, by na końcu dopisać **rw**!
 
----
+### Ostatnie szlify - sudoers i pacman.conf
+
+###### [Do góry](#Spis-treści)
 
 Zanim zaczniemy cokolwiek więcej pobierać, warto skonfigurować odpowiednio menadżer pakietów *pacman* i zadbać o to, aby *yay* było dostępne na naszym dysku. W tym celu wpisujemy:
 
