@@ -676,6 +676,10 @@ Ustalamy dla niego hasło.
 
 ###### [Do góry](#Spis-treści)
 Jednym z ostatnich kroków, jakie musimy podjąć, jest instalacja bootloadera na partycji EFI.  
+Faktem co prawda jest, że w nowoczesnych rozwiązaniach stosowanych na platformach UEFI, żaden dodatkowy loader nie jest potrzebny, bo sam UEFI Shell jest w stanie sobie poradzić z zarządzaniem i bootwaniem naszych systemów, o ile poda się mu odpowiednie parametry i wskaże partycję ESP.
+
+Jednak dla uproszczenia całego procesu oraz stosowania uniwersalnego dla różnych platform rozwiązania, dzisiaj nasza uwaga skupi się na systemd-boot.
+
 Do tego celu skorzystamy z komendy:
 
 > $ bootctl install
