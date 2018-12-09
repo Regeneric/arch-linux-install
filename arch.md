@@ -13,15 +13,15 @@ Sprawdźmy to!
   * [**LVM**](#LVM)
   * [**LVM i LUKS**](#LVM-i-LUKS)
   * [**Klasycznie**](#Klasycznie)
-* [**Instalacja i podstawowa konfiguracja**](#Instalacja-i-konfiguracja-systemu)
+* [**Instalacja i podstawowa konfiguracja**](#Instalacja-i-podstawowa-konfiguracja)
 * [**Bootloader**](#Bootloader-systemd-boot)
-* [**Pliki sudoers i pacman.conf**](#Pliki-sudoers-i-pacman.conf)
+* [**Pliki sudoers i pacman.conf**](#Pliki-sudoers-i-pacman.conf)  
+* [**Środowiska graficzne - wstęp, które wybrać, GTK i Qt**](#Środowisko-graficzne)
 * [**Środowisko graficzne XFCE**](#Środowisko-graficzne-XFCE)
   * [**Konfiguracja SDDM**](#Konfiguracja-SDDM)
   * [**Konfiguracja OpenBoxa**](#Konfiguracja-OpenBoxa)
-  * [**Konfiguracja XFCE**](#Konfiguracja-XFCE)
+  * [**Konfiguracja XFCE**](#Konfiguracja-XFCE)  
 * [**Środowisko graficzne KDE**](#Środowisko-graficzne-KDE)
-* [**Qt i GTK - główne różnice**](#Qt-i-GTK---główne-różnice)
 * [**Programy i aplikacje użytkowe**](#Programy-i-aplikacje-użytkowe)
   * [**Konfiguracja i3lock**](#Konfiguracja-i3lock)
   * [**Konfiguracja ZSH**](#Konfiguracja-ZSH)
@@ -814,10 +814,6 @@ I pod użytkownikiem root dodajemy linijkę:
 
 Zapisujemy, zamykamy i kiedy wszystko jest gotowe, wciskamy **Ctrl+D**, a następnie wpisujemy *reboot* i uruchamiamy Arch Linuxa prosto z naszego dysku!
 
-### Środowisko graficzne
-
-###### [Do góry](#Spis-treści)
-
 Przed rozpoczęciem konfiguracji środowiska graficznego warto zaopatrzyć się w menadżer pakietów, który znacząco ułatwi pobieranie i instalację paczek.
 Aktualnie najlepszym rozwiązaniem jest menadżer pakietów *yay*, który posiada integrację nie tylko z oficjalnym repozytorium Archa, ale także z *AUR*, na czym nam najbardziej zależy.  
 Musimy wpisać więc:
@@ -828,6 +824,12 @@ Musimy wpisać więc:
 Takimi oto sposobem zaopatrzyliśmy się w rozwiązanie, z którego korzysta aktualnie większość społeczności Archa.  
 Od teraz pobieranie pakietów i aktualizacja systemu zawiera się w tej jednej komendzie i jeśli sytuacja nas do tego nie zmusza, nie są wymagane żadne dodatkowe parametry.
 
+I to wszystko. Przebrnęliśmy przez proces instalacji systemy od początku, aż do samego końca. Następnym krokiem jest już tylko konfiguracja DE i WM pod nasze osobiste potrzeby.  
+
+### Środowisko graficzne
+
+###### [Do góry](#Spis-treści)
+
 Żeby w ogóle móc korzystać z jakiegokolwiek DE, potrzebujemy serwera X. Możemy go pobrać razem z terminalem XTerm za pomocą komendy:
 
 > $ yay -S xorg xorg-xinit xterm
@@ -835,9 +837,31 @@ Od teraz pobieranie pakietów i aktualizacja systemu zawiera się w tej jednej k
 Parametr **-S** pojawił się przy *yay* tylko dlatego, że chcemy pobrać kilka pakietów naraz i nie chcemy wybierać ich po kolei z listy.
 
 I w tym miejscu ogranicza nas tylko własny gust i upodobania.  
-Wybór DE jest ogromny i to co wybierzemy, zależne jest tylko od nas.  
-Osobiście skupię się na *XFCE*, razem z menadżerem logowania *sddm* oraz przydatnym lockerze, jakim jest *i3lock*.  
-Aby go pobrać używamy:
+Wybór DE jest ogromny i to co wybierzemy, zależne jest tylko od nas.
+
+Ja skupię się według mnie na dwóch najlepszych opcjach, jakimi są *KDE Plasma* oraz *XFCE* z menadżerem okien *Openbox*.  
+
+Na które z nich się zdecydujemy, zależy tylko od nas. Najważniejszą różnicą są biblioteki, na których opiera się środowisko, a także możliwości konfiguracyjne i łatwość ich wprowadzania.  
+
+To, na jakiej bibliotece opiera się nasz system, ma największe znaczenie, kiedy zamierzamy zająć się projektowaniem aplikacji, oraz kiedy zamierzamy wprowadzić unifikację aplikacji w systemie.
+
+*XFCE* opiera się na bibliotece GTK+, napisanej przy użyciu języka C. Przestała być aktualizowana już kilka lat temu. Mimo wszystko nadal jest powszechnie używana. Większość programów, którą znajdziemy na repozytoriach naszego systemu, opiera się na tej bibliotece. 
+Konfiguracja XFCE jest znacznie trudniejsza niż konfiguracja Plasmy, gdyż większość zmian dokonujemy przez edycję odpowiednich plików *xml*. Bez odpowiednich pomocy, konfiguracja naszego systemu może być bardzo ciężka. Dzięki temu możemy znacznie lepiej spersonalizować nasz system. Jeżeli czujemy się na siłach, to mocno zachęcam do spróbowania swoich sił. Poniżej przedstawiam swoją propozycję na zbudowanie wydajnego i eleganckiego systemu opartego o *XFCE*.
+
+*KDE Plasma* opiera się za to na bibliotece Qt, którą zaprojetkowano w języku C++. Biblioteka jest stale aktualizowana, a ze względu na łatwość obsługi, liczba programów na niej opartych szybko rośnie. Mimo wszystko nadal GTK+ posiada szerszy wybór oprogramowania. Konfiguracja Plasmy jest znacznie prostsza. Większość odbywa się w specjalnej aplikacji przeznaczonej do tego. Szukanie motywów, widgetów czy schematów kolorów na Plasmie jest szybsze, a wszystko zainstalować możemy bez edycji plików tekstowych. Plasma domyślnie posiada ładny, podobny do Windowsa, układ, i nie wymaga tak dużej konfiguracji, żeby osiągnąc przyzwoity efekt, ale odrobina pracy pozwala na zmianę systemu nie do poznania. Mimo wszystko nie jest to tak wysoki poziom konfigurowalności, jaki znajdziemy w XFCE.
+
+Warto zaznaczyć. że nic nie stoi na przeszkodzie, żeby korzystać np. z aplikacji opartej na GTK+ na KDE Plasma, jednak jeżeli system nie zostanie odpowiednio skonfigurowany wówczas aplikacje mogą wyglądać inaczej, niż byśmy tego oczekiwali.
+
+Jeżeli zdecydowałeś się na rozwiązanie cięższe, ale pozwalające na większą konfigurację, wybierz [**XFCE**](#Środowisko-graficzne-XFCE).
+
+Jeżeli zdecydowałeś się na rozwiązanie łatwiejsze, gdzie konfiguracja nie jest tak potrzebna, wybierz [**KDE**](#Środowisko-graficzne-KDE).
+
+
+### Środowisko graficzne XFCE
+
+###### [Do góry](#Spis-treści)
+
+Zaczynamy od pobrania odpowiednich paczek:
 
 > $ yay -S xfce4 xfce4-goodies sddm i3lock-color-git
 
@@ -857,12 +881,7 @@ Zanim to jednak nastąpi, musimy wpisać następujące polecenie:
 
 ![sddm](https://i.imgur.com/hC0eaiY.png)
 
-I to wszystko. Przebrnęliśmy przez proces instalacji systemy od początku, aż do samego końca. Następnym krokiem jest już tylko konfiguracja DE i WM pod nasze osobiste potrzeby.  
-Poniżej przedstawiam swoją propozycję na zbudowanie wydajnego i eleganckiego systemu opartego o *XFCE*.
-
 ![xfce](https://i.imgur.com/k1PYaHn.png)
-
-### Środowisko graficzne XFCE
 
 ##### Konfiguracja SDDM
 
@@ -1191,12 +1210,71 @@ Jednak co mogę zalecić, to nie bać się zmieniać rzeczy i z nimi eksperyment
 ### Środowisko graficzne KDE
 
 ###### [Do góry](#Spis-treści)
-tutaj będzie kde
 
-### Qt i GTK - główne różnice
+Zaczynamy od pobrania odpowiednich paczek:
 
-###### [Do góry](#Spis-treści)
-gtk i qt
+> $ yay -S plasma sddm
+
+Jeżeli przeszkadza nam duża ilość paczek, zamiast paczki *plasma* możemy użyć *plasma-desktop*, która nie zawiera aplikacji przygotowanych do rozpoczęcia działania z systemem. Wówczas możemy interesujące nas paczki pobrać ręcznie, a do przeglądania ich można użyć chociażby *Octopi*. Mimo wszystko ja zalecam instalację paczki *plasma*, szczególnie jeśli jest to nasza pierwsza przygoda z systemem Linux.
+
+Następny krok, to dobór sterowników – tutaj trzeba je dobrać odpowiednio do posiadanej karty graficznej.  
+Każdy musi poradzić sobie sam, opierając się na posiadanym sprzęcie oraz wymaganiach. Ponieważ na rynku znajduje się sporo sprzętu o różnym stopniu kompatybilności, zarówno z otwartymi, jak i własnościowymi sterownikami, nie opiszę tutaj procesu instalacji żadnej z tych paczek.  
+Zamiast tego odsyłytam [TUTAJ](https://wiki.archlinux.org/), do Wiki Archa po więcej informacji.
+
+Jeśli jednak totalnie nie mamy pojęcia co zainstalować, można pominąć ten krok i zdać się na Archa i jego kompatybilność z naszym sprzętem. W większości wypadków jakaś forma otwartych sterowników jest już zaimplementowana, więc finalnie powinniśmy mieć jakikolwiek obraz widoczny na naszym monitorze.
+
+Jesteśmy już gotowi do pierwszego uruchomienia naszego środowiska graficznego.
+Zanim to jednak nastąpi, musimy wpisać następujące polecenie:
+
+> $ sudo systemctl enable --now sddm
+
+![sddm](https://i.imgur.com/hC0eaiY.png)
+
+![kde](https://i.imgur.com/yRTCWSP.png)
+
+Prawie cała konfiguracja odbywa się w aplikacji *systemsettings*, którą możemy uruchomić przy użyciu launchera KDE, lub komendy *systemsettings5*. Możemy zmienić to praktycznie wszystko, od czasu systemowego, czcionki, motywu, aż do schematu kolorów czy ustawień myszy.
+Aplikacja może być też roszerzana przez odpowiednie moduły, które możemy pobrać przy użyciu komendy *yay*. Jeżeli jednak zdecydowaliśmy się na instalację systemu z paczki *plasma*, wówczas te najważniejsze moduły powinny być już zainstalowane.
+
+KDE Plasma domyślnie posiada dwa motywy, Breeze Light oraz Breeze Dark, a także odpowiadające im motywy pod GTK. Warto dbać o to, żeby motyw ustawiony dla aplikacji Qt był taki sam, jak dla aplikacji GTK. Możemy zmienić go w sekcji *Application Style > GNOME Application Style*.
+
+![gtktheme](https://i.imgur.com/Jw9QObQ.png)
+
+Jeżeli domyślne motywy nam nie odpowiadają, bardzo prosto możemy pobrać inne, używając opcji *Get New Looks...*. Dzięki temu przy użyciu kilku kliknięć jesteśmy w stanie uzyskać system wyglądem przypominający chociażby Ubuntu.
+
+Mnóstwo motywów, zarówno tych przeznaczonych dla Qt i GTK+ możemy znaleźć w sieci, na specjalnych stronach, takich jak np. [KDE Store](https://store.kde.org/ "KDE store").
+Duża część motywów znajduje się jednak na prywatnych stronach lub repozytoriach github twórców.
+
+Warto wyłączyć także gesty ekranu dotykowego w sekcji *Touch Screen*, które mogą sprawiać problemy. W razie gdyby pojawiły się problemy z aplikacjami otwierającymi się w złych rozdzielczościach, wyłączyć można też funkcje krawędzi ekraniu w sekcji *Screen Edges*.
+
+![screenedge](https://i.imgur.com/upxJOab.png)
+
+Jeżeli nie zamierzamy korzystać z systemu KDE Wallet, który szyfruje i zapisuje nasze hasła, możemy go wyłączyć w sekcji *Account Details*
+
+![kcm](https://i.imgur.com/4KUws6G.png)
+
+Możemy łatwo także skonfigurować nasz menadżer logowania, *SDDM*. Służy do tego specjalna sekcja w aplikacji *systemsettings*. Pozwala też na pobieranie motywów, zmienianie ich, autologowanie, a nawet zmianę kursoru myszy w menadżerze.
+
+![sddmkde](https://i.imgur.com/wNM6CGB.png)
+
+Reszta konfiguracji odbywa się w już konkretnych aplikacjach KDE, takich jak np. Konsole, Dolphin, Okular, Spectacle, czy Kate.
+
+Tak prezentuje się Plasma po prostej konfiguracji, na domyślnym motywie, Breeze-Dark.
+
+![kdebase](https://i.imgur.com/gOVJQYP.jpg)
+
+Oczywiście można system spersonalizować bardziej, chociażby przy użyciu Latte-Docka, albo oprogramowania Kvantum, ale to wymaga od nas nieco więcej pracy.
+
+Oto dwie konfiguracje, które udało mi się stworzyć:
+
+![kde1](https://i.imgur.com/fFEZuVH.png)
+Motyw GTK + Qt: OneDark OSX Transparent  
+Ikony: Papirus Dark  
+Kvantum: KvOneDark  
+
+![kde2](https://i.redd.it/d7usc6ia5tg01.png)
+Dock: Latte-Dock  
+Motyw GTK + Qt: Maia Transparent  
+Kvantum: brak  
 
 ### Programy i aplikacje użytkowe
 ##### Konfiguracja i3lock
