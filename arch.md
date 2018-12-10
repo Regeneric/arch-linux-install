@@ -1,6 +1,6 @@
-## **Arch Linux - instalacja i konfiguracja**
+# **Arch Linux - instalacja i konfiguracja**
 
-Świat systemów GNU/Linux jest rozległy i fascynujący. Każda dystrybucja ma pomysł na samą siebie, potrafi zebrać rzeszę nie tyle prostych użytkowników, ile ludzi powiązanych mniej lub bardziej z systemem. Pingwinki są od ludzi, dla ludzi, o czym wielu często zapomina.
+Świat systemów GNU/Linux jest rozległy i fascynujący. Każda dystrybucja ma pomysł na samą siebie, potrafi zebrać rzeszę nie tyle prostych użytkowników, ile ludzi powiązanych mniej lub bardziej z systemem. Pingwinki są od ludzi, dla ludzi, o czym wielu często zapomina.  
 Dlaczego więc Arch Linux owiany jest takim mistycyzmem? Co stoi za jego sukcesem i dlaczego jest to świetny system dla naszego desktopa?
 Sprawdźmy to!
 
@@ -14,9 +14,9 @@ Sprawdźmy to!
   * [**LVM i LUKS**](#LVM-i-LUKS)
   * [**Klasycznie**](#Klasycznie)
 * [**Instalacja i podstawowa konfiguracja**](#Instalacja-i-podstawowa-konfiguracja)
-* [**Bootloader**](#Bootloader-systemd-boot)
-* [**Pliki sudoers i pacman.conf**](#Pliki-sudoers-i-pacman.conf)  
-* [**Środowiska graficzne - wstęp, które wybrać, GTK i Qt**](#Środowisko-graficzne)
+    * [**Bootloader**](#Bootloader-systemd-boot)
+    * [**Pliki sudoers i pacman.conf**](#Pliki-sudoers-i-pacman.conf)  
+* [**Środowiska graficzne - wstęp, które wybrać, GTK i Qt**](#Środowiska-graficzne)
 * [**Środowisko graficzne XFCE**](#Środowisko-graficzne-XFCE)
   * [**Konfiguracja SDDM**](#Konfiguracja-SDDM)
   * [**Konfiguracja OpenBoxa**](#Konfiguracja-OpenBoxa)
@@ -28,20 +28,20 @@ Sprawdźmy to!
   * [**Konfiguracja VIMa**](#Konfiguracja-VIMa)
 * [**Podsumowanie**](#Podsumowanie)
 
-### Arch Linux
+## Arch Linux
 
 ###### [Do góry](#Spis-treści)
 Dystrybucja stworzona przez Judda Vineta, która za cel obrała sobie łatwość konfiguracji, użytkowania, a także szybkość, stabilność i aktualność.
 
 Problemem dla osób początkujących z Linuksem jest to, że cała łatwość nie opiera się na graficznym reprezentowaniu parametrów i klikaniu myszą w odpowiednie miejsca.
 Ideą jest przemyślane rozmieszczenie i zaprojektowanie skryptów, programów czy plików konfiguracyjnych.
-To dzięki nim, przy pomocy terminala, możemy zrobić system idealny. Niczym nieograniczeni, z potężnym narzędziem na naszym PC jesteśmy w stanie tak dobrać DE, programy czy wszelkie inne paczki, by system stanowił naszą drugą naturę.
+To dzięki nim, przy pomocy terminala, możemy zrobić system idealny. Niczym nieograniczeni, z potężnym narzędziem na naszym PC jesteśmy w stanie tak dobrać DE (Desktop Environment - środowisko graficzne), programy czy wszelkie inne paczki, by system stanowił naszą drugą naturę.
 
-Przemyślany menadżer pakietów *pacman*, ogromna baza programów, jaką stanowi *AUR*, niezawodność i bezproblemowa praca – te i wiele, wiele innych czynników stanowią o tym, dlaczego ten system jest tak popularny w kręgu bardziej doświadczonych użytkowników Linuksa.
+Przemyślany menadżer pakietów **pacman**, ogromna baza programów, jaką stanowi *AUR*, niezawodność i bezproblemowa praca – te i wiele, wiele innych czynników stanowią o tym, dlaczego ten system jest tak popularny w kręgu bardziej doświadczonych użytkowników Linuksa.
 
-Co do samego *AUR* – warto powiedzieć, że jest to swoisty odpowiednik PPA z Ubuntu.
+Co do samego **AUR** – warto powiedzieć, że jest to swoisty odpowiednik PPA z Ubuntu.
 Działa jednak znacznie lepiej i sprawniej. Za pomocą [TEJ](https://aur.archlinux.org/)  strony, jesteśmy w stanie wyszukiwać, pobierać a następnie instalować interesujące nas pakiety.
-Co więcej – nie musimy tam nawet zaglądać, bo z pomocą przychodzi nam kolejny menadżer pakietów, jakim jest *yay*.
+Co więcej – nie musimy tam nawet zaglądać, bo z pomocą przychodzi nam oprogramowanie *yay*, rozszerzające działanie *pacmana*.
 Operuje on właśnie na repozytoriach AUR i usprawnia cały proces instalacji.
 
 ### Pochodne dystrybucje Archa
@@ -65,7 +65,7 @@ Mimo to każdemu o odmiennych poglądach polecam zapoznać się z wymienionymi w
 ###### [Do góry](#Spis-treści)
 Metodę przygotowania medium instalacyjnego pozostawiam Wam. Sposobów i nośników jest tyle, co ludzi instalujących system, a niech każdy wybierze to, co mu najbardziej odpowiada.
 
-Osobiście skorzystam z bootowalnego pendrive’a, stworzonego za pomocą komendy **dd**, dla instalacji na dysku **GPT** pod PC wspierającym **UEFI**.
+Osobiście skorzystam z bootowalnego pendrive’a, stworzonego za pomocą komendy **dd**, lub przy użyciu oprogramowania **Rufus**, dostępnego na systemy Windows, dla instalacji na dysku **GPT** pod PC wspierającym **UEFI**.
 
 Nie ma co się oszukiwać — **MBR** to przestarzałe rozwiązanie, które powinno zniknąć już dłuższy czas temu. Trzeba wspierać nowe technologie i korzystać z ich dobrodziejstw — zwłaszcza wtedy, kiedy przynosi nam to wymierne korzyści.
 
@@ -116,9 +116,13 @@ Oprócz tego dyski działające na LVM świetnie działają z szyfrowaniem LUKS,
 
 Moim zdaniem warto poświęcić na instalację trochę więcej czasu i zastosować LVM, chociażby po to, żeby w przyszłości nie mieć problemu z brakiem miejsca na partycji systemowej.
 
-###### [Partycjonowanie z użyciem LVM](#LVM)
-###### [Partycjonowanie z użyciem LVM i LUKS](#LVM-i-Luks)
-###### [Partycjonowanie klasyczne](#Klasycznie)
+ Mimo wszystko, gdyby okazało się, że nie radzimy sobie także z partycjonowaniem klasycznym, można przygotować partycje przed instalacją w programie graficznym **gparted**. Dostępny jest jako obraz iso, którego możemy użyć do utworzenia bootowalnego pendrive. Pojawia się także w takich dystrybucjach jak *Manjaro* czy *Anarchy*. Potrzebne nam będą przynajmniej dwie partycje - **root /** oraz **EFI /boot**. Ta druga wymaga systemu plików *vfat* lub *fat32* oraz flag *boot* oraz *esp*, które możemy nadać po naciśnięciu prawym przyciskiem myszy na partycję.
+
+ ![gparted](https://i.imgur.com/TpUjedh.png)
+
+##### [Partycjonowanie z użyciem LVM](#LVM)
+##### [Partycjonowanie z użyciem LVM i LUKS](#LVM-i-Luks)
+##### [Partycjonowanie klasyczne](#Klasycznie)
 
 ### LVM
 
@@ -553,10 +557,9 @@ Musimy zamontować swoje partycje w odpowiednich miejscach za pomocą komend:
 > $ mkdir /mnt/home  
 > $ mkdir /mnt/boot  
 > $ mount /dev/sdCD /mnt/home  
-> $ mount /dev/sdXY /mnt/boot
+> $ mount /dev/sdXY /mnt/boot  
 
-
-### Instalacja i podstawowa konfiguracja
+## Instalacja i podstawowa konfiguracja
 
 ###### [Do góry](#Spis-treści)
 Pobranie pakietów i instalacja systemu mieści się w jednej komendzie:
@@ -583,7 +586,7 @@ Sama komenda chroot wzięła się od słów „*change root*”, co świetnie od
 ![chroot](https://i.imgur.com/YPlIF0j.png)
 
 Następny krok, to edycja pliku **mkinitcpio.conf**, jest to wymagane dlatego, że nasza partycja główna zawiera się w ramach **LVM** i nasz system musi mieć informacje o tym, jak się poprawnie z niej bootować.  
-Jeśli jednak ktoś stwierdził, że nie chce **LVM** i partycje zrobił klasycznie, można ten krok smiało pominąć.
+Jeśli jednak ktoś stwierdził, że  **LVM** nie jest mu potrzebne i partycje zrobił klasycznie, można ten krok smiało pominąć.
 
 Do edycji wymagany będzie jakikolwiek edytor. Osobiście preferuję **vima**, dlatego to jego tutaj będzie można zobaczyć, lecz **nano**, **vi**, **emacs** z opcją *-nw* czy cokolwiek innego, działającego w CLI się nada równie dobrze.
 
@@ -612,11 +615,11 @@ Wychodzimy z *vima* za pomocą:
 
 > Esc :wq
 
-I możemy teraz przebudować nasz obraz. Kiedy nie jesteśmy pewni, czy aby na pewno wpisaliśmy *lvm2* w odpowiednim miejscu, możemy wydać komendę testową i się przekonać:
+I możemy teraz przebudować nasz obraz. Kiedy nie jesteśmy pewni, czy aby na pewno wprowadziliśmy wszystkie zmiany poprawnie, możemy wydać komendę testową i się przekonać:
 
 > $ mkinitcpio linux
 
-Jeśli całość wykona się poprawnie, możemy uzupełnić ją o brakujący parametr:
+Jeśli całość wykona się poprawnie, z wyjątkiem błędu dotyczącego *Linux kernel*, możemy uzupełnić ją o brakujący parametr:
 
 > $ mkinitcpio -p linux
 
@@ -715,7 +718,12 @@ Zmiany które tutaj wprowadzimy powinny być różne, zależnie od rodzaju insta
 linux /vmlinuz-linux  
 initrd /initramfs-linux.img  
 initrd /intel-ucode.img  
-options root=/dev/mapper/root-proot rw**
+options root=/dev/mapper/root-proot rw**  
+
+
+
+Nie możemy zapomnieć, by na końcu dopisać **rw**!
+
 
 ---
 
@@ -725,7 +733,7 @@ options root=/dev/mapper/root-proot rw**
 linux /vmlinuz-linux  
 initrd /initramfs-linux.img  
 initrd /intel-ucode.img  
-options cryptdevice=UUID=6265d89d-d8b0-4809-9ce1-3a75796fd237:root root=/dev/mapper/root rw**
+options cryptdevice=UUID=3d9a2835-025a-4182-a5fd-a0372255db76:root root=/dev/mapper/root rw**
 
 Tytuł możemy nadać dowolny, ale UUID musimy wpisać odpowiadające naszej **/dev/VolGrp/cryptroot**  
 Za pomocą polecenia:.
@@ -736,7 +744,7 @@ Możemy na ekranie wyświetlić sobie informacje o naszych partycjach.
 
 ![blkid](https://i.imgur.com/MtyyPcX.png)
 
-Ale także nie możemy zapomnieć, by na końcu dopisać **rw**!
+Nie możemy zapomnieć, by na końcu dopisać **rw**!
 
 ---
 
@@ -826,7 +834,7 @@ Od teraz pobieranie pakietów i aktualizacja systemu zawiera się w tej jednej k
 
 I to wszystko. Przebrnęliśmy przez proces instalacji systemy od początku, aż do samego końca. Następnym krokiem jest już tylko konfiguracja DE i WM pod nasze osobiste potrzeby.  
 
-### Środowisko graficzne
+## Środowiska graficzne
 
 ###### [Do góry](#Spis-treści)
 
@@ -846,18 +854,18 @@ Na które z nich się zdecydujemy, zależy tylko od nas. Najważniejszą różni
 To, na jakiej bibliotece opiera się nasz system, ma największe znaczenie, kiedy zamierzamy zająć się projektowaniem aplikacji, oraz kiedy zamierzamy wprowadzić unifikację aplikacji w systemie.
 
 *XFCE* opiera się na bibliotece GTK+, napisanej przy użyciu języka C. Przestała być aktualizowana już kilka lat temu. Mimo wszystko nadal jest powszechnie używana. Większość programów, którą znajdziemy na repozytoriach naszego systemu, opiera się na tej bibliotece. 
-Konfiguracja XFCE jest znacznie trudniejsza niż konfiguracja Plasmy, gdyż większość zmian dokonujemy przez edycję odpowiednich plików *xml*. Bez odpowiednich pomocy, konfiguracja naszego systemu może być bardzo ciężka. Dzięki temu możemy znacznie lepiej spersonalizować nasz system. Jeżeli czujemy się na siłach, to mocno zachęcam do spróbowania swoich sił. Poniżej przedstawiam swoją propozycję na zbudowanie wydajnego i eleganckiego systemu opartego o *XFCE*.
+Konfiguracja XFCE jest znacznie trudniejsza niż konfiguracja Plasmy, gdyż większość zmian dokonujemy przez edycję odpowiednich plików *xml*. Bez odpowiednich pomocy, konfiguracja naszego systemu może być bardzo ciężka. Przez to możemy jednak znacznie lepiej spersonalizować nasz system. Jeżeli czujemy się na siłach, to mocno zachęcam do spróbowania swoich sił. Poniżej przedstawiam swoją propozycję na zbudowanie wydajnego i eleganckiego systemu opartego o *XFCE*.
 
-*KDE Plasma* opiera się za to na bibliotece Qt, którą zaprojetkowano w języku C++. Biblioteka jest stale aktualizowana, a ze względu na łatwość obsługi, liczba programów na niej opartych szybko rośnie. Mimo wszystko nadal GTK+ posiada szerszy wybór oprogramowania. Konfiguracja Plasmy jest znacznie prostsza. Większość odbywa się w specjalnej aplikacji przeznaczonej do tego. Szukanie motywów, widgetów czy schematów kolorów na Plasmie jest szybsze, a wszystko zainstalować możemy bez edycji plików tekstowych. Plasma domyślnie posiada ładny, podobny do Windowsa, układ, i nie wymaga tak dużej konfiguracji, żeby osiągnąc przyzwoity efekt, ale odrobina pracy pozwala na zmianę systemu nie do poznania. Mimo wszystko nie jest to tak wysoki poziom konfigurowalności, jaki znajdziemy w XFCE.
+*KDE Plasma* opiera się za to na bibliotece Qt, którą zaprojetkowano w języku C++. Biblioteka jest stale aktualizowana, a ze względu na łatwość obsługi, liczba programów na niej opartych szybko rośnie. Mimo wszystko nadal GTK+ posiada szerszy wybór oprogramowania. Konfiguracja Plasmy jest znacznie prostsza. Większość odbywa się w specjalnej aplikacji przeznaczonej do tego. Szukanie motywów, widgetów czy schematów kolorów na Plasmie jest szybsze, a wszystko zainstalować możemy bez edycji plików tekstowych. Plasma domyślnie posiada ładny, podobny do Windowsa, układ, i nie wymaga tak dużej konfiguracji, żeby osiągnąć przyzwoity efekt, ale odrobina pracy pozwala na zmianę systemu nie do poznania. Żeby jednak osiągnąć taki poziom konfigurowalności, jaki oferuje XFCE, musimy się bardzo napracować.
 
 Warto zaznaczyć. że nic nie stoi na przeszkodzie, żeby korzystać np. z aplikacji opartej na GTK+ na KDE Plasma, jednak jeżeli system nie zostanie odpowiednio skonfigurowany wówczas aplikacje mogą wyglądać inaczej, niż byśmy tego oczekiwali.
 
 Jeżeli zdecydowałeś się na rozwiązanie cięższe, ale pozwalające na większą konfigurację, wybierz [**XFCE**](#Środowisko-graficzne-XFCE).
 
-Jeżeli zdecydowałeś się na rozwiązanie łatwiejsze, gdzie konfiguracja nie jest tak potrzebna, wybierz [**KDE**](#Środowisko-graficzne-KDE).
+Jeżeli zdecydowałeś się na rozwiązanie łatwiejsze, gdzie domyślnie dostajemy całkiem przyzwoicie wyglądający system, konfiguracja nie jest tak potrzebna, wybierz [**KDE**](#Środowisko-graficzne-KDE).
 
 
-### Środowisko graficzne XFCE
+## Środowisko graficzne XFCE
 
 ###### [Do góry](#Spis-treści)
 
@@ -883,7 +891,7 @@ Zanim to jednak nastąpi, musimy wpisać następujące polecenie:
 
 ![xfce](https://i.imgur.com/k1PYaHn.png)
 
-##### Konfiguracja SDDM
+#### Konfiguracja SDDM
 
 ###### [Do góry](#Spis-treści)
 Jak widać na screenshotach wyżej, standardowy **SDDM**, który decydujemy się sami zainstalować nijak ma się do tego znanego choćby z *KDE*. W środowiskach FOSS (*Free and Open Source Software*) nie jest to jednak problemem i mamy niemalże pełną kontrolę nad systemem.
@@ -1004,7 +1012,7 @@ Kiedy całość jest już zapisana i odpowiednio edytowana, *SDDM Configurator* 
 
 ![preview](https://i.imgur.com/ZjC496G.png)
 
-##### Konfiguracja OpenBoxa
+#### Konfiguracja OpenBoxa
 
 ###### [Do góry](#Spis-treści)
 Pomimo świadomej i pewnej decyzji, jaką podjąłem instalując **XFCE**, oraz jaką sam polecam, mam pełną świadomość tego, że w chwili pisania tego tekstu, jest to jedno z najmniej przyszłościowych środowisk graficznych dostępnych na rynku.
@@ -1114,7 +1122,7 @@ I całość zapisać. Takim oto sposobem udało się wykonać dość poważną i
 ![startup](https://i.imgur.com/JVtWWOc.png)
 
 
-##### Konfiguracja XFCE
+#### Konfiguracja XFCE
 
 ###### [Do góry](#Spis-treści)
 Ostatnim krokiem nad skończeniem budowania systemu, jest samo XFCE. Sprawa jest o tyle ułatwiona, że wszystko można ustawić z poziomu GUI.  
@@ -1207,7 +1215,7 @@ I tak naprawdę to wszystko, co mogę przekazać z najważniejszych aspektów XF
 
 Jednak co mogę zalecić, to nie bać się zmieniać rzeczy i z nimi eksperymentować. Po to własnie Pingwiny są otwartymi systemami, aby z tego korzystać!
 
-### Środowisko graficzne KDE
+## Środowisko graficzne KDE
 
 ###### [Do góry](#Spis-treści)
 
@@ -1276,8 +1284,8 @@ Dock: Latte-Dock
 Motyw GTK + Qt: Maia Transparent  
 Kvantum: brak  
 
-### Programy i aplikacje użytkowe
-##### Konfiguracja i3lock
+## Programy i aplikacje użytkowe
+#### Konfiguracja i3lock
 
 ###### [Do góry](#Spis-treści)
 Dobrze jest posiadać w systemie możliwość zablokowania ekranu i wymagania od użytkownika wprowadzenia hasła, ale bez konieczności wylogowania się.  
@@ -1339,7 +1347,7 @@ Oczywiście, efekt blur jest stosunkowo prosto odwracalny w programach graficzny
 
 ![i3lock](https://i.imgur.com/lsfs2PS.jpg)
 
-##### Konfiguracja ZSH
+#### Konfiguracja ZSH
 
 ###### [Do góry](#Spis-treści)
 > ZSH (Z shell) – uniksowa powłoka (ang. shell) nadająca się zarówno do interaktywnej pracy z systemem jak i do wykonywania skryptów. Spośród standardowych powłok, ZSH najbardziej przypomina Korn Shell, ale zawiera wiele ulepszeń. zsh posiada edycję wiersza poleceń, wbudowaną korekcję pisowni, programowalne dopełnianie poleceń, funkcje (z automatycznym ładowaniem), historię poleceń i mnóstwo innych cech.
@@ -1444,7 +1452,7 @@ Oraz wykonanie polecenia:
 
 W ten oto sposób, już nawet restart naszego systemu nie powinien mieć negatywnego wpływu na shell i odwrotnie. Zaś my, jako użytkownicy, możemy nacieszyć oko całkiem ładnym i nowoczesnym wyglądem terminala.
 
-##### Konfiguracja VIMa
+#### Konfiguracja VIMa
 
 ###### [Do góry](#Spis-treści)
 **VIM** to jeden z najpopularniejszych i najlepszych edytorów tekstu działający w CLI. Jego największymi zaletami są m.in. pełna konfigurowalności, ogromne możliwości skryptowe oraz ogromne zaawansowanie, które pozwala na jego podstawie zbudować pełnoprawne IDE do pracy z C++, Javą, C# i czym tylko człowiek zapragnie.
@@ -1537,7 +1545,7 @@ Na start jest to w 100% wystarczające. W trakcie dalszego korzystania z *vima* 
 Świat systemów spod znaku jakże rozpoznawalnego pingwina Tuxa jest ogromny i otwarty, czekający tylko na to, aby przyciągnąć do siebie nowych użytkowników.  
 Zarówno pasjonaci, jak i zwykli użytkownicy komputerów, mogą znaleźć tutaj coś dla siebie.
 
-Kiedy decyzja przychodzi naturlane, od naszej własnej chęci na spróbowanie czegoś nowego, a sam proces porzucania Windowsa (lub tylko ograniczania jego roli w naszym życiu), jest spokojny, powolny i odpowiednio rozciągnięty w czasie, aby nie powodować niepotrzebnego szkou, i zamieszania, Linux okazuje się być bardzo wdzięczny.
+Kiedy decyzja przychodzi naturalnie, od naszej własnej chęci na spróbowanie czegoś nowego, a sam proces porzucania Windowsa (lub tylko ograniczania jego roli w naszym życiu), jest spokojny, powolny i odpowiednio rozciągnięty w czasie, aby nie powodować niepotrzebnego szoku, i zamieszania, Linux okazuje się być bardzo wdzięczny.
 
 Szansę na sprawdzenie samych siebie lub podzielenie się ze światem swoimi umiejętnościami mają zarówno graficy i web developerzy, którzy mogą tworzyć pamiętne i ładne style dla naszych systemów, jak i programiści. Ci drudzy mogą brać czynny udział nie tylko w rozwijaniu konkretnej dystrybucji, czy samego jądra systemu, ale także wspierać pomniejsze, fanowskie projekty (jak np. spotify-cli) lub tworzyć własne.  
 A nawet nie będąc w żadnej z tych grup, a jedynie korzystając z ich dorobku i otwartości systemu, możemy stworzyć setup, który docenią inni.
