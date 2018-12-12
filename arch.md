@@ -1,6 +1,6 @@
 # **Arch Linux - instalacja i konfiguracja**
 
-Świat systemów GNU/Linux jest rozległy i fascynujący. Każda dystrybucja ma pomysł na samą siebie, potrafi zebrać rzeszę nie tyle prostych użytkowników, ile ludzi powiązanych mniej lub bardziej z systemem. Pingwinki są od ludzi, dla ludzi, o czym wielu często zapomina.  
+Świat systemów GNU/Linux jest rozległy i fascynujący. Każda dystrybucja ma pomysł na siebie, potrafi zebrać rzeszę nie tyle zwykłych użytkowników, ile ludzi powiązanych mniej lub bardziej z systemem. Pingwinki są od ludzi, dla ludzi, o czym wielu często zapomina.  
 Dlaczego więc Arch Linux owiany jest takim mistycyzmem? Co stoi za jego sukcesem i dlaczego jest to świetny system dla naszego desktopa?
 Sprawdźmy to!
 
@@ -31,16 +31,16 @@ Sprawdźmy to!
 ## Arch Linux
 
 ###### [Do góry](#Spis-treści)
-Dystrybucja stworzona przez Judda Vineta, która za cel obrała sobie łatwość konfiguracji, użytkowania, a także szybkość, stabilność i aktualność.
+Dystrybucja została stworzona przez Judda Vineta. Obrała sobie za cel łatwość konfiguracji, użytkowania, a także szybkość, stabilność i aktualność.
 
-Problemem dla osób początkujących z Linuksem jest to, że cała łatwość nie opiera się na graficznym reprezentowaniu parametrów i klikaniu myszą w odpowiednie miejsca.
-Ideą jest przemyślane rozmieszczenie i zaprojektowanie skryptów, programów czy plików konfiguracyjnych.
-To dzięki nim, przy pomocy terminala, możemy zrobić system idealny. Niczym nieograniczeni, z potężnym narzędziem na naszym PC jesteśmy w stanie tak dobrać DE (Desktop Environment - środowisko graficzne), programy czy wszelkie inne paczki, by system stanowił naszą drugą naturę.
+Problemem z Linuksem dla osób początkujących  jest to, że cała prostota nie opiera się na graficznym reprezentowaniu parametrów i klikaniu myszą w odpowiednie miejsca.
+Ideą jest przemyślane rozmieszczenie i zaprojektowanie skryptów, programów lub plików konfiguracyjnych.
+To dzięki nim, przy pomocy terminalu, możemy stworzyć system idealny. Niczym nieograniczeni, z potężnym narzędziem na naszym PC, jesteśmy w stanie tak dobrać DE (Desktop Environment - środowisko graficzne), programy czy wszelkie inne paczki, by system stanowił naszą drugą naturę.
 
 Przemyślany menadżer pakietów **pacman**, ogromna baza programów, jaką stanowi *AUR*, niezawodność i bezproblemowa praca – te i wiele, wiele innych czynników stanowią o tym, dlaczego ten system jest tak popularny w kręgu bardziej doświadczonych użytkowników Linuksa.
 
 Co do samego **AUR** – warto powiedzieć, że jest to swoisty odpowiednik PPA z Ubuntu.
-Działa jednak znacznie lepiej i sprawniej. Za pomocą [TEJ](https://aur.archlinux.org/)  strony, jesteśmy w stanie wyszukiwać, pobierać a następnie instalować interesujące nas pakiety.
+Działa jednak znacznie lepiej i sprawniej. Za pomocą [TEJ](https://aur.archlinux.org/)  strony, jesteśmy w stanie wyszukiwać, pobierać, a następnie instalować interesujące nas pakiety.
 Co więcej – nie musimy tam nawet zaglądać, bo z pomocą przychodzi nam oprogramowanie *yay*, rozszerzające działanie *pacmana*.
 Operuje on właśnie na repozytoriach AUR i usprawnia cały proces instalacji.
 
@@ -51,19 +51,19 @@ Zanim przejdziemy do spraw instalacji i podstawowej konfiguracji systemu, trzeba
 
 Dystrybucje takie jak **Manjaro**, **Antergos** czy **Bridge Linux** pozwalają nam zaznać plusów systemu, ale bez całego żmudnego i niejako zaawansowanego procesu instalacji.
 
-Nie są one idealne i nie oddają w 100% systemu, który sami sobie skonfigurujemy od A do Z, ale są dobrym punktem zaczepienia dla ludzi, którzy nie są do końca przekonani o sensowności korzystania z Archa.
+Nie są one idealne i nie oddają w 100% systemu, który sami skonfigurujemy od A do Z, ale są dobrym punktem zaczepienia dla ludzi, którzy nie są do końca przekonani o sensowności korzystania z Archa.
 
-Z drugiej strony barykady stoją takie twory jak **Anarchy** lub **Revenge Installer**, które są graficznymi nakładkami na sam proces instalacyjny systemu, znacznie skracając czas potrzebny na np. wpisywanie komend. Nie są idealne i potrafią wysypać błędy w najmniej oczekiwanym momencie, jednak dla podstawowych zadań są niezastąpione.
+Z drugiej strony barykady stoją takie twory jak **Anarchy** lub **Revenge Installer**, które są graficznymi nakładkami na sam proces instalacyjny systemu, znacznie skracając czas potrzebny na np. wpisywanie komend. Nie są perfekcyjne i potrafią wysypać błędy w najmniej oczekiwanym momencie, jednak dla podstawowych zadań są niezastąpione.
 
-To dzięki wynalazkom przedstawionym wyżej, w prosty sposób możemy nauczyć się specyfiki systemu, pewnych wskazanych zachowań albo po prostu przyzwyczaić się do używania choćby tego *pacmana*.
+To dzięki wynalazkom przedstawionym wyżej możemy w prosty sposób nauczyć się specyfiki systemu, pewnych wskazanych zachowań albo po prostu przyzwyczaić się do używania choćby *pacmana*.
 
 Osobiście nie jestem ich zwolennikiem, bo uważam, że dobrze i samodzielnie postawiony Arch to ogrom doświadczenia, a także świadomość, co nam na dysku gra.
-Mimo to każdemu o odmiennych poglądach polecam zapoznać się z wymienionymi wyżej dystrybucjami. Jest to krok w dobrą stronę!
+Mimo to każdej osobie o odmiennych poglądach polecam zapoznanie się z wymienionymi wyżej dystrybucjami. Jest to krok w dobrą stronę!
 
 ### Wstępna konfiguracja
 
 ###### [Do góry](#Spis-treści)
-Metodę przygotowania medium instalacyjnego pozostawiam Wam. Sposobów i nośników jest tyle, co ludzi instalujących system, a niech każdy wybierze to, co mu najbardziej odpowiada.
+Metodę przygotowania medium instalacyjnego pozostawiam Wam. Sposobów i nośników jest tyle, ile osób instalujących system, a niech każdy wybierze to, co mu najbardziej odpowiada.
 
 Osobiście skorzystam z bootowalnego pendrive’a, stworzonego za pomocą komendy **dd**, lub przy użyciu oprogramowania **Rufus**, dostępnego na systemy Windows, dla instalacji na dysku **GPT** pod PC wspierającym **UEFI**.
 
@@ -99,7 +99,7 @@ Jeśli operacja ta nie przynosi żadnego efektu, na czas instalacji możemy ręc
 > $ echo "nameserver 1.1.1.1" >> /etc/resolv.conf  
 > $ echo "nameserver 1.0.0.1" >> /etc/resolv.conf
 
-Adresy IP podajemy oczywiście odpowiadające rzeczywistym wartościom używanym w naszej sieci. To samo tyczy się także nazwy naszej karty sieciowej (tutaj: *enp3s0*). W moim wypadku taki adres uwarunkowany jest ukryciem się za NATem, gdyż całość instalacji przeprowadzam na maszynie wirtualnej.
+Oczywiście podajemy adresy IP odpowiadające rzeczywistym wartościom używanym w naszej sieci. To samo dotyczy także nazwy naszej karty sieciowej (tutaj: *enp3s0*). W moim wypadku taki adres uwarunkowany jest ukryciem się za NATem, gdyż całość instalacji przeprowadzam na maszynie wirtualnej.
 
 ![ping-succ](https://i.imgur.com/edQ5dEI.png)
 
@@ -1125,7 +1125,7 @@ I całość zapisać. Takim oto sposobem udało się wykonać dość poważną i
 #### Konfiguracja XFCE
 
 ###### [Do góry](#Spis-treści)
-Ostatnim krokiem nad skończeniem budowania systemu, jest samo XFCE. Sprawa jest o tyle ułatwiona, że wszystko można ustawić z poziomu GUI.  
+Ostatnim krokiem przed skończeniem budowania systemu, jest samo XFCE. Sprawa jest o tyle ułatwiona, że wszystko można ustawić z poziomu GUI.  
 Warto spędzić tutaj chwilę dobierając interesujące nas theme, ikony czy font.  
 Postaram się pokrótce opisać najważniejsze opcje i zakładki, a resztę pozostawię do własnej, dowolnej eksploracji i dostosowania pod osobiste preferencje.
 
@@ -1143,7 +1143,7 @@ W razie problemów zawsze istnieje możliwość, aby ręcznie edytować pliki **
 
 ![numix-circle](https://i.imgur.com/5UstyKB.png)
 
-Jako ogromny fan okrągłych ikon mam słabość do stylu Numix Circle. Są to tak urocze i trafiające do mnie ikony, że czuję się źle, kiedy nie są one obecne w moim systemie. Oczywiście nie jest to jedyny dostępnt styl. Odwiedzając [TĘ](https://www.xfce-look.org/browse/cat/132/) stronę możemy przebierać i wybrzydzać wedle woli. 
+Jako wielki fan okrągłych ikon mam słabość do stylu Numix Circle. Są to tak urocze i trafiające do mnie ikony, że czuję się źle, kiedy nie są one obecne w moim systemie. Oczywiście nie jest to jedyny dostępnt styl. Odwiedzając [TĘ](https://www.xfce-look.org/browse/cat/132/) stronę możemy przebierać i wybrzydzać do woli. 
 
 Po pobraniu paczki należy ją wypakować poleceniem *tar*, a następnie umieścić całość w folderze **/usr/share/icons/**, aby pojawiły się one w menu wyboru.  
 Można też spróbować znaleźć daną paczkę w AUR, a wtedy jedna komenda załatwia za nas sprawę:
