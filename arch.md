@@ -1429,9 +1429,9 @@ Co sprawi, że każdy nowo otwarty terminal będzie korzystał z wygenerowanego 
 
 Jedną z ostatnich rzeczy do zrobienia, jest pobranie dwóch bardzo przydatnych pluginów:
 
-> $ git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+> $ git clone https://github.com/zsh-users/zsh-autosuggestions `$`{ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 
-> $ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+> $ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git `$`{ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
 Pierwszy z nich śledzi historię wprowadzonych poleceń, aby następnie na podstawie słów kluczowych, czy nawet pierwszych liter, podpowiadać całe, długie komendy. Przydatne przy powtarzających się terminalowych czynnościach.
 
