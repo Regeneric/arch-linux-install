@@ -1036,8 +1036,9 @@ Dzięki ogromnej społeczności zgromadzonej wokół niego oraz dzięki plikom k
 Ja jednak postanowiłem ograniczyć jego rolę tylko (i aż) do tego, aby trzymał moje środowisko graficzne w ryzach, zarządzając oknami czy pulpitami.  
 Fakt, nie jest on tak przyjazny i intuicyjny, jak *XFWM*, jednak i na to są odpowiednie rady i aplikacje. Niemniej pasuje wziąć się do roboty, więc wydajemy komendy:
 
-> $ yay openbox  
-> $ openbox --replace
+> $ yay -S openbox compton  
+> $ openbox --replace &  
+> $ compton &
 
 I tak naprawdę tyle wystarczyło, aby pozbyć się XFWM. Oczywiście nie całkowicie!
 
@@ -1045,7 +1046,7 @@ Zdaję sobie sprawę, że w stanie surowym podmiana menadżera okien może wydaw
 
 Jednak kolejny krok, to pobranie dwóch aplikacji, które sprawią, że cały proces konfiguracji stanie się zwykłą przyjmenością:
 
-> $ yay -S obconf obkey
+> $ yay -S obconf obkey compton-conf
 
 Następnie dobrze jest zaopatrzyć się w porządne style graficzne dla naszego menadżera okien.  
 Sposobów na zdobycie takowych jest kilka. Na przykład świetnym miejsce na złapanie inpiracji jest [/r/unixporn](https://www.reddit.com/r/unixporn/) - subreddit na którym ludzie dzielą się swoimi modyfikacjami i stylami na niemalże wszystkich środowiskach i dystrybucjach.
