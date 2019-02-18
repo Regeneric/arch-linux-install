@@ -1417,9 +1417,15 @@ Sama składnia myślę jest na tyle prosta, że nie ma coś się nad całością
 Dobrze by też było dopasować styl kolorystyczny terminala do naszej aktualnej palety kolorów dostępnej na pulpicie. Tutaj będzie nam potrzebna aplikacja:
 
 > $ yay python-pywal  
+
+Jeśli posiadamy środowisko graficzne XFCE, możemy wpisać:
+
 > $ wal -n -i $(xfconf-query -c xfce4-desktop -p /backdrop/screen0/monitor0/workspace0/last-image)
 
-W taki oto sposób program sam odczyta i ustawi w naszej konsoli pasujący styl, opierając się na tapecie z głównego monitora i pierwszego obszaru roboczego. Nie jest to jeszcze permanentne i wykorzystujemy tylko ułamek możliwości całej aplikacji, ale bardziej zaawansowane rozwiązanie są świetnie opisanie w manualu, do którego warto zajrzeć.
+W taki oto sposób program sam odczyta i ustawi w naszej konsoli pasujący styl, opierając się na tapecie z głównego monitora i pierwszego obszaru roboczego. Nie jest to jeszcze permanentne i wykorzystujemy tylko ułamek możliwości całej aplikacji, ale bardziej zaawansowane rozwiązanie są świetnie opisanie w manualu, do którego warto zajrzeć.  
+W przypadku innego środowiska graficznego, wydajemy komendę:
+
+> $ wal -n -i /sciezka/do/zdjecia.png
 
 Następnie trzeba dopisać w pliku ~/.zshrc linię:
 
