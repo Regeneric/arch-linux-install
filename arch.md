@@ -1387,7 +1387,7 @@ Już teraz można pokusić się o zaglądnięcie do pliku ~/.zshrc, jednak polec
 Następny krok to pobranie odpowiednio stylu oraz PowerLine'a:
 
 > $ yay -S powerline powerline-fonts powerline-common awesome-terminal-fonts  
-> $ git clone https://github.com/bhilburn/powerlevel9k && mv powerlevel9k/ ~/.oh-my-zsh
+> $ git clone https://github.com/bhilburn/powerlevel9k && mv powerlevel9k/ ~/.oh-my-zsh/themes/
 
 Następnie w pliku ~/.zshrc należy odnaleźć linię **ZSH_THEME** i dopisać do niej *powerlevel9k/powerlevel9k*
 
