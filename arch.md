@@ -564,7 +564,7 @@ Musimy zamontować swoje partycje w odpowiednich miejscach za pomocą komend:
 ###### [Do góry](#Spis-treści)
 Pobranie pakietów i instalacja systemu mieści się w jednej komendzie:
 
-> $ pacstrap /mnt base base-devel
+> $ pacstrap /mnt base base-devel linux linux-firmware linux-headers dhcpcd
 
 Będąc szczerym, to do poprawnego działania systemu nie jest wymagana paczka *base-devel*. Mimo to silnie zalecam ją zainstalować – choćby po to, żeby ułatwić sobie korzystanie z *AUR* w przyszłości.
 
